@@ -1,18 +1,23 @@
 /**
  * Directory dei costruttori di umanoidi.
  *
- * Generata da site/public/companies.csv (rilevazione del 21 agosto 2026).
- * Per aggiornarla: rigenerare questo file dal CSV, non modificarlo a mano.
+ * Questo file è la fonte dei dati: il CSV da cui era nato (rilevazione del 21 agosto
+ * 2026) non è nel repository. Si aggiorna qui, voce per voce, in ordine alfabetico.
+ * I conteggi in fondo si calcolano da soli.
  */
+
+/** Data dell'ultima rilevazione, mostrata sotto la directory e nella home. */
+export const RILEVAZIONE = "21 agosto 2026";
 
 export type Societa = {
   nome: string;
   sito: string;
   dominio: string;
+  /** due paesi separati da " / " solo se l'azienda è davvero binazionale */
   paese: string;
-  area: string;
+  area: "Europa" | "Asia" | "Nord America" | "Oceania" | "Medio Oriente" | "Sud America";
   modelli: string[];
-  stadio: string;
+  stadio: "Sul mercato" | "In pilot" | "In sviluppo";
   corpoIntero: boolean;
   /** natura giuridica: azienda, istituto, laboratorio universitario… */
   tipo: string;
@@ -20,7 +25,11 @@ export type Societa = {
   usi: string[];
   /** una riga di contesto dalla rilevazione */
   nota: string;
-  /** il sito ufficiale risponde ed è quello giusto (controllo HTTP del 21/08) */
+  /**
+   * il sito ufficiale ha risposto a un controllo HTTP diretto (21/08/2026). Le voci
+   * aggiunte o con dominio cambiato dopo quella data restano false finché non si
+   * ripete il controllo.
+   */
   sitoVerificato: boolean;
 };
 
@@ -1342,12 +1351,7 @@ export const SOCIETA: Societa[] = [
 ];
 
 export const SOCIETA_CONTI = {
-  "totale": 64,
-  "paesi": 21,
-  "aree": {
-    "Europa": 15,
-    "Asia": 35,
-    "Nord America": 14
-  },
-  "sulMercato": 26
+  totale: SOCIETA.length,
+  paesi: new Set(SOCIETA.flatMap((s) => s.paese.split(" / "))).size,
+  sulMercato: SOCIETA.filter((s) => s.stadio === "Sul mercato").length,
 } as const;
