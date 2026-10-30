@@ -714,6 +714,7 @@ export const CARICHE = {
         {
           ruolo: "Componente del Direttivo",
           persona: "Stefano Colombara",
+          foto: "/persone/stefano-colombara.webp",
           bio: [
             "È laureato in Storia e in Scienze della formazione. È funzionario amministrativo presso la Regione Emilia-Romagna a Bologna dal febbraio 2014. In precedenza ha lavorato nella strategia di brand e comunicazione come project leader per la rete “Liberate le aragoste”. In AssoUmanoidi è responsabile delle attività formative e della comunicazione associativa, e integra il direttivo con competenze di gestione, coordinamento e organizzazione, orientate a strutturare percorsi formativi su statuto, Codice etico, Carta dei diritti e dei doveri degli umanoidi e Regolamento dell’Anagrafe telematica.",
           ],

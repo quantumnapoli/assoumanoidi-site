@@ -25,7 +25,7 @@ function conLink(testo: string) {
   );
 }
 
-/** Iniziali per chi non ha ancora una fotografia: «Stefano Colombara» → «SC». */
+/** Iniziali per chi non ha ancora una fotografia: «Mario Rossi» → «MR». */
 const iniziali = (nome: string) =>
   nome
     .split(/\s+/)
