@@ -3,8 +3,7 @@
  *
  * Fonte: HUMANOIDE.docx e «Norme redazionali per autori».docx.
  *
- * Hosting: il documento indicava Ileven s.r.l.s. (server nell'Unione europea).
- * Su indicazione dell'associazione (28 ottobre 2026) il colophon dichiara
+ * Hosting: su indicazione dell'associazione (28 ottobre 2026) il colophon dichiara
  * Netlify, Inc., e la frase sui server nell'Unione europea è stata tolta:
  * Netlify non è un fornitore europeo e non si può affermare quello che non è. I testi sono
  * trascritti senza riscritture, in italiano e in inglese. Gli unici interventi

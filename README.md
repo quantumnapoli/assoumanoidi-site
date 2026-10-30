@@ -142,7 +142,7 @@ invece che oro. Se il logo cambia, si rigenera il ritaglio.
 selettore. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
 riservata con password, tolta il 30 ottobre 2026 su richiesta dell'associazione.
 
-**Hosting.** Il colophon dichiara Netlify, Inc. (il documento diceva Ileven). La frase «server
+**Hosting.** Il colophon dichiara Netlify, Inc. La frase «server
 situati all'interno dell'Unione europea» è stata tolta: Netlify non è un fornitore europeo.
 
 **Segnaposto dei documenti.** Sede legale, codice fiscale e le due email di invio erano
