@@ -1,0 +1,599 @@
+/* ==========================================================================
+   AssoUmanoidi — token, reset, chrome
+   Palette e tipografia da brand book: navy #0B1D3A · oro #D4A23A · #F4F4F4 · Manrope
+   ========================================================================== */
+
+:root {
+  /* ---- brand book -------------------------------------------------- */
+  --navy: #0b1d3a;
+  --oro: #d4a23a;
+  --bianco: #f4f4f4;
+  --grigio: #8d8d8d;
+  --nero: #111111;
+
+  /* ---- superfici derivate ------------------------------------------ */
+  --inchiostro: var(--navy);
+  --inchiostro-2: #10254a;
+  --inchiostro-3: #17325f;
+  --carta: var(--bianco);
+  --carta-2: #e8e8e8;
+  --carta-3: #d9d9d9;
+
+  /* L'oro del brand su fondo chiaro non regge il contrasto per il testo piccolo,
+     quindi ne teniamo due tarature: --oro su navy, --oro-scuro su chiaro. */
+  --oro-chiaro: #e0b45c;
+  --oro-scuro: #8f6b19;
+
+  /* ---- alias per ruolo --------------------------------------------- */
+  --acc-su-scuro: var(--oro);
+  --acc-su-chiaro: var(--oro-scuro);
+
+  /* testo e linee */
+  --su-inchiostro: #f4f4f4;
+  --su-inchiostro-m: rgba(244, 244, 244, 0.6);
+  --su-inchiostro-d: rgba(244, 244, 244, 0.34);
+  --su-carta: var(--nero);
+  --su-carta-m: rgba(17, 17, 17, 0.62);
+  --su-carta-d: rgba(17, 17, 17, 0.38);
+  --linea-i: rgba(244, 244, 244, 0.14);
+  --linea-c: rgba(11, 29, 58, 0.14);
+
+  /* metriche */
+  --nav-h: 68px;
+  --gutter: clamp(20px, 5vw, 68px);
+  --misura: 62ch;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  background: var(--inchiostro);
+  color: var(--su-inchiostro);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font-family: inherit;
+  color: inherit;
+}
+::selection {
+  background: var(--acc-su-chiaro);
+  color: var(--carta);
+}
+
+:focus-visible {
+  outline: 2px solid var(--acc-su-scuro);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Voci tipografiche — un'unica famiglia (Manrope), tre ruoli
+   .display  ExtraBold, tracking stretto        → titoli
+   corpo     Regular/Medium                     → lettura
+   .dati     SemiBold maiuscoletto spaziato     → etichette, numeri, Anagrafe
+   -------------------------------------------------------------------------- */
+
+.display {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.dati {
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* La parola messa in evidenza va in oro. Una sola regola, in tutto il sito. */
+.h {
+  color: var(--acc-su-scuro);
+}
+.carta .h {
+  color: var(--acc-su-chiaro);
+}
+
+/* etichetta di sezione: numero d'articolo + nome, come in uno statuto */
+.art {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc-su-scuro);
+}
+.art::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.carta .art {
+  color: var(--acc-su-chiaro);
+}
+
+/* --------------------------------------------------------------------------
+   Il marchio
+   Anello, fusto e braccia prendono currentColor; la testa resta oro.
+   -------------------------------------------------------------------------- */
+
+/* Il marchio ufficiale, in due varianti: il CSS sceglie quella giusta
+   in base al fondo, così nei componenti non si passa nessun parametro. */
+.marchio-svg {
+  position: relative;
+  display: block;
+  width: 40px; /* default di sicurezza: senza, l'immagine si prende tutta la colonna */
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+.marchio-svg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.mk-su-chiaro {
+  display: none;
+}
+.carta .mk-su-scuro,
+.au-portale .mk-su-scuro {
+  display: none;
+}
+.carta .mk-su-chiaro,
+.au-portale .mk-su-chiaro {
+  display: block;
+}
+
+/* Anello di avanzamento (non fa parte del marchio) */
+.anello {
+  display: block;
+  overflow: visible;
+}
+.anello circle {
+  fill: none;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.an-fondo {
+  stroke: rgba(244, 244, 244, 0.16);
+}
+.an-corsa {
+  stroke: var(--oro);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* --------------------------------------------------------------------------
+   Bottoni
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: background 0.22s, border-color 0.22s, color 0.22s, box-shadow 0.22s;
+  will-change: transform;
+}
+.btn-lg {
+  padding: 17px 34px;
+  font-size: 16px;
+}
+.btn-sm {
+  padding: 9px 20px;
+  font-size: 13.5px;
+}
+
+.btn-pieno {
+  background: var(--oro);
+  color: var(--navy);
+  font-weight: 700;
+}
+.btn-pieno:hover {
+  background: var(--oro-chiaro);
+  box-shadow: 0 14px 40px -14px rgba(212, 162, 58, 0.5);
+}
+.btn-linea {
+  background: transparent;
+  color: var(--su-inchiostro);
+  border-color: var(--linea-i);
+}
+.btn-linea:hover {
+  border-color: var(--su-inchiostro-m);
+  background: rgba(244, 244, 244, 0.06);
+}
+.carta .btn-linea {
+  color: var(--su-carta);
+  border-color: var(--linea-c);
+}
+.carta .btn-linea:hover {
+  border-color: var(--su-carta-m);
+  background: rgba(11, 29, 58, 0.05);
+}
+.btn-carta {
+  background: var(--carta);
+  color: var(--inchiostro);
+}
+.btn-carta:hover {
+  background: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   Nav
+   -------------------------------------------------------------------------- */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 400;
+  height: var(--nav-h);
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+.nav.fissa {
+  background: rgba(11, 29, 58, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--linea-i);
+}
+
+.marchio {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+}
+.marchio .marchio-svg {
+  width: 34px;
+  flex-shrink: 0;
+}
+.marchio-testo {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.nav-voci {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+.nav-voci > li {
+  position: relative;
+}
+.nav-voci a {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--su-inchiostro-m);
+  transition: color 0.2s;
+}
+.nav-voci a:hover {
+  color: var(--su-inchiostro);
+}
+
+/* dropdown: si apre al passaggio del mouse, e con :focus-within anche
+   navigando a tastiera — nessuno stato React per un'interazione così piccola */
+.nav-sotto {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 200px;
+  padding: 10px;
+  list-style: none;
+  background: var(--inchiostro-2);
+  border: 1px solid var(--linea-i);
+  border-radius: 14px;
+  box-shadow: 0 20px 44px -14px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+.nav-voce-menu:hover .nav-sotto,
+.nav-voce-menu:focus-within .nav-sotto {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-sotto a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  white-space: nowrap;
+}
+.nav-sotto a:hover {
+  background: rgba(244, 244, 244, 0.06);
+}
+.nav-destra {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-burger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-right: -8px;
+  color: var(--su-inchiostro);
+}
+.nav-burger svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-mob-sfondo {
+  position: fixed;
+  inset: 0;
+  z-index: 449;
+  background: rgba(6, 14, 28, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.nav-mob-sfondo.aperto {
+  opacity: 1;
+  visibility: visible;
+}
+.nav-mob {
+  position: fixed;
+  inset: 0;
+  z-index: 450;
+  display: flex;
+  flex-direction: column;
+  max-width: 380px;
+  margin-left: auto;
+  background: var(--inchiostro-2);
+  border-left: 1px solid var(--linea-i);
+  transform: translateX(100%);
+  transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-mob.aperto {
+  transform: translateX(0);
+}
+.nav-mob-testa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px var(--gutter);
+  border-bottom: 1px solid var(--linea-i);
+}
+.nav-mob-chiudi {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(244, 244, 244, 0.08);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.nav-mob-corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-mob-voce {
+  border-bottom: 1px solid var(--linea-i);
+}
+.nav-mob-voce:has(.nav-mob-sotto) {
+  border-bottom: none;
+}
+.nav-mob-corpo a {
+  display: block;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.03em;
+  padding: 12px 0;
+}
+.nav-mob-voce:has(.nav-mob-sotto) > a {
+  padding-bottom: 4px;
+}
+/* le sottovoci (Statuto, Cariche sociali…) restano sempre visibili sotto la
+   voce madre: sono solo due, un accordion sarebbe un tocco in più per niente */
+.nav-mob-sotto {
+  display: flex;
+  flex-direction: column;
+  padding: 2px 0 16px 4px;
+  border-bottom: 1px solid var(--linea-i);
+}
+.nav-mob-sotto a {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 0;
+  color: var(--su-inchiostro-m);
+}
+.nav-mob-piede {
+  padding: 24px var(--gutter) calc(24px + env(safe-area-inset-bottom));
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.piede {
+  background: var(--inchiostro-2);
+  border-top: 1px solid var(--linea-i);
+  padding: 76px var(--gutter) 40px;
+}
+.piede-in {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  gap: 56px 40px;
+  align-items: start;
+}
+.piede-marchio .marchio-svg {
+  width: 48px;
+  margin-bottom: 20px;
+}
+.piede-nome {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+/* il payoff sotto il nome, fra due filetti oro, come nel lockup del brand book */
+.piede-payoff {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.piede-payoff::before,
+.piede-payoff::after {
+  content: "";
+  height: 1px;
+  width: 18px;
+  background: var(--oro);
+  flex-shrink: 0;
+}
+.piede-motto {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--su-inchiostro-m);
+}
+.piede-cols {
+  display: flex;
+  gap: clamp(32px, 6vw, 80px);
+  flex-wrap: wrap;
+}
+.piede-col {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.piede-col-titolo {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc-su-scuro);
+  margin-bottom: 3px;
+}
+.piede-col a,
+.piede-col button {
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--su-inchiostro-m);
+  transition: color 0.2s;
+}
+.piede-col a:hover,
+.piede-col button:hover {
+  color: var(--su-inchiostro);
+}
+.piede-basso {
+  max-width: 1240px;
+  margin: 56px auto 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--linea-i);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+.social {
+  display: flex;
+  gap: 14px;
+}
+.social a {
+  color: var(--su-inchiostro-m);
+  display: inline-flex;
+  transition: color 0.2s;
+}
+.social a:hover {
+  color: var(--su-inchiostro);
+}
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 900px) {
+  .nav-voci,
+  .nav-destra .btn {
+    display: none;
+  }
+  .nav-burger {
+    display: inline-flex;
+  }
+  .piede-in {
+    grid-template-columns: 1fr;
+  }
+}

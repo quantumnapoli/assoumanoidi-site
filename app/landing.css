@@ -1,0 +1,2371 @@
+/* ==========================================================================
+   AssoUmanoidi — sezioni della landing
+   ========================================================================== */
+
+.au-root {
+  background: var(--inchiostro);
+  overflow-x: clip;
+}
+.carta {
+  background: var(--carta);
+  color: var(--su-carta);
+}
+
+/* --------------------------------------------------------------------------
+   Intro — i due cerchi si avvicinano mentre le parole si alternano
+   -------------------------------------------------------------------------- */
+
+.au-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 950;
+  background: var(--inchiostro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  animation: au-intro-scadenza 0s linear 7s forwards;
+}
+@keyframes au-intro-scadenza {
+  to {
+    visibility: hidden;
+  }
+}
+.au-intro-centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+}
+.au-intro .marchio-svg {
+  width: clamp(104px, 13vw, 150px);
+}
+.au-intro-parole {
+  position: relative;
+  height: 48px;
+  width: min(560px, 86vw);
+  overflow: hidden;
+  text-align: center;
+}
+.au-intro-parola {
+  position: absolute;
+  inset: 0;
+  line-height: 48px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(23px, 3.4vw, 36px);
+  letter-spacing: -0.03em;
+  will-change: transform;
+}
+
+/* --------------------------------------------------------------------------
+   Rail — la firma. La vesica si chiude lungo tutta la pagina.
+   -------------------------------------------------------------------------- */
+
+.au-rail {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  pointer-events: none;
+}
+.au-rail-disco {
+  position: relative;
+  display: block;
+  width: 46px;
+  height: 46px;
+}
+.au-rail-disco .anello {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.au-rail-disco .marchio-svg {
+  position: absolute;
+  inset: 7px;
+  width: auto;
+}
+.au-rail-pct {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.62);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 900px) {
+  .au-rail {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   01 — Hero
+   -------------------------------------------------------------------------- */
+
+.au-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 660px;
+  overflow: hidden;
+}
+
+/* il campo: il segno a scala enorme, in filo.
+   I due cerchi sono lontani: la società di adesso, dove le due nature non si incontrano. */
+.au-campo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(58% 46% at 26% 42%, rgba(244, 244, 244, 0.05), transparent 70%),
+    radial-gradient(58% 46% at 74% 58%, rgba(212, 162, 58, 0.16), transparent 70%);
+}
+.au-grana {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   Atmosfera dell'hero, in stile antigravity.google — adattata al brand:
+   alone e particelle in oro invece che blu, il visual sospeso è il marchio
+   nell'anello, non un asset scaricato. Il fluttuare, la parallasse e lo
+   svanire allo scroll li anima Motore.tsx; qui solo forma e posizione.
+   -------------------------------------------------------------------------- */
+
+.au-hero-atmosfera {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+/* l'alone: un bagliore morbido dietro al marchio, non un punto acceso */
+.au-hero-alone {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 76% 30%, rgba(212, 162, 58, 0.22), transparent 36%);
+  filter: blur(52px);
+  opacity: 0.9;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.au-hero-tela {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 999px) {
+  /* sotto i 1000px il motore non parte (vedi Motore.tsx): niente fisica delle
+     particelle. Resta solo l'alone, fermo, come sfondo */
+  .au-hero-tela {
+    display: none;
+  }
+  .au-hero-alone {
+    opacity: 0.5;
+  }
+}
+
+/* le ancore non devono finire sotto la nav fissa */
+section[id],
+div[id] {
+  scroll-margin-top: calc(var(--nav-h) + 14px);
+}
+
+.au-hero-copy {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  z-index: 4;
+  padding: 0 var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  will-change: transform, opacity;
+}
+.au-hero-marchio {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-m);
+  margin-bottom: 30px;
+}
+.au-hero h1 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 5.4vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  max-width: 17ch;
+  margin-bottom: 30px;
+}
+.au-riga {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.au-riga-in {
+  display: inline-block;
+  will-change: transform;
+}
+.au-hero-sub {
+  font-size: clamp(15px, 1.55vw, 18.5px);
+  line-height: 1.6;
+  color: var(--su-inchiostro-m);
+  max-width: 60ch;
+  margin-bottom: 38px;
+}
+.au-hero-azioni {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* il portale: si apre a tutto schermo scrollando */
+.au-portale {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  clip-path: inset(80% 33% 6% 33% round 300px);
+  will-change: clip-path;
+  background: #060f1e;
+  color: var(--su-inchiostro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.au-portale-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* il filtro sul video invece di un velo piatto: resta leggibile il testo
+     senza spegnere del tutto l'immagine */
+  filter: brightness(0.52) saturate(0.9) contrast(1.05);
+  will-change: transform;
+}
+/* rinforzo solo dietro al testo, non su tutto il fotogramma */
+.au-portale-velo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(72% 58% at 50% 48%, rgba(11, 29, 58, 0.72), rgba(11, 29, 58, 0.28) 78%);
+}
+/* dentro il portale gli stessi due cerchi, ma vicini: è la tesi, mostrata */
+.au-portale-testo {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--gutter);
+  opacity: 0;
+  visibility: hidden;
+}
+.au-portale-testo .art {
+  margin-bottom: 22px;
+}
+.au-portale-testo p {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 3.8vw, 52px);
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  max-width: 20ch;
+  margin: 0 auto;
+}
+
+.au-scorri {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-m);
+}
+.au-scorri i {
+  display: block;
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--acc-su-scuro), transparent);
+  animation: au-scorri-giu 2.2s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes au-scorri-giu {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   01b — L'umanoide guarda (interludio muto fra il video e "il perché")
+   -------------------------------------------------------------------------- */
+
+.au-uman {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--inchiostro);
+  overflow: hidden;
+}
+/* alone d'oro dietro alla testa: la stacca dal navy senza metterle una cornice */
+.au-uman::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 48%, rgba(212, 162, 58, 0.14), transparent 56%);
+}
+.au-uman-scena {
+  position: relative;
+  height: min(78vh, 660px);
+  /* il disegno è 861×1616: tenendo l'aspetto, il modello normalizzato non si
+     deforma quando WebGL lo proietta sul canvas */
+  aspect-ratio: 861 / 1616;
+}
+.au-uman-tela,
+.au-uman-segno {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 30px 70px rgba(212, 162, 58, 0.2));
+}
+.au-uman-tela {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+/* .pronto la mette il componente quando il canvas ha disegnato il primo quadro:
+   così il passaggio dall'SVG fermo alla testa che gira non fa uno scatto */
+.au-uman-scena.pronto .au-uman-tela {
+  opacity: 1;
+}
+.au-uman-segno {
+  object-fit: contain;
+  user-select: none;
+  transition: opacity 0.5s ease;
+}
+.au-uman-scena.pronto .au-uman-segno {
+  opacity: 0;
+}
+
+@media (max-width: 999px) {
+  .au-uman {
+    min-height: 64vh;
+  }
+  .au-uman-scena {
+    height: min(54vh, 430px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   02 — Il perché
+   -------------------------------------------------------------------------- */
+
+.au-perche {
+  padding: clamp(96px, 17vh, 200px) var(--gutter);
+}
+.au-perche-in {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.au-perche h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4.4vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  max-width: 16ch;
+  margin: 26px 0 40px;
+}
+.au-perche-corpo {
+  max-width: var(--misura);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.au-perche-corpo p {
+  font-size: clamp(16px, 1.5vw, 18.5px);
+  line-height: 1.65;
+  color: var(--su-carta-m);
+}
+.au-perche-corpo strong {
+  color: var(--su-carta);
+  font-weight: 600;
+}
+.au-perche-doc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+.au-perche-doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border: 1px solid var(--linea-c);
+  border-radius: 100px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--su-carta);
+  transition: border-color 0.2s, background 0.2s, gap 0.2s;
+}
+.au-perche-doc-link:hover {
+  border-color: var(--acc-su-chiaro);
+  background: rgba(212, 162, 58, 0.06);
+  gap: 12px;
+}
+.au-perche-doc-link span {
+  color: var(--acc-su-chiaro);
+}
+
+/* la frase enorme che si accende parola per parola */
+.au-tesi {
+  padding: clamp(70px, 13vh, 150px) var(--gutter) clamp(96px, 18vh, 210px);
+}
+.au-tesi-in {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+.au-tesi p {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 76px);
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+.au-p {
+  display: inline-block;
+  margin-right: 0.26em;
+}
+
+/* --------------------------------------------------------------------------
+   03 — I quattro pilastri (scorrimento orizzontale)
+   -------------------------------------------------------------------------- */
+
+.au-pilastri {
+  position: relative;
+  background: var(--inchiostro);
+  overflow: hidden;
+}
+.au-pil-pista {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+  width: max-content;
+  will-change: transform;
+}
+.au-pil-pan {
+  width: 44vw;
+  min-width: 400px;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4vw;
+  position: relative;
+}
+.au-pil-pan.apri {
+  width: 56vw;
+  min-width: 440px;
+}
+.au-pil-pan.apri h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(34px, 4.4vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 24px 0 20px;
+  max-width: 13ch;
+}
+.au-pil-pan.apri p {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--su-inchiostro-m);
+  max-width: 42ch;
+}
+.au-pil-suggerimento {
+  margin-top: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc-su-scuro);
+}
+
+.au-pil-carta {
+  border-left: 1px solid var(--linea-i);
+}
+.au-pil-num {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: clamp(84px, 11vw, 172px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(212, 162, 58, 0.6);
+  margin-bottom: 22px;
+  will-change: transform;
+}
+.au-pil-carta h3 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 2.3vw, 34px);
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.au-pil-carta p {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--su-inchiostro-m);
+  max-width: 38ch;
+}
+.au-pil-nota {
+  margin-top: 20px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+
+/* --------------------------------------------------------------------------
+   Marquee
+   -------------------------------------------------------------------------- */
+
+.au-marquee {
+  background: var(--inchiostro);
+  border-top: 1px solid var(--linea-i);
+  border-bottom: 1px solid var(--linea-i);
+  padding: clamp(48px, 9vh, 110px) 0;
+  overflow: hidden;
+}
+.au-mq-riga {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  width: max-content;
+  will-change: transform;
+  padding: 1.6vh 0;
+}
+.au-mq-riga span {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 4.2vw, 62px);
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 244, 244, 0.3);
+}
+.au-mq-riga span.pieno {
+  color: var(--su-inchiostro);
+  -webkit-text-stroke: 0;
+}
+.au-mq-riga span.acc {
+  color: var(--acc-su-scuro);
+  -webkit-text-stroke: 0;
+}
+.au-mq-riga .marchio-svg {
+  width: clamp(46px, 5.4vw, 84px);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   04 — Tre Camere
+   -------------------------------------------------------------------------- */
+
+.au-camere {
+  background: var(--carta);
+  color: var(--su-carta);
+  overflow: hidden;
+}
+.au-cam-scena {
+  height: 100vh;
+  min-height: 660px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: 1fr 1.02fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.au-cam-copy h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 3.9vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 22px 0 20px;
+  text-wrap: balance;
+}
+.au-cam-intro {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--su-carta-m);
+  max-width: 46ch;
+  margin-bottom: 44px;
+}
+.au-cam-passi {
+  position: relative;
+  min-height: 210px;
+}
+.au-cam-passo {
+  position: absolute;
+  inset: 0;
+}
+.au-cam-passo-et {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acc-su-chiaro);
+  margin-bottom: 12px;
+}
+.au-cam-passo h3 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 2.5vw, 38px);
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+.au-cam-passo p {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--su-carta-m);
+  max-width: 42ch;
+}
+.au-cam-punti {
+  display: flex;
+  gap: 8px;
+  margin-top: 34px;
+}
+.au-cam-punto {
+  width: 26px;
+  height: 8px;
+  border-radius: 100px;
+  border: 1.5px solid var(--su-carta-d);
+  transition: all 0.3s;
+}
+.au-cam-punto.on {
+  background: var(--acc-su-chiaro);
+  border-color: var(--acc-su-chiaro);
+  width: 46px;
+}
+
+/* il diagramma: tre archi che diventano un solo corpo */
+.au-cam-diagramma {
+  perspective: 1300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.au-cam-quadro {
+  position: relative;
+  width: min(100%, 480px);
+  aspect-ratio: 1;
+  border-radius: 28px;
+  background: var(--carta-2);
+  border: 1px solid var(--linea-c);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.au-cam-griglia {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--linea-c) 1px, transparent 1px),
+    linear-gradient(90deg, var(--linea-c) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+.au-cam-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.au-cam-anello {
+  fill: none;
+  stroke-width: 2.4;
+  will-change: transform, opacity;
+}
+/* i colori stanno qui e non nel markup: nel markup erano variabili
+   sopravvissute al rebrand, quindi due anelli su tre non si vedevano */
+.au-cam-anello.a1 {
+  stroke: var(--oro);
+}
+.au-cam-anello.a2 {
+  stroke: var(--navy);
+}
+.au-cam-anello.a3 {
+  stroke: var(--grigio);
+}
+.au-cam-etichetta {
+  position: absolute;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: var(--carta);
+  border: 1px solid var(--linea-c);
+  will-change: transform, opacity;
+}
+.au-cam-etichetta.e1 {
+  top: 21%;
+  left: 5%;
+  color: var(--oro-scuro);
+  border-color: rgba(212, 162, 58, 0.5);
+}
+.au-cam-etichetta.e2 {
+  top: 21%;
+  right: 5%;
+  color: var(--navy);
+  border-color: rgba(11, 29, 58, 0.35);
+}
+.au-cam-etichetta.e3 {
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #5f5f5f;
+  border-color: rgba(141, 141, 141, 0.6);
+}
+.au-cam-sigillo {
+  position: absolute;
+  bottom: 18px;
+  right: 20px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-carta-d);
+}
+
+/* --------------------------------------------------------------------------
+   05 — La Carta
+   -------------------------------------------------------------------------- */
+
+.au-carta-sez {
+  background: var(--inchiostro);
+  padding: clamp(96px, 18vh, 210px) var(--gutter);
+  position: relative;
+  overflow: hidden;
+}
+.au-carta-in {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.au-carta-sez h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4.6vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin: 24px 0 16px;
+  max-width: 18ch;
+}
+.au-carta-sotto {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acc-su-scuro);
+  margin-bottom: 60px;
+}
+.au-domande {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--linea-i);
+  margin-bottom: 48px;
+}
+.au-domanda {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 42px);
+  padding: clamp(18px, 2.4vw, 30px) 0;
+  border-bottom: 1px solid var(--linea-i);
+  will-change: opacity, transform;
+}
+.au-domanda i {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--su-inchiostro-d);
+  flex-shrink: 0;
+  width: 3ch;
+}
+.au-domanda span {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(21px, 3vw, 44px);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+.au-carta-chiusa {
+  max-width: var(--misura);
+  font-size: clamp(16px, 1.5vw, 18.5px);
+  line-height: 1.65;
+  color: var(--su-inchiostro-m);
+  margin-bottom: 38px;
+}
+
+/* --------------------------------------------------------------------------
+   06 — Anagrafe
+   -------------------------------------------------------------------------- */
+
+.au-anagrafe {
+  background: var(--inchiostro-2);
+  border-top: 1px solid var(--linea-i);
+  padding: clamp(96px, 17vh, 200px) var(--gutter);
+  overflow: hidden;
+}
+.au-ana-in {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
+}
+.au-ana-copy h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 58px);
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  margin: 22px 0 20px;
+  text-wrap: balance;
+}
+.au-ana-copy p {
+  font-size: 16.5px;
+  line-height: 1.68;
+  color: var(--su-inchiostro-m);
+  max-width: 46ch;
+  margin-bottom: 34px;
+}
+
+/* la scheda di registro */
+.au-scheda-wrap {
+  perspective: 1400px;
+}
+.au-scheda {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(158deg, #16305c, #0a1a34);
+  border: 1px solid var(--linea-i);
+  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, 0.75);
+  padding: clamp(22px, 2.6vw, 34px);
+  transform-style: preserve-3d;
+  will-change: transform;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+.au-scheda::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(118deg, transparent 34%, rgba(244, 244, 244, 0.06) 47%, transparent 60%);
+  pointer-events: none;
+}
+.au-scheda-testa {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--linea-i);
+  margin-bottom: 22px;
+}
+.au-scheda-testa b {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--acc-su-scuro);
+}
+.au-stato {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--oro);
+  border: 1px solid rgba(212, 162, 58, 0.42);
+  background: rgba(212, 162, 58, 0.1);
+  border-radius: 100px;
+  padding: 5px 11px;
+}
+.au-stato i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: au-batte 2.4s ease-in-out infinite;
+}
+@keyframes au-batte {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.au-campi {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+}
+.au-campo-r {
+  min-width: 0;
+}
+.au-campo-r.largo {
+  grid-column: 1 / -1;
+}
+.au-campo-r em {
+  display: block;
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  margin-bottom: 6px;
+}
+.au-campo-r span {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--su-inchiostro);
+  overflow-wrap: anywhere;
+}
+.au-campo-r span.acc {
+  color: var(--acc-su-scuro);
+}
+.au-scheda-piede {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--linea-i);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+.au-impronta {
+  display: flex;
+  gap: 3px;
+  align-items: flex-end;
+  height: 18px;
+}
+.au-impronta i {
+  display: block;
+  width: 3px;
+  background: var(--acc-su-scuro);
+  opacity: 0.55;
+  border-radius: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   06b — La Rivista (Humanoide)
+   Registro diverso dal resto: qui parla la rivista, non l'associazione. Fondo
+   quasi nero come la copertina, testata composta in pagina, sommario a griglia.
+   -------------------------------------------------------------------------- */
+
+.au-rivista {
+  position: relative;
+  background: #06101f;
+  border-top: 1px solid var(--linea-i);
+  padding: clamp(90px, 15vh, 180px) var(--gutter);
+  overflow: hidden;
+}
+/* l'alone d'oro della copertina, ripreso dietro alla testata */
+.au-rivista::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(1100px, 120vw);
+  aspect-ratio: 2 / 1;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at 50% 0%, rgba(212, 162, 58, 0.16), transparent 62%);
+  pointer-events: none;
+}
+.au-riv-in {
+  position: relative;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* testata ---------------------------------------------------------------- */
+
+.au-riv-testa {
+  text-align: center;
+  margin-bottom: clamp(44px, 7vh, 78px);
+}
+.au-riv-testa .art {
+  justify-content: center;
+}
+.au-riv-occhiello {
+  margin-top: 26px;
+  font-size: clamp(9.5px, 1vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-m);
+}
+
+/* la testata: il logotipo originale, non una ricostruzione tipografica */
+.au-testata {
+  display: block;
+  height: auto;
+  user-select: none;
+}
+.au-riv-logo {
+  width: min(760px, 82%);
+  margin: 20px auto 22px;
+}
+
+.au-riv-payoff {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.6vw, 20px);
+  font-size: clamp(10px, 1.15vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro);
+}
+.au-riv-payoff span {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 20px);
+}
+/* i punti d'oro fra una parola e l'altra, come in copertina */
+.au-riv-payoff i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--oro);
+}
+.au-riv-payoff span:nth-child(odd) {
+  color: var(--oro);
+}
+
+/* copertina + scheda ------------------------------------------------------ */
+
+.au-riv-corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(30px, 5vw, 70px);
+  align-items: center;
+  perspective: 1500px;
+}
+.au-riv-copertina {
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  /* la copertina è un oggetto fisico: ombra lunga e un filo di luce sul taglio */
+  box-shadow: 0 60px 110px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(212, 162, 58, 0.18);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.au-riv-copertina img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.au-riv-intro {
+  font-size: clamp(15.5px, 1.4vw, 18px);
+  line-height: 1.68;
+  color: var(--su-inchiostro-m);
+  max-width: 46ch;
+}
+.au-riv-dati {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+  margin: clamp(26px, 4vh, 38px) 0;
+  padding: clamp(20px, 3vw, 26px) 0;
+  border-top: 1px solid var(--linea-i);
+  border-bottom: 1px solid var(--linea-i);
+}
+.au-riv-dati dt {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  margin-bottom: 7px;
+}
+.au-riv-dati dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--su-inchiostro);
+}
+/* riga a sé: con inline-flex il bottone le finiva accanto, sovrapposto */
+.au-riv-uscita {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.au-riv-uscita i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: au-batte 2.4s ease-in-out infinite;
+}
+
+/* sommario ---------------------------------------------------------------- */
+
+/* Sette richiami su quattro colonne: 4 + 3, e l'ultimo occupa due celle così
+   la griglia si chiude piena invece di lasciare un buco in fondo. */
+.au-riv-sommario {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(46px, 8vh, 86px);
+  background: var(--linea-i);
+  border: 1px solid var(--linea-i);
+}
+.au-riv-sommario li {
+  background: #06101f;
+  padding: clamp(22px, 2.6vw, 30px);
+  transition: background 0.25s;
+}
+.au-riv-sommario li:hover {
+  background: #0a1728;
+}
+.au-riv-sommario em {
+  font-style: normal;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.au-riv-sommario h3 {
+  margin: 12px 0 8px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--su-inchiostro);
+}
+.au-riv-sommario p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--su-inchiostro-d);
+}
+.au-riv-sommario li:last-child {
+  grid-column: span 2;
+}
+
+@media (max-width: 1000px) {
+  .au-riv-sommario {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .au-riv-corpo {
+    grid-template-columns: 1fr;
+  }
+  .au-riv-copertina {
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .au-riv-dati {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .au-riv-sommario {
+    grid-template-columns: 1fr;
+  }
+  .au-riv-sommario li:last-child {
+    grid-column: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   07 — La rete
+   -------------------------------------------------------------------------- */
+
+.au-rete {
+  background: var(--carta);
+  color: var(--su-carta);
+  padding: clamp(96px, 17vh, 200px) var(--gutter);
+}
+.au-rete-in {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+/* titolo a sinistra, occhiello a destra: con una colonna sola il titolo
+   andava a capo cinque volte e si sfaldava */
+.au-rete-testa {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(20px, 4vw, 64px);
+  align-items: end;
+  margin-bottom: clamp(48px, 8vh, 90px);
+}
+.au-rete-testa .art {
+  grid-column: 1 / -1;
+}
+.au-rete-testa h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.6vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.au-rete-testa p {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: var(--su-carta-m);
+  max-width: 46ch;
+  padding-bottom: 6px;
+}
+/* Sei voci, sempre in griglia 3×2: con auto-fit su schermi larghi ne
+   entravano cinque su una riga e una sola sotto — spezzava la lettura a
+   coppie (istituzioni/università, centri/imprese…) che il testo suggerisce. */
+.au-rete-griglia {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--linea-c);
+  border-left: 1px solid var(--linea-c);
+}
+.au-rete-cella {
+  border-right: 1px solid var(--linea-c);
+  border-bottom: 1px solid var(--linea-c);
+  padding: clamp(24px, 3vw, 38px) clamp(20px, 2.4vw, 30px);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  transition: background 0.25s;
+}
+.au-rete-cella:hover {
+  background: var(--carta-2);
+}
+.au-rete-cella em {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acc-su-chiaro);
+}
+.au-rete-cella h3 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.au-rete-cella p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--su-carta-m);
+}
+.au-rete-nota {
+  margin-top: 34px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-carta-d);
+}
+
+/* --------------------------------------------------------------------------
+   08 — Manifesto
+   -------------------------------------------------------------------------- */
+
+.au-manifesto {
+  position: relative;
+  background: var(--inchiostro);
+  padding: clamp(110px, 20vh, 240px) var(--gutter);
+  overflow: hidden;
+}
+.au-tela {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.au-man-in {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.au-man-in p.grande {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(26px, 4.2vw, 58px);
+  line-height: 1.14;
+  letter-spacing: -0.04em;
+  margin-bottom: 40px;
+}
+.au-man-in p.piccola {
+  font-size: clamp(16px, 1.5vw, 18.5px);
+  line-height: 1.75;
+  color: var(--su-inchiostro-m);
+  max-width: 56ch;
+  margin: 0 auto 60px;
+}
+.au-motto {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.au-motto .marchio-svg {
+  width: 62px;
+}
+.au-motto b {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 36px);
+  letter-spacing: -0.035em;
+}
+
+/* --------------------------------------------------------------------------
+   09 — Adesione
+   -------------------------------------------------------------------------- */
+
+.au-adesione {
+  background: var(--carta);
+  color: var(--su-carta);
+  padding: clamp(96px, 17vh, 200px) var(--gutter);
+}
+.au-ade-in {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.au-ade-testa {
+  text-align: center;
+  margin-bottom: clamp(40px, 7vh, 76px);
+}
+.au-ade-testa h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4.4vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin: 22px auto 16px;
+  max-width: 18ch;
+}
+.au-ade-testa p {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--su-carta-m);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+.au-ade-testa .art {
+  justify-content: center;
+}
+
+.au-porte {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 34px;
+}
+.au-porta {
+  position: relative;
+  text-align: left;
+  padding: 26px 24px;
+  border-radius: 18px;
+  border: 1px solid var(--linea-c);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+}
+.au-porta:hover {
+  border-color: var(--su-carta-d);
+  background: var(--carta-2);
+}
+.au-porta[aria-pressed="true"] {
+  border-color: var(--acc-su-chiaro);
+  background: rgba(212, 162, 58, 0.12);
+}
+.au-porta em {
+  display: block;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-style: normal;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--su-carta-d);
+  margin-bottom: 12px;
+}
+.au-porta[aria-pressed="true"] em {
+  color: var(--acc-su-chiaro);
+}
+.au-porta strong {
+  display: block;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+.au-porta span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--su-carta-m);
+}
+
+.au-modulo {
+  border: 1px solid var(--linea-c);
+  border-radius: 22px;
+  background: var(--carta-2);
+  padding: clamp(24px, 3vw, 40px);
+}
+.au-campi-modulo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.au-campo-m {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.au-campo-m.largo {
+  grid-column: 1 / -1;
+}
+.au-campo-m label {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--su-carta-m);
+}
+.au-campo-m input,
+.au-campo-m select,
+.au-campo-m textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--su-carta);
+  background: var(--carta);
+  border: 1px solid var(--linea-c);
+  border-radius: 11px;
+  padding: 13px 15px;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.au-campo-m textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.55;
+}
+.au-campo-m input:focus,
+.au-campo-m select:focus,
+.au-campo-m textarea:focus {
+  outline: none;
+  border-color: var(--acc-su-chiaro);
+  box-shadow: 0 0 0 3px rgba(212, 162, 58, 0.14);
+}
+.au-campo-m input[aria-invalid="true"],
+.au-campo-m textarea[aria-invalid="true"] {
+  border-color: #b03a2e;
+}
+.au-errore {
+  font-size: 12.5px;
+  color: #b03a2e;
+}
+.au-consenso {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--su-carta-m);
+}
+.au-consenso input {
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  accent-color: var(--oro-scuro);
+  flex-shrink: 0;
+}
+.au-consenso a {
+  color: var(--acc-su-chiaro);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.au-modulo-piede {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.au-modulo-nota {
+  font-size: 13px;
+  color: var(--su-carta-m);
+}
+.au-esito {
+  text-align: center;
+  padding: clamp(30px, 5vw, 56px) 24px;
+}
+.au-esito .marchio-svg {
+  width: 64px;
+  margin: 0 auto 22px;
+}
+.au-esito h3 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 34px);
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+.au-esito p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--su-carta-m);
+  max-width: 46ch;
+  margin: 0 auto 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Modale (Carta / Anagrafe in elaborazione)
+   -------------------------------------------------------------------------- */
+
+.au-modale {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(6, 14, 28, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: au-mod-in 0.24s ease both;
+}
+@keyframes au-mod-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.au-modale-cassa {
+  position: relative;
+  width: min(560px, 100%);
+  background: var(--inchiostro-2);
+  border: 1px solid var(--linea-i);
+  border-radius: 22px;
+  padding: clamp(28px, 4vw, 44px);
+  animation: au-mod-su 0.3s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+@keyframes au-mod-su {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.au-modale-cassa .art {
+  margin-bottom: 18px;
+}
+.au-modale-cassa h3 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(23px, 3vw, 34px);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.au-modale-cassa p {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--su-inchiostro-m);
+  margin-bottom: 12px;
+}
+.au-modale-azioni {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.au-modale-chiudi {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--linea-i);
+  background: rgba(244, 244, 244, 0.05);
+  font-size: 21px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.au-modale-chiudi:hover {
+  background: rgba(244, 244, 244, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .au-cam-scena,
+  .au-ana-in,
+  .au-riv-in,
+  .au-rete-testa {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .au-porte {
+    grid-template-columns: 1fr;
+  }
+  .au-campi-modulo {
+    grid-template-columns: 1fr;
+  }
+  .au-campi {
+    grid-template-columns: 1fr;
+  }
+  .au-pil-pan {
+    width: 84vw;
+    min-width: 0;
+    padding: 0 8vw;
+  }
+  .au-pil-pan.apri {
+    width: 92vw;
+    min-width: 0;
+  }
+  .au-hero h1 {
+    max-width: 14ch;
+  }
+  .au-rete-griglia {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .au-rete-griglia {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modalità statica: niente pin, niente scene bloccate.
+   Attivata da JS su schermi piccoli e con prefers-reduced-motion. */
+.au-statica .au-intro {
+  display: none;
+  animation: none;
+}
+.au-statica .au-rail {
+  display: none;
+}
+.au-statica .au-scorri {
+  display: none;
+}
+.au-statica .au-portale {
+  position: relative;
+  clip-path: none;
+  width: 100%;
+  height: 100svh;
+  min-height: 100svh;
+  margin: 0;
+  border-radius: 0;
+}
+.au-statica .au-hero {
+  height: auto;
+  min-height: 0;
+  padding-top: calc(var(--nav-h) + 8vh);
+  display: flex;
+  flex-direction: column;
+  gap: 8vh;
+}
+.au-statica .au-hero-copy {
+  position: relative;
+  top: auto;
+  transform: none;
+}
+.au-statica .au-portale-maniglia {
+  display: none;
+}
+.au-statica .au-portale-testo {
+  opacity: 1;
+  visibility: visible;
+  padding: 12vh var(--gutter);
+}
+.au-statica .au-pil-pista {
+  flex-wrap: wrap;
+  height: auto;
+  width: auto;
+  padding: 8vh 0;
+}
+.au-statica .au-pil-pan {
+  height: auto;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
+.au-statica .au-pil-suggerimento {
+  display: none;
+}
+.au-statica .au-pil-carta {
+  border-left: none;
+  border-top: 1px solid var(--linea-i);
+}
+.au-statica .au-cam-scena {
+  height: auto;
+  min-height: 0;
+  padding-top: 12vh;
+  padding-bottom: 12vh;
+}
+.au-statica .au-cam-passi {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.au-statica .au-cam-passo {
+  position: static;
+}
+.au-statica .au-cam-punti {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .au-intro,
+  .au-scorri i,
+  .au-stato i {
+    animation: none;
+  }
+  .au-intro {
+    display: none;
+  }
+  .btn,
+  .au-porta,
+  .au-rete-cella {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   02b — Chi li sta costruendo (schermo intero)
+   -------------------------------------------------------------------------- */
+
+.au-societa {
+  position: relative;
+  min-height: 100vh;
+  background: var(--inchiostro);
+  border-top: 1px solid var(--linea-i);
+  padding: clamp(70px, 12vh, 130px) 0 clamp(56px, 9vh, 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(36px, 6vh, 72px);
+  overflow: hidden;
+}
+.au-soc-testa {
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: end;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.au-soc-testa h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4.4vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin-top: 20px;
+}
+.au-soc-testa p {
+  font-size: clamp(15px, 1.4vw, 17.5px);
+  line-height: 1.65;
+  color: var(--su-inchiostro-m);
+  max-width: 44ch;
+}
+
+/* i contatori */
+.au-soc-conti {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 60px);
+  padding: 0 var(--gutter);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.au-soc-conto b {
+  display: block;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(38px, 5.5vw, 82px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: var(--oro);
+  font-variant-numeric: tabular-nums;
+}
+.au-soc-conto span {
+  display: block;
+  margin-top: 7px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+
+/* il muro: tre file che scorrono in direzioni alterne */
+.au-soc-muro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.au-soc-riga {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  will-change: transform;
+}
+.au-soc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 13px 20px 13px 13px;
+  border: 1px solid var(--linea-i);
+  border-radius: 100px;
+  background: rgba(244, 244, 244, 0.03);
+  text-decoration: none;
+  transition: border-color 0.22s, background 0.22s;
+}
+.au-soc-chip:hover {
+  border-color: rgba(212, 162, 58, 0.55);
+  background: rgba(212, 162, 58, 0.08);
+}
+.au-soc-sigla {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 244, 244, 0.08);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--su-inchiostro-m);
+  overflow: hidden;
+}
+/* la favicon copre l'iniziale; se non carica, resta l'iniziale */
+.au-soc-sigla img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #fff;
+}
+.au-soc-chip b {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+.au-soc-chip em {
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  white-space: nowrap;
+}
+.au-soc-chip.mercato em {
+  color: var(--oro);
+}
+
+.au-soc-piede {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0 var(--gutter);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.au-soc-nota {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+
+/* --------------------------------------------------------------------------
+   03b — Le leggi di Asimov (una legge per schermo)
+   L'unico punto del sito su fondo nero: è un registro diverso, una citazione.
+   Le schede si accatastano scorrendo — quella che esce si inclina all'indietro
+   e resta sotto alla successiva. L'ordine della pila è la gerarchia.
+   -------------------------------------------------------------------------- */
+
+.au-asimov {
+  position: relative;
+  background: var(--nero);
+}
+
+/* Testa e piede restano sul nero: incorniciano la pila. A tutta larghezza e
+   non centrati con max-width, perché il piede passa *sopra* all'ultima scheda
+   mentre si corica: con un contenitore stretto si vedrebbero due strisce d'oro
+   ai lati del nero. Il testo resta comunque sulla misura di 1280. */
+.au-asi-testa,
+.au-asi-piede {
+  --lato: max(var(--gutter), calc((100% - 1280px) / 2 + var(--gutter)));
+  padding-left: var(--lato);
+  padding-right: var(--lato);
+}
+.au-asi-testa {
+  min-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(80px, 12vh, 130px);
+  padding-bottom: clamp(40px, 7vh, 80px);
+}
+.au-asi-testa h2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4.2vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+  margin-top: 18px;
+  max-width: 20ch;
+}
+.au-asi-invito {
+  margin-top: clamp(26px, 4vh, 46px);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+}
+
+/* la pila -------------------------------------------------------------- */
+.au-leggi {
+  position: relative;
+}
+.au-legge {
+  --stacco: 30px;
+  display: block;
+  height: 100vh;
+  height: 100svh;
+}
+/* il wrapper è ciò che viene bloccato: la prospettiva vive qui, così la
+   scheda ruota davvero nello spazio invece di deformarsi in piano */
+.au-legge-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 250vw;
+}
+.au-legge-carta {
+  position: absolute;
+  /* staccata dai bordi: la scheda galleggia sul nero, e nell'inclinarsi si
+     vede che è un oggetto e non lo sfondo della pagina */
+  inset: var(--stacco);
+  border-radius: 28px;
+  transform-style: preserve-3d;
+  transform-origin: 50% 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--nav-h) + clamp(10px, 1.8vw, 24px)) clamp(24px, 3.4vw, 54px)
+    clamp(28px, 3.4vw, 48px);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42);
+  background: var(--nero);
+  color: var(--su-inchiostro);
+  --acc: var(--oro);
+  --tenue: rgba(244, 244, 244, 0.55);
+  --debole: rgba(244, 244, 244, 0.16);
+}
+.au-legge[data-tono="chiaro"] .au-legge-carta {
+  background: var(--carta);
+  color: var(--su-carta);
+  --acc: var(--acc-su-chiaro);
+  --tenue: var(--su-carta-m);
+  --debole: rgba(17, 17, 17, 0.14);
+}
+.au-legge[data-tono="scuro"] .au-legge-carta {
+  background: var(--inchiostro);
+  color: var(--su-inchiostro);
+  --acc: var(--oro);
+  --tenue: var(--su-inchiostro-m);
+  --debole: rgba(244, 244, 244, 0.16);
+}
+.au-legge[data-tono="oro"] .au-legge-carta {
+  background: var(--oro);
+  color: var(--nero);
+  --acc: var(--nero);
+  --tenue: rgba(17, 17, 17, 0.66);
+  --debole: rgba(17, 17, 17, 0.2);
+}
+
+/* riga alta: il nome della legge e quanto pesa ------------------------- */
+.au-legge-alto {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+.au-legge-nome {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(38px, 7.4vw, 108px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  max-width: 11ch;
+}
+/* barra di precedenza: quanti segmenti sono pieni dice quanto pesa */
+.au-legge-rango {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: none;
+  padding-top: 0.5em;
+}
+.au-legge-rango i {
+  display: block;
+  width: clamp(44px, 6vw, 86px);
+  height: 3px;
+  border-radius: 2px;
+  background: var(--debole);
+}
+.au-legge-rango i.pieno {
+  background: var(--acc);
+}
+
+/* riga bassa: il testo di legge e la cifra --------------------------- */
+.au-legge-basso {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(24px, 4vw, 64px);
+}
+.au-legge-colonna {
+  flex: 0 1 clamp(340px, 52vw, 840px);
+  min-width: 0;
+}
+/* il testo della legge è il pezzo forte della scheda: sta appena sotto al nome
+   per scala, e regge da solo la metà bassa */
+.au-legge-testo {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: clamp(21px, 2.5vw, 40px);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  text-wrap: pretty;
+}
+/* i rimandi da una legge all'altra: è lì che si vede la gerarchia */
+.au-legge-testo mark {
+  background: none;
+  color: var(--acc);
+  font-weight: 700;
+}
+.au-legge-nota {
+  margin-top: 18px;
+  font-size: clamp(13px, 1.05vw, 15.5px);
+  line-height: 1.6;
+  color: var(--tenue);
+  max-width: 44ch;
+}
+.au-legge-num {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  /* fra parentesi e non nudo: un «II» a questa scala è indistinguibile da due
+     barre, e accanto alla barra di precedenza si leggerebbe come decorazione */
+  font-size: clamp(72px, 12.5vw, 180px);
+  /* interlinea piena: le parentesi sbordano dal riquadro del testo e con una
+     interlinea stretta finirebbero tagliate dal bordo basso della scheda */
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  color: var(--acc);
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* piede della scheda: a chi cede il passo */
+.au-legge-dip {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: clamp(20px, 3vh, 34px);
+}
+.au-legge-dip em {
+  font-style: normal;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--tenue);
+}
+.au-legge-dip em.prima {
+  color: var(--acc);
+}
+.au-legge-catena {
+  display: inline-flex;
+  gap: 5px;
+}
+.au-legge-catena i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 4px;
+  background: var(--debole);
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--acc);
+}
+
+/* Piede della sezione. Alto uno schermo per un motivo preciso: è la pista di
+   frenata dell'ultima scheda, che resta bloccata per 100vh. Se fosse più corto,
+   la sezione successiva scorrerebbe sotto alla scheda ancora fissa. */
+.au-asi-piede {
+  position: relative;
+  z-index: 1;
+  background: var(--nero);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+  padding-top: clamp(60px, 12vh, 120px);
+  padding-bottom: clamp(60px, 10vh, 110px);
+}
+.au-asi-fonte {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  line-height: 1.7;
+  padding-top: clamp(18px, 3vh, 32px);
+  border-top: 1px solid rgba(244, 244, 244, 0.12);
+}
+.au-asi-chiusa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: start;
+}
+.au-asi-chiusa p {
+  font-size: clamp(14.5px, 1.4vw, 17px);
+  line-height: 1.62;
+  color: rgba(244, 244, 244, 0.62);
+  max-width: 48ch;
+}
+.au-asi-chiusa strong {
+  display: block;
+  align-self: center;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(19px, 2.4vw, 34px);
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  color: var(--oro);
+}
+
+/* Senza motore la pila non ha senso: le leggi tornano schede in colonna. */
+.au-statica .au-leggi {
+  display: grid;
+  gap: 30px;
+  padding: 0 var(--gutter);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.au-statica .au-legge,
+.au-statica .au-legge-wrap {
+  height: auto;
+  perspective: none;
+}
+.au-statica .au-legge-carta {
+  position: static;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  box-shadow: none;
+  padding: clamp(24px, 5vw, 40px) clamp(20px, 5vw, 40px) clamp(24px, 5vw, 34px);
+  gap: 24px;
+}
+.au-statica .au-asi-invito {
+  display: none;
+}
+.au-statica .au-asi-piede {
+  min-height: 0;
+}
+
+@media (max-width: 1000px) {
+  .au-soc-testa,
+  .au-asi-chiusa {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .au-societa {
+    min-height: 0;
+  }
+  .au-asi-testa,
+  .au-asi-piede {
+    min-height: 0;
+  }
+  .au-legge-alto,
+  .au-legge-basso {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .au-legge-rango {
+    flex-direction: row;
+    padding-top: 0;
+  }
+  .au-legge-rango i {
+    width: 34px;
+  }
+  .au-legge-num {
+    font-size: clamp(58px, 16vw, 100px);
+  }
+  .au-legge {
+    --stacco: 14px;
+  }
+  .au-legge-carta {
+    border-radius: 20px;
+  }
+  .au-legge-colonna {
+    flex: 1 1 auto;
+  }
+}
