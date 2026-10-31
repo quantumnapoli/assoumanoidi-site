@@ -1,21 +1,27 @@
-import type { Metadata } from "next";
-import { DIRECTORY, SOCIETA_TESTI } from "../contenuti";
-import { RILEVAZIONE, SOCIETA_CONTI } from "../societa";
+import { SOCIETA, SOCIETA_CONTI } from "../societa";
+import { vista } from "../societa-en";
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
 import { Elenco } from "../components/Elenco";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
 
-export const metadata: Metadata = {
-  title: "Directory dei costruttori di umanoidi — AssoUmanoidi",
-  description:
-    `Il registro dei costruttori di robot umanoidi: ${SOCIETA_CONTI.totale} società censite in ${SOCIETA_CONTI.paesi} paesi, con modelli, stato di sviluppo e impieghi. Rilevazione del ${RILEVAZIONE}.`,
-  alternates: { canonical: "/directory" },
-};
+export function Directory({ lingua }: { lingua: Lingua }) {
+  const { DIRECTORY, SOCIETA_TESTI, NAV, NAV_TESTI } = testi(lingua);
+  const ROTTE = rotte(lingua);
+  const righe = SOCIETA.map((s) => vista(s, lingua));
 
-export default function Directory() {
   return (
     <>
-      <Nav sottopagina />
+      <Nav
+        sottopagina
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.directory[altra(lingua)]}
+      />
 
       <main className="au-pagina au-dir">
         <header className="au-pag-testa">
@@ -34,24 +40,24 @@ export default function Directory() {
               </div>
               <div>
                 <b className="dati">{SOCIETA_CONTI.paesi}</b>
-                <span>Paesi</span>
+                <span>{SOCIETA_TESTI.conti.paesi}</span>
               </div>
               <div>
                 <b className="dati">{SOCIETA_CONTI.sulMercato}</b>
-                <span>Già sul mercato</span>
+                <span>{SOCIETA_TESTI.conti.sulMercato}</span>
               </div>
             </div>
           </div>
         </header>
 
         <section className="au-pag-corpo">
-          <Elenco />
+          <Elenco righe={righe} t={DIRECTORY} lingua={lingua} />
           <p className="au-dir-legenda">{DIRECTORY.legenda}</p>
           <p className="au-dir-legenda">{SOCIETA_TESTI.nota}</p>
         </section>
       </main>
 
-      <Piede />
+      <Piede lingua={lingua} />
     </>
   );
 }

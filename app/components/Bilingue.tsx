@@ -12,8 +12,17 @@ import { useState, type ReactNode } from "react";
  *
  * `lang` sui due blocchi serve ai lettori di schermo: cambiano pronuncia.
  */
-export function Bilingue({ it, en }: { it: ReactNode; en: ReactNode }) {
-  const [lingua, setLingua] = useState<"it" | "en">("it");
+export function Bilingue({
+  it,
+  en,
+  iniziale = "it",
+}: {
+  it: ReactNode;
+  en: ReactNode;
+  /** lingua mostrata all'apertura: `en` sulle pagine sotto /en */
+  iniziale?: "it" | "en";
+}) {
+  const [lingua, setLingua] = useState<"it" | "en">(iniziale);
 
   return (
     <>

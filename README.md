@@ -51,7 +51,10 @@ versione vettoriale prima di usarlo a schermo.
 
 ```
 app/
-  contenuti.ts        tutti i testi + la mappa delle rotte  ← si modifica quasi solo questo
+  contenuti.ts        tutti i testi in italiano  ← si modifica quasi solo questo
+  contenuti-en.ts     gli stessi testi in inglese (stesse chiavi: se manca una traduzione non compila)
+  rotte.ts, lingue.ts gli indirizzi per lingua e il legame fra le pagine gemelle
+  views/              le pagine, una per vista, usate da (it) e da (en)
   societa.ts          la directory dei costruttori (fonte dei dati)
   globals.css         token, reset, nav, bottoni, footer
   landing.css         le sezioni della landing
@@ -177,7 +180,7 @@ un posto: è già successo una volta e andava tolto.
 `app/societa.ts` è la fonte dei dati. Il CSV d'origine (`site/public/companies.csv`, 64 aziende,
 21 agosto 2026) non è nel repository, quindi gli aggiornamenti si fanno direttamente qui, una voce
 per oggetto, in ordine alfabetico. I contatori di home e directory si calcolano dall'elenco; la data
-sta in `RILEVAZIONE`, sempre in `societa.ts`.
+sta in `DATA_RILEVAZIONE`, sempre in `societa.ts`.
 
 **Rilevazione del 30 ottobre 2026: 116 voci in 23 paesi.** Rispetto ad agosto:
 
@@ -201,9 +204,45 @@ Le icone delle aziende arrivano dal servizio favicon di Google a partire dal dom
 carica resta l'iniziale nel cerchio, quindi nessun buco. In oro sono segnate le aziende che hanno
 già un umanoide sul mercato.
 
+## Versione inglese
+
+Il sito esiste in italiano (alla radice) e in inglese (sotto `/en`). Non cambia l'indirizzo
+dell'italiano: `/`, `/directory`, `/statuto`… restano dove sono.
+
+| Italiano | Inglese |
+| --- | --- |
+| `/` | `/en` |
+| `/directory` | `/en/directory` |
+| `/cariche-sociali` | `/en/board` |
+| `/statuto` | `/en/statute` |
+| `/rivista/colophon` | `/en/journal/colophon` |
+| `/rivista/norme-per-autori` | `/en/journal/author-guidelines` |
+
+**Come è fatto.** Due gruppi di route, `app/(it)` e `app/(en)`, ciascuno con il proprio layout
+radice, così `<html lang>` è giusto già nell'HTML statico. I file in `(it)` e `(en)/en` sono sottili:
+impostano i metadati e chiamano la stessa vista in `app/views/` con `lingua="it"` o `"en"`.
+
+- **`app/contenuti.ts`** (italiano) e **`app/contenuti-en.ts`** (inglese) hanno le stesse chiavi.
+  `app/testi.ts` le tipizza come una coppia: aggiungere un testo in italiano senza tradurlo
+  **non compila**.
+- **`app/rotte.ts`** ha gli indirizzi per lingua; **`app/lingue.ts`** la tabella che lega ogni pagina
+  al suo gemello (selettore di lingua e `hreflang`). Se si aggiunge una pagina, va aggiunta in entrambi.
+- **`app/societa-en.ts`** traduce solo le etichette della directory (paesi, nature, stati, impieghi).
+  I dati restano in italiano in `societa.ts`; un valore nuovo senza traduzione si vede in italiano e
+  in sviluppo avvisa in console. Il campo `nota` di ogni società non è mostrato da nessuna parte,
+  quindi non è tradotto.
+- **Titoli con parole evidenziate** si scrivono nei dizionari con `<h>…</h>` (oro) e `<u>…</u>`
+  (umano), `\n` per andare a capo: l'accento cade dove vuole la frase di ogni lingua.
+- **Lo statuto non è tradotto**: `/en/statute` ha intestazione e indice in inglese, e il testo
+  integrale resta nell'originale italiano (con `lang="it"`), l'unica versione vincolante.
+- **Rivista**: colophon e norme per gli autori erano già bilingui; sotto `/en` si aprono in inglese.
+- La data della rilevazione è una sola, `DATA_RILEVAZIONE` in `societa.ts`, e si formatta per lingua.
+- Il selettore **IT/EN** sta nella barra di navigazione. Non c'è reindirizzamento automatico in base
+  alla lingua del browser.
+
 ## V2 — come si aggiungono le pagine
 
-`contenuti.ts` → `ROTTE` tiene le destinazioni non ancora pubblicate:
+`rotte.ts` tiene le destinazioni non ancora pubblicate (una tabella per lingua):
 
 ```ts
 cartaPagina: { href: "/carta", pronta: false },
@@ -214,7 +253,7 @@ mandare la gente su un 404. Quando la pagina esiste si mette `pronta: true` e **
 comincia a navigare davvero**: nessun componente da toccare.
 
 Le voci di menu sono ancora ancore della landing (`#etica`, `#carta`…). Diventeranno rotte cambiando
-solo `href` in `ROTTE`.
+solo `href` in `rotte.ts`.
 
 ## Le ancore del menu
 

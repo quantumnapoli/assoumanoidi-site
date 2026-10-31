@@ -1,21 +1,16 @@
-import type { Metadata } from "next";
-import { Bilingue } from "../../components/Bilingue";
-import { Nav } from "../../components/Nav";
-import { Piede } from "../../components/Piede";
-import { Testata } from "../../components/Testata";
-import { COLOPHON, DATI_RIVISTA, type TestiColophon } from "../../rivista-testi";
-
-export const metadata: Metadata = {
-  title: "Colophon – Humanoide, la rivista di AssoUmanoidi",
-  description:
-    "Direzione, redazione, modello Online First, lingue, accesso e note legali di Humanoide, la rivista ufficiale di AssoUmanoidi.",
-  alternates: { canonical: "/rivista/colophon" },
-};
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
+import { Bilingue } from "../components/Bilingue";
+import { Nav } from "../components/Nav";
+import { Piede } from "../components/Piede";
+import { Testata } from "../components/Testata";
+import { COLOPHON, DATI_RIVISTA, type TestiColophon } from "../rivista-testi";
 
 /** Una riga è «in sospeso» quando il documento dice che la pratica è in corso. */
 const inSospeso = (val: string) => /^(in corso|pending)/i.test(val);
 
-function Corpo({ t }: { t: TestiColophon }) {
+function Corpo({ t, sito }: { t: TestiColophon; sito: Lingua }) {
   const it = t.lingua === "it";
   const righe = [...t.editoriale];
 
@@ -71,22 +66,37 @@ function Corpo({ t }: { t: TestiColophon }) {
 
         <nav className="au-doc-rimandi">
           <span className="au-doc-rimandi-tit">{it ? "Per proseguire" : "Continue"}</span>
-          <a href="/rivista/norme-per-autori">{it ? "Norme per gli autori →" : "Author guidelines →"}</a>
-          <a href="/#rivista">{it ? "La rivista →" : "The journal →"}</a>
+          <a href={PAGINE.normeAutori[sito]}>{it ? "Norme per gli autori →" : "Author guidelines →"}</a>
+          <a href={`${PAGINE.home[sito]}#rivista`.replace("//", "/")}>
+            {it ? "La rivista →" : "The journal →"}
+          </a>
         </nav>
       </section>
     </>
   );
 }
 
-export default function Colophon() {
+export function Colophon({ lingua }: { lingua: Lingua }) {
+  const { NAV, NAV_TESTI } = testi(lingua);
+  const ROTTE = rotte(lingua);
   return (
     <>
-      <Nav sottopagina />
+      <Nav
+        sottopagina
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.colophon[altra(lingua)]}
+      />
       <main className="au-pagina au-doc">
-        <Bilingue it={<Corpo t={COLOPHON.it} />} en={<Corpo t={COLOPHON.en} />} />
+        <Bilingue
+          iniziale={lingua}
+          it={<Corpo t={COLOPHON.it} sito={lingua} />}
+          en={<Corpo t={COLOPHON.en} sito={lingua} />}
+        />
       </main>
-      <Piede />
+      <Piede lingua={lingua} />
     </>
   );
 }

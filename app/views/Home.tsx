@@ -1,27 +1,16 @@
-import {
-  ADESIONE,
-  ASIMOV,
-  ANAGRAFE,
-  CAMERE,
-  CARTA,
-  HERO,
-  MANIFESTO,
-  MARQUEE,
-  PERCHE,
-  PILASTRI,
-  RETE,
-  RIVISTA,
-  ROTTE,
-  SOCIETA_TESTI,
-} from "./contenuti";
-import { SOCIETA, SOCIETA_CONTI } from "./societa";
-import { Adesione } from "./components/Adesione";
-import { LinkFuturo } from "./components/Futuro";
-import { Motore } from "./components/Motore";
-import { Nav } from "./components/Nav";
-import { Piede } from "./components/Piede";
-import { Anello, Marchio } from "./components/Marchio";
-import { Testata } from "./components/Testata";
+import { SOCIETA, SOCIETA_CONTI } from "../societa";
+import { vista } from "../societa-en";
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { marca } from "../marca";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
+import { Adesione } from "../components/Adesione";
+import { LinkFuturo } from "../components/Futuro";
+import { Motore } from "../components/Motore";
+import { Nav } from "../components/Nav";
+import { Piede } from "../components/Piede";
+import { Anello, Marchio } from "../components/Marchio";
+import { Testata } from "../components/Testata";
 
 /** Evidenzia i rimandi da una legge all'altra: è lì che si vede la gerarchia. */
 function evidenzia(testo: string, rimandi: string[]) {
@@ -39,10 +28,36 @@ function forte(t: string) {
     .map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <span key={i}>{p}</span>));
 }
 
-export default function Home() {
+export function Home({ lingua }: { lingua: Lingua }) {
+  const {
+    ADESIONE,
+    ASIMOV,
+    ANAGRAFE,
+    CAMERE,
+    CARTA,
+    HERO,
+    MANIFESTO,
+    MARQUEE,
+    NAV,
+    NAV_TESTI,
+    PERCHE,
+    PILASTRI,
+    RETE,
+    RIVISTA,
+    SOCIETA_TESTI,
+  } = testi(lingua);
+  const ROTTE = rotte(lingua);
+  const costruttori = SOCIETA.map((s) => vista(s, lingua));
+
   return (
     <>
-      <Nav />
+      <Nav
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.home[altra(lingua)]}
+      />
 
       <Motore>
         {/* ---------------------------------------------------------- intro */}
@@ -51,12 +66,12 @@ export default function Home() {
             <Marchio />
             <div className="au-intro-parole">
               <span className="au-intro-parola">
-                <span className="u">Umani.</span>
+                <span className="u">{HERO.intro[0]}</span>
               </span>
               <span className="au-intro-parola">
-                <span className="h">Umanoidi.</span>
+                <span className="h">{HERO.intro[1]}</span>
               </span>
-              <span className="au-intro-parola">Una società.</span>
+              <span className="au-intro-parola">{HERO.intro[2]}</span>
               <span className="au-intro-parola">
                 Asso<span className="h">Umanoidi</span>
               </span>
@@ -89,25 +104,19 @@ export default function Home() {
           <div className="au-hero-copy">
             <div className="au-hero-marchio">{HERO.marchio}</div>
             <h1 aria-label={HERO.titolo.join(" ")}>
-              <span className="au-riga" aria-hidden="true">
-                <span className="au-riga-in">Prepariamo la società</span>
-              </span>
-              <span className="au-riga" aria-hidden="true">
-                <span className="au-riga-in">alla convivenza tra</span>
-              </span>
-              <span className="au-riga" aria-hidden="true">
-                <span className="au-riga-in">
-                  esseri <span className="u">umani</span> e <span className="h">umanoidi</span>.
+              {HERO.righe.map((riga) => (
+                <span className="au-riga" aria-hidden="true" key={riga}>
+                  <span className="au-riga-in">{marca(riga)}</span>
                 </span>
-              </span>
+              ))}
             </h1>
             <p className="au-hero-sub">{HERO.sottotitolo}</p>
             <div className="au-hero-azioni">
               <a className="btn btn-lg btn-pieno au-magnete" href={ROTTE.aderisci}>
-                Aderisci
+                {HERO.aderisci}
               </a>
               <a className="btn btn-lg btn-linea" href={ROTTE.associazione}>
-                Scopri l’associazione ↓
+                {HERO.scopri}
               </a>
             </div>
           </div>
@@ -131,7 +140,7 @@ export default function Home() {
             {/* al riposo del portale si vede solo questa fascia: senza, sarebbe
                 un rettangolo bianco vuoto e sembrerebbe un errore */}
             <div className="au-portale-maniglia" aria-hidden="true">
-              <span>La tesi</span>
+              <span>{HERO.portale.etichetta}</span>
             </div>
 
             <div className="au-portale-testo">
@@ -146,7 +155,7 @@ export default function Home() {
 
           <div className="au-scorri" aria-hidden="true">
             <i />
-            Scorri
+            {HERO.scorri}
           </div>
         </section>
 
@@ -154,11 +163,7 @@ export default function Home() {
         <section className="au-perche carta" id="associazione">
           <div className="au-perche-in">
             <div className="art">{PERCHE.articolo}</div>
-            <h2>
-              Gli <span className="h">umanoidi</span> stanno arrivando.
-              <br />
-              La società deve essere pronta.
-            </h2>
+            <h2>{marca(PERCHE.titolo.join("\n"))}</h2>
             <div className="au-perche-corpo">
               {PERCHE.paragrafi.map((p, i) => (
                 <p key={i}>{forte(p)}</p>
@@ -169,10 +174,10 @@ export default function Home() {
                 landing: i due documenti stanno qui, dove il discorso li introduce */}
             <div className="au-perche-doc">
               <a className="au-perche-doc-link" href={ROTTE.statuto.href}>
-                Statuto <span aria-hidden="true">→</span>
+                {PERCHE.doc.statuto} <span aria-hidden="true">→</span>
               </a>
               <a className="au-perche-doc-link" href={ROTTE.cariche.href}>
-                Cariche sociali <span aria-hidden="true">→</span>
+                {PERCHE.doc.cariche} <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
@@ -199,9 +204,9 @@ export default function Home() {
             <div>
               <div className="art">{SOCIETA_TESTI.articolo}</div>
               <h2>
-                Non è una previsione.
+                {SOCIETA_TESTI.titolo[0]}
                 <br />
-                <span className="h">Lo stanno già costruendo.</span>
+                <span className="h">{SOCIETA_TESTI.titolo[1]}</span>
               </h2>
             </div>
             <p>{SOCIETA_TESTI.intro}</p>
@@ -212,29 +217,29 @@ export default function Home() {
               <b className="au-conta" data-conta={SOCIETA_CONTI.totale}>
                 0
               </b>
-              <span>Costruttori censiti</span>
+              <span>{SOCIETA_TESTI.conti.totale}</span>
             </div>
             <div className="au-soc-conto">
               <b className="au-conta" data-conta={SOCIETA_CONTI.paesi}>
                 0
               </b>
-              <span>Paesi</span>
+              <span>{SOCIETA_TESTI.conti.paesi}</span>
             </div>
             <div className="au-soc-conto">
               <b className="au-conta" data-conta={SOCIETA_CONTI.sulMercato}>
                 0
               </b>
-              <span>Già sul mercato</span>
+              <span>{SOCIETA_TESTI.conti.sulMercato}</span>
             </div>
           </div>
 
           {/* tre file che scorrono in direzioni alterne mentre si scende */}
-          <div className="au-soc-muro" aria-label="Costruttori di robot umanoidi">
+          <div className="au-soc-muro" aria-label={SOCIETA_TESTI.muro}>
             {[0, 1, 2].map((riga) => (
               <div className={`au-soc-riga r${riga + 1}`} key={riga}>
-                {SOCIETA.filter((_, i) => i % 3 === riga).map((c) => (
+                {costruttori.filter((_, i) => i % 3 === riga).map((c) => (
                   <a
-                    className={`au-soc-chip${c.stadio === "Sul mercato" ? " mercato" : ""}`}
+                    className={`au-soc-chip${c.sulMercato ? " mercato" : ""}`}
                     key={c.nome}
                     href={c.sito}
                     target="_blank"
@@ -262,11 +267,9 @@ export default function Home() {
           <div className="au-soc-piede">
             <span className="au-soc-nota">{SOCIETA_TESTI.nota}</span>
             <a className="btn btn-sm btn-linea" href={ROTTE.directory.href}>
-              Apri la directory completa →
+              {SOCIETA_TESTI.apri}
             </a>
-            <span className="au-soc-nota">
-              In oro: chi ha già un umanoide sul mercato
-            </span>
+            <span className="au-soc-nota">{SOCIETA_TESTI.oro}</span>
           </div>
         </section>
 
@@ -276,12 +279,12 @@ export default function Home() {
             <div className="au-pil-pan apri">
               <div className="art">{PILASTRI.articolo}</div>
               <h2>
-                Quattro fronti.
+                {PILASTRI.titolo[0]}
                 <br />
-                <span className="h">Un solo lavoro.</span>
+                <span className="h">{PILASTRI.titolo[1]}</span>
               </h2>
               <p>{PILASTRI.intro}</p>
-              <div className="au-pil-suggerimento">Continua a scorrere →</div>
+              <div className="au-pil-suggerimento">{PILASTRI.suggerimento}</div>
             </div>
 
             {PILASTRI.voci.map((v) => (
@@ -319,9 +322,9 @@ export default function Home() {
             <div className="au-cam-copy">
               <div className="art">{CAMERE.articolo}</div>
               <h2>
-                Tre soggetti.
+                {CAMERE.titolo[0]}
                 <br />
-                <span className="h">Una società.</span>
+                <span className="h">{CAMERE.titolo[1]}</span>
               </h2>
               <p className="au-cam-intro">{CAMERE.intro}</p>
 
@@ -353,10 +356,10 @@ export default function Home() {
                   <circle className="au-cam-anello a2" cx="200" cy="200" r="86" />
                   <circle className="au-cam-anello a3" cx="200" cy="200" r="86" />
                 </svg>
-                <span className="au-cam-etichetta e1">Individui</span>
-                <span className="au-cam-etichetta e2">Umanoidi</span>
-                <span className="au-cam-etichetta e3">Organizzazioni</span>
-                <span className="au-cam-sigillo">Modello di rappresentanza</span>
+                <span className="au-cam-etichetta e1">{CAMERE.voci[0].nome}</span>
+                <span className="au-cam-etichetta e2">{CAMERE.voci[1].nome}</span>
+                <span className="au-cam-etichetta e3">{CAMERE.voci[2].nome}</span>
+                <span className="au-cam-sigillo">{CAMERE.sigillo}</span>
               </div>
             </div>
           </div>
@@ -375,7 +378,7 @@ export default function Home() {
               <span className="h">{ASIMOV.titolo[1]}</span> {ASIMOV.titolo[2]}
             </h2>
             <div className="au-asi-invito" aria-hidden="true">
-              Continua a scorrere ↓
+              {ASIMOV.suggerimento}
             </div>
           </div>
 
@@ -389,7 +392,7 @@ export default function Home() {
                       {/* barra di precedenza: quanti segmenti sono pieni dice quanto pesa */}
                       <span
                         className="au-legge-rango"
-                        aria-label={`${ASIMOV.precedenza}: ${l.rango} su 3`}
+                        aria-label={`${ASIMOV.precedenza}: ${l.rango} ${ASIMOV.su} 3`}
                       >
                         {[3, 2, 1].map((n) => (
                           <i key={n} className={n <= l.rango ? "pieno" : undefined} />
@@ -403,7 +406,7 @@ export default function Home() {
                         <footer className="au-legge-dip">
                           {l.dipende.length ? (
                             <>
-                              <em>Cede a</em>
+                              <em>{ASIMOV.cedeA}</em>
                               <span className="au-legge-catena">
                                 {l.dipende.map((d) => (
                                   <i key={d}>{d}</i>
@@ -411,7 +414,7 @@ export default function Home() {
                               </span>
                             </>
                           ) : (
-                            <em className="prima">Non cede a nulla</em>
+                            <em className="prima">{ASIMOV.nonCedeANulla}</em>
                           )}
                         </footer>
                       </div>
@@ -442,7 +445,7 @@ export default function Home() {
                       <p className="au-legge-testo">{ASIMOV.zero.testo}</p>
                       <p className="au-legge-nota">{ASIMOV.zero.nota}</p>
                       <footer className="au-legge-dip">
-                        <em>Prevale su</em>
+                        <em>{ASIMOV.prevaleSu}</em>
                         <span className="au-legge-catena">
                           {ASIMOV.zero.dipende.map((d) => (
                             <i key={d}>{d}</i>
@@ -496,10 +499,7 @@ export default function Home() {
           <div className="au-ana-in">
             <div className="au-ana-copy">
               <div className="art">{ANAGRAFE.articolo}</div>
-              <h2>
-                Ogni <span className="h">umanoide</span> ha una storia.
-                <br />E deve avere un’identità.
-              </h2>
+              <h2>{marca(ANAGRAFE.titolo.join("\n"))}</h2>
               <p>{ANAGRAFE.testo}</p>
               <LinkFuturo chiave="anagrafePagina" className="btn btn-lg btn-pieno au-magnete">
                 {ANAGRAFE.cta}
@@ -562,7 +562,7 @@ export default function Home() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={RIVISTA.numeroUno.copertina}
-                  alt={`Copertina di Humanoide ${RIVISTA.numeroUno.numero}, ${RIVISTA.numeroUno.periodo}`}
+                  alt={RIVISTA.altCopertina(RIVISTA.numeroUno.numero, RIVISTA.numeroUno.periodo)}
                   loading="lazy"
                   decoding="async"
                 />
@@ -573,15 +573,15 @@ export default function Home() {
 
                 <dl className="au-riv-dati">
                   <div>
-                    <dt>Numero</dt>
+                    <dt>{RIVISTA.etichette.numero}</dt>
                     <dd>{RIVISTA.numeroUno.numero}</dd>
                   </div>
                   <div>
-                    <dt>Periodo</dt>
+                    <dt>{RIVISTA.etichette.periodo}</dt>
                     <dd>{RIVISTA.numeroUno.periodo}</dd>
                   </div>
                   <div>
-                    <dt>Cadenza</dt>
+                    <dt>{RIVISTA.etichette.cadenza}</dt>
                     <dd>{RIVISTA.cadenza}</dd>
                   </div>
                 </dl>
@@ -595,8 +595,8 @@ export default function Home() {
                   {RIVISTA.cta}
                 </a>
 
-                <nav className="au-riv-rimandi" aria-label="La rivista">
-                  <a href={ROTTE.normeAutori.href}>Scrivi per Humanoide</a>
+                <nav className="au-riv-rimandi" aria-label={RIVISTA.ariaNav}>
+                  <a href={ROTTE.normeAutori.href}>{RIVISTA.scrivi}</a>
                   <a href={ROTTE.colophon.href}>Colophon</a>
                 </nav>
               </div>
@@ -621,9 +621,9 @@ export default function Home() {
             <div className="au-rete-testa">
               <div className="art">{RETE.articolo}</div>
               <h2>
-                Un luogo di incontro tra società,
+                {RETE.titolo[0]}
                 <br />
-                <span className="h">ricerca, industria e istituzioni.</span>
+                <span className="h">{RETE.titolo[1]}</span>
               </h2>
               <p>{RETE.intro}</p>
             </div>
@@ -651,10 +651,7 @@ export default function Home() {
             <div className="art" style={{ justifyContent: "center" }}>
               {MANIFESTO.articolo}
             </div>
-            <p className="grande">
-              L’arrivo degli <span className="h">umanoidi</span> non riguarda soltanto le macchine.{" "}
-              <span className="u">Riguarda noi.</span>
-            </p>
+            <p className="grande">{marca(MANIFESTO.grande)}</p>
             <p className="piccola">{MANIFESTO.piccola}</p>
             <div className="au-motto">
               <Marchio />
@@ -671,11 +668,11 @@ export default function Home() {
               <h2>{ADESIONE.titolo}</h2>
               <p>{ADESIONE.intro}</p>
             </div>
-            <Adesione />
+            <Adesione t={ADESIONE} privacyHref={ROTTE.aderisci} />
           </div>
         </section>
 
-        <Piede />
+        <Piede lingua={lingua} />
       </Motore>
     </>
   );

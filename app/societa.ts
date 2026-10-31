@@ -6,8 +6,19 @@
  * I conteggi in fondo si calcolano da soli.
  */
 
-/** Data dell'ultima rilevazione, mostrata sotto la directory e nella home. */
-export const RILEVAZIONE = "30 ottobre 2026";
+/** Data dell'ultima rilevazione (ISO): l'unico punto da aggiornare. */
+const DATA_RILEVAZIONE = "2026-10-30";
+const formatta = (locale: string) =>
+  new Date(`${DATA_RILEVAZIONE}T00:00:00Z`).toLocaleDateString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+/** Mostrata sotto la directory e nella home: «30 ottobre 2026» / «30 October 2026». */
+export const RILEVAZIONE = formatta("it-IT");
+export const RILEVAZIONE_EN = formatta("en-GB");
 
 export type Societa = {
   nome: string;
