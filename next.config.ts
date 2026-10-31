@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  outputFileTracingRoot: "/Users/massimo/Documents/thebest/gsap/Assoumanoidi/assoumanoidi-site",
   async redirects() {
     return [
       // /autori era l'area riservata (con password): ora le norme sono pubbliche in
