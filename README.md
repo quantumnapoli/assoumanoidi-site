@@ -182,9 +182,9 @@ un posto: è già successo una volta e andava tolto.
 per oggetto, in ordine alfabetico. I contatori di home e directory si calcolano dall'elenco; la data
 sta in `DATA_RILEVAZIONE`, sempre in `societa.ts`.
 
-**Rilevazione del 30 ottobre 2026: 116 voci in 23 paesi.** Rispetto ad agosto:
+**Rilevazione del 30 ottobre 2026: 117 voci in 23 paesi.** Rispetto ad agosto:
 
-- **Aggiunte 55 voci**, tra cui Generative Bionics e Oversonic Robotics (Italia), Hexagon, Agile
+- **Aggiunte 56 voci**, tra cui Generative Bionics e Oversonic Robotics (Italia), Hexagon, Agile
   Robots, Wandercraft, Galaxea, X-Humanoid, Midea, LG, Kawada. Aree nuove: Medio Oriente, Oceania.
 - **Tolte 3 voci**: Halodi Robotics (è il vecchio nome di 1X, EVE compariva due volte), CloudMinds
   (liquidazione a ottobre 2025) e K-Scale Labs (chiusa a novembre 2025).
