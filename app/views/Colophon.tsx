@@ -1,7 +1,6 @@
 import { PAGINE, altra, type Lingua } from "../lingue";
 import { rotte } from "../rotte";
 import { testi } from "../testi";
-import { Bilingue } from "../components/Bilingue";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
 import { Testata } from "../components/Testata";
@@ -90,11 +89,10 @@ export function Colophon({ lingua }: { lingua: Lingua }) {
         altraLingua={PAGINE.colophon[altra(lingua)]}
       />
       <main className="au-pagina au-doc">
-        <Bilingue
-          iniziale={lingua}
-          it={<Corpo t={COLOPHON.it} sito={lingua} />}
-          en={<Corpo t={COLOPHON.en} sito={lingua} />}
-        />
+        {/* la lingua è quella della pagina: si cambia dal selettore IT/EN della barra */}
+        <div lang={lingua}>
+          <Corpo t={COLOPHON[lingua]} sito={lingua} />
+        </div>
       </main>
       <Piede lingua={lingua} />
     </>

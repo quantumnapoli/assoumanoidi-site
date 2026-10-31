@@ -141,8 +141,8 @@ invece che oro. Se il logo cambia, si rigenera il ritaglio.
 
 ## La rivista Humanoide: colophon e norme per gli autori
 
-`/rivista/colophon` e `/rivista/norme-per-autori`, entrambe pubbliche, in italiano e inglese con
-selettore. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
+`/rivista/colophon` e `/rivista/norme-per-autori` (e i gemelli sotto `/en/journal`), entrambe pubbliche,
+ciascuna nella lingua della pagina. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
 riservata con password, tolta il 30 ottobre 2026 su richiesta dell'associazione.
 
 **Hosting.** Il colophon dichiara Netlify, Inc. La frase «server
@@ -235,7 +235,8 @@ impostano i metadati e chiamano la stessa vista in `app/views/` con `lingua="it"
   (umano), `\n` per andare a capo: l'accento cade dove vuole la frase di ogni lingua.
 - **Lo statuto non è tradotto**: `/en/statute` ha intestazione e indice in inglese, e il testo
   integrale resta nell'originale italiano (con `lang="it"`), l'unica versione vincolante.
-- **Rivista**: colophon e norme per gli autori erano già bilingui; sotto `/en` si aprono in inglese.
+- **Rivista**: colophon e norme per gli autori hanno i testi nelle due lingue in `rivista-testi.ts`; ogni
+  pagina mostra solo la propria (niente selettore nella pagina: si cambia lingua dalla barra).
 - La data della rilevazione è una sola, `DATA_RILEVAZIONE` in `societa.ts`, e si formatta per lingua.
 - Il selettore **IT/EN** sta nella barra di navigazione. Non c'è reindirizzamento automatico in base
   alla lingua del browser.

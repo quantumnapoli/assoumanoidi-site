@@ -837,34 +837,6 @@
    /rivista/colophon e /rivista/norme-per-autori
    -------------------------------------------------------------------------- */
 
-/* selettore lingua: sta sopra la testata, allineato al contenuto */
-.au-lingua {
-  display: flex;
-  gap: 6px;
-  padding: 24px var(--lato-pag) 0;
-}
-.au-lingua button {
-  font-family: inherit;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 8px 18px;
-  border-radius: 100px;
-  border: 1px solid var(--linea-i);
-  background: transparent;
-  color: var(--su-inchiostro-m);
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.au-lingua button:hover {
-  color: var(--su-inchiostro);
-  border-color: var(--su-inchiostro-d);
-}
-.au-lingua button[aria-pressed="true"] {
-  background: var(--oro);
-  border-color: var(--oro);
-  color: var(--navy);
-}
 [hidden] {
   display: none !important;
 }
