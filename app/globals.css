@@ -480,6 +480,23 @@ button {
   padding: 24px var(--gutter) calc(24px + env(safe-area-inset-bottom));
 }
 
+/* selettore di lingua: sigla accanto al bottone Aderisci, visibile anche su mobile */
+.nav-lingua {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--su-inchiostro-m);
+  padding: 7px 10px;
+  border: 1px solid var(--linea-i);
+  border-radius: 999px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-lingua:hover,
+.nav-lingua:focus-visible {
+  color: var(--su-inchiostro);
+  border-color: var(--su-inchiostro-m);
+}
+
 /* --------------------------------------------------------------------------
    Footer
    -------------------------------------------------------------------------- */

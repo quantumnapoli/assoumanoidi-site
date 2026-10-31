@@ -1,20 +1,23 @@
-import type { Metadata } from "next";
-import { ROTTE, STATUTO } from "../contenuti";
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
 import { LinkFuturo } from "../components/Futuro";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
 
-export const metadata: Metadata = {
-  title: "Statuto — AssoUmanoidi",
-  description:
-    "Lo statuto di AssoUmanoidi: costituzione, soci, organi, patrimonio. Il testo integrale, per titolo e articolo.",
-  alternates: { canonical: "/statuto" },
-};
-
-export default function Statuto() {
+export function Statuto({ lingua }: { lingua: Lingua }) {
+  const { STATUTO, NAV, NAV_TESTI } = testi(lingua);
+  const ROTTE = rotte(lingua);
   return (
     <>
-      <Nav sottopagina />
+      <Nav
+        sottopagina
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.statuto[altra(lingua)]}
+      />
 
       <main className="au-pagina au-doc">
         <header className="au-pag-testa">
@@ -29,7 +32,7 @@ export default function Statuto() {
             {STATUTO.pdf && (
               <div className="au-doc-azioni">
                 <a className="btn btn-lg btn-pieno" href={STATUTO.pdf} download>
-                  Scarica lo statuto (PDF)
+                  {STATUTO.ui.scarica}
                 </a>
               </div>
             )}
@@ -37,17 +40,25 @@ export default function Statuto() {
         </header>
 
         <section className="au-pag-corpo">
-          <nav className="au-doc-indice" aria-label="Indice dei titoli">
+          <nav className="au-doc-indice" aria-label={STATUTO.ui.indice}>
             {STATUTO.titoli.map((t) => (
               <a key={t.numero} href={`#titolo-${t.numero}`}>
-                <em>Titolo {t.numero}</em>
+                <em>
+                  {STATUTO.ui.titolo} {t.numero}
+                </em>
                 <span>{t.titolo}</span>
               </a>
             ))}
           </nav>
 
+          {/* il testo integrale resta nell'originale italiano: lo dichiara `lang` */}
           {STATUTO.titoli.map((t) => (
-            <section className="au-doc-titolo" id={`titolo-${t.numero}`} key={t.numero}>
+            <section
+              className="au-doc-titolo"
+              id={`titolo-${t.numero}`}
+              key={t.numero}
+              lang={STATUTO.linguaTesto}
+            >
               <h2 className="au-doc-titolo-tit">
                 <span className="dati">Titolo {t.numero}</span>
                 {t.titolo}
@@ -71,15 +82,15 @@ export default function Statuto() {
 
           <nav className="au-doc-rimandi">
             <span className="au-doc-rimandi-tit">{STATUTO.rimandi}</span>
-            <a href={ROTTE.cariche.href}>Cariche sociali →</a>
-            <LinkFuturo chiave="codiceEtico">Codice etico →</LinkFuturo>
-            <LinkFuturo chiave="cartaPagina">Carta dei diritti e dei doveri →</LinkFuturo>
-            <a href="/#camere">Le tre Camere →</a>
+            <a href={ROTTE.cariche.href}>{STATUTO.ui.cariche}</a>
+            <LinkFuturo chiave="codiceEtico">{STATUTO.ui.codice}</LinkFuturo>
+            <LinkFuturo chiave="cartaPagina">{STATUTO.ui.carta}</LinkFuturo>
+            <a href={`${lingua === "en" ? "/en" : "/"}#camere`}>{STATUTO.ui.camere}</a>
           </nav>
         </section>
       </main>
 
-      <Piede />
+      <Piede lingua={lingua} />
     </>
   );
 }

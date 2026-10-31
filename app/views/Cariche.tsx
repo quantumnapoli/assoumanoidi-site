@@ -1,15 +1,10 @@
-import type { Metadata } from "next";
-import { CARICHE, ROTTE, type Membro } from "../contenuti";
+import type { CARICHE, Membro } from "../contenuti";
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
 import { LinkFuturo } from "../components/Futuro";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
-
-export const metadata: Metadata = {
-  title: "Cariche sociali — AssoUmanoidi",
-  description:
-    "Gli organi di AssoUmanoidi e le persone che li compongono: Consiglio direttivo, Collegio dei probiviri, Consiglio scientifico.",
-  alternates: { canonical: "/cariche-sociali" },
-};
 
 /** I due siti personali citati nelle biografie diventano link; il resto del testo resta com'è. */
 const SITI = /(gabrielegobbo\.it|marcomarsili\.it)/;
@@ -34,7 +29,7 @@ const iniziali = (nome: string) =>
     .slice(0, 2)
     .toUpperCase();
 
-function Profilo({ m }: { m: Membro }) {
+function Profilo({ m, ui }: { m: Membro; ui: typeof CARICHE.ui }) {
   const [primo, ...resto] = m.bio ?? [];
   return (
     <>
@@ -46,7 +41,7 @@ function Profilo({ m }: { m: Membro }) {
             src={m.foto}
             width={256}
             height={256}
-            alt={`Ritratto di ${m.persona}`}
+            alt={`${ui.ritratto} ${m.persona}`}
             loading="lazy"
             decoding="async"
           />
@@ -68,7 +63,7 @@ function Profilo({ m }: { m: Membro }) {
         <p className="au-car-bio">{conLink(primo)}</p>
         {resto.length > 0 && (
           <details className="au-car-resto">
-            <summary>Leggi la biografia completa</summary>
+            <summary>{ui.bioCompleta}</summary>
             {resto.map((p) => (
               <p className="au-car-bio" key={p.slice(0, 24)}>
                 {conLink(p)}
@@ -81,10 +76,19 @@ function Profilo({ m }: { m: Membro }) {
   );
 }
 
-export default function CaricheSociali() {
+export function Cariche({ lingua }: { lingua: Lingua }) {
+  const { CARICHE, NAV, NAV_TESTI } = testi(lingua);
+  const ROTTE = rotte(lingua);
   return (
     <>
-      <Nav sottopagina />
+      <Nav
+        sottopagina
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.cariche[altra(lingua)]}
+      />
 
       <main className="au-pagina au-doc">
         <header className="au-pag-testa">
@@ -105,7 +109,7 @@ export default function CaricheSociali() {
               che siano le nomine vere: togliere `avviso` in contenuti.ts */}
           {CARICHE.avviso && (
             <p className="au-car-avviso" role="note">
-              <strong>Provvisorio</strong>
+              <strong>{CARICHE.ui.provvisorio}</strong>
               {CARICHE.avviso}
             </p>
           )}
@@ -124,7 +128,7 @@ export default function CaricheSociali() {
                   {(o.membri as Membro[]).map((m, i) =>
                     m.bio ? (
                       <li className="profilo" key={`${m.ruolo}-${i}`}>
-                        <Profilo m={m} />
+                        <Profilo m={m} ui={CARICHE.ui} />
                       </li>
                     ) : (
                       /* `persona` vuota → "Da nominare": la carica esiste comunque,
@@ -150,16 +154,16 @@ export default function CaricheSociali() {
           </div>
 
           <nav className="au-doc-rimandi">
-            <span className="au-doc-rimandi-tit">Documenti collegati</span>
-            <a href={ROTTE.statuto.href}>Statuto →</a>
-            <LinkFuturo chiave="consiglioScientifico">Consiglio Scientifico →</LinkFuturo>
-            <LinkFuturo chiave="chiSiamo">Chi siamo →</LinkFuturo>
-            <a href="/#camere">Le tre Camere →</a>
+            <span className="au-doc-rimandi-tit">{CARICHE.ui.collegati}</span>
+            <a href={ROTTE.statuto.href}>{CARICHE.ui.statuto}</a>
+            <LinkFuturo chiave="consiglioScientifico">{CARICHE.ui.scientifico}</LinkFuturo>
+            <LinkFuturo chiave="chiSiamo">{CARICHE.ui.chiSiamo}</LinkFuturo>
+            <a href={`${lingua === "en" ? "/en" : "/"}#camere`}>{CARICHE.ui.camere}</a>
           </nav>
         </section>
       </main>
 
-      <Piede />
+      <Piede lingua={lingua} />
     </>
   );
 }

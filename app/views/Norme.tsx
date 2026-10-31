@@ -1,18 +1,13 @@
-import type { Metadata } from "next";
-import { Bilingue } from "../../components/Bilingue";
-import { Nav } from "../../components/Nav";
-import { Piede } from "../../components/Piede";
-import { Testata } from "../../components/Testata";
-import { DATI_RIVISTA, NORME, type TestiNorme } from "../../rivista-testi";
+import { PAGINE, altra, type Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
+import { Bilingue } from "../components/Bilingue";
+import { Nav } from "../components/Nav";
+import { Piede } from "../components/Piede";
+import { Testata } from "../components/Testata";
+import { DATI_RIVISTA, NORME, type TestiNorme } from "../rivista-testi";
 
-export const metadata: Metadata = {
-  title: "Norme per gli autori – Humanoide, la rivista di AssoUmanoidi",
-  description:
-    "Come scrivere per Humanoide: tipi di contributo e lunghezze, formato del file, convenzioni di stile e punteggiatura, materiali da allegare.",
-  alternates: { canonical: "/rivista/norme-per-autori" },
-};
-
-function Corpo({ t }: { t: TestiNorme }) {
+function Corpo({ t, sito }: { t: TestiNorme; sito: Lingua }) {
   const it = t.lingua === "it";
   const indirizzi = DATI_RIVISTA.emailRedazione && DATI_RIVISTA.emailDirezione;
 
@@ -93,22 +88,35 @@ function Corpo({ t }: { t: TestiNorme }) {
 
         <nav className="au-doc-rimandi">
           <span className="au-doc-rimandi-tit">{it ? "Per proseguire" : "Continue"}</span>
-          <a href="/rivista/colophon">Colophon →</a>
-          <a href="/#rivista">{it ? "La rivista →" : "The journal →"}</a>
+          <a href={PAGINE.colophon[sito]}>Colophon →</a>
+          <a href={`${PAGINE.home[sito]}#rivista`.replace("//", "/")}>{it ? "La rivista →" : "The journal →"}</a>
         </nav>
       </section>
     </>
   );
 }
 
-export default function NormePerAutori() {
+export function Norme({ lingua }: { lingua: Lingua }) {
+  const { NAV, NAV_TESTI } = testi(lingua);
+  const ROTTE = rotte(lingua);
   return (
     <>
-      <Nav sottopagina />
+      <Nav
+        sottopagina
+        lingua={lingua}
+        voci={NAV(ROTTE)}
+        testi={NAV_TESTI}
+        aderisci={ROTTE.aderisci}
+        altraLingua={PAGINE.normeAutori[altra(lingua)]}
+      />
       <main className="au-pagina au-doc">
-        <Bilingue it={<Corpo t={NORME.it} />} en={<Corpo t={NORME.en} />} />
+        <Bilingue
+          iniziale={lingua}
+          it={<Corpo t={NORME.it} sito={lingua} />}
+          en={<Corpo t={NORME.en} sito={lingua} />}
+        />
       </main>
-      <Piede />
+      <Piede lingua={lingua} />
     </>
   );
 }

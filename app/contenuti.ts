@@ -1,4 +1,5 @@
 import { RILEVAZIONE } from "./societa";
+import type { ChiaveFutura, Rotte } from "./rotte";
 
 /**
  * Tutti i testi della landing, in un posto solo.
@@ -7,34 +8,8 @@ import { RILEVAZIONE } from "./societa";
  * basta cambiare `href` in ROTTE — i componenti non si toccano.
  */
 
-export const ROTTE = {
-  associazione: "#associazione",
-  societa: "#societa",
-  asimov: "#asimov",
-  etica: "#etica",
-  camere: "#camere",
-  carta: "#carta",
-  anagrafe: "#anagrafe",
-  rivista: "#rivista",
-  rete: "#rete",
-  aderisci: "#aderisci",
 
-  // V2 — pagine non ancora pubblicate. `pronta: false` fa aprire la modale
-  // "in elaborazione" invece di portare su un 404.
-  cartaPagina: { href: "/carta", pronta: false },
-  anagrafePagina: { href: "https://anagrafeumanoidi.it", pronta: false, esterna: true },
-  statuto: { href: "/statuto", pronta: true },
-  cariche: { href: "/cariche-sociali", pronta: true },
-  directory: { href: "/directory", pronta: true },
-  colophon: { href: "/rivista/colophon", pronta: true },
-  normeAutori: { href: "/rivista/norme-per-autori", pronta: true },
-  codiceEtico: { href: "/codice-etico", pronta: false },
-  chiSiamo: { href: "/chi-siamo", pronta: false },
-  consiglioScientifico: { href: "/consiglio-scientifico", pronta: false },
-  contatti: { href: "/contatti", pronta: false },
-} as const;
-
-export const PAYOFF = "Innovare. Connettere. Umanizzare.";
+export const PAYOFF: string = "Innovare. Connettere. Umanizzare.";
 
 export const SOCIAL = [
   { nome: "Instagram", href: "https://www.instagram.com/assoumanoidi/" },
@@ -42,38 +17,60 @@ export const SOCIAL = [
   { nome: "YouTube", href: "https://www.youtube.com/@assoumanoidi" },
 ];
 
-export const NAV = [
+export type VoceNav = { testo: string; href: string; sotto?: { testo: string; href: string }[] };
+
+export const NAV = (r: Rotte): VoceNav[] => [
   {
     testo: "Associazione",
-    href: ROTTE.associazione,
+    href: r.associazione,
     // sottovoci: la governance dell'associazione non ha una sezione propria
     // nella landing, quindi vive qui — sotto la voce che la introduce.
     sotto: [
-      { testo: "Il perché", href: ROTTE.associazione },
-      { testo: "Statuto", href: ROTTE.statuto.href },
-      { testo: "Cariche sociali", href: ROTTE.cariche.href },
+      { testo: "Il perché", href: r.associazione },
+      { testo: "Statuto", href: r.statuto.href },
+      { testo: "Cariche sociali", href: r.cariche.href },
     ],
   },
-  { testo: "Directory", href: ROTTE.directory.href },
-  { testo: "Etica", href: ROTTE.etica },
-  { testo: "Carta", href: ROTTE.carta },
-  { testo: "Anagrafe", href: ROTTE.anagrafe },
+  { testo: "Directory", href: r.directory.href },
+  { testo: "Etica", href: r.etica },
+  { testo: "Carta", href: r.carta },
+  { testo: "Anagrafe", href: r.anagrafe },
   {
     testo: "Rivista",
-    href: ROTTE.rivista,
+    href: r.rivista,
     sotto: [
-      { testo: "Humanoide, il numero 1", href: ROTTE.rivista },
-      { testo: "Norme per gli autori", href: ROTTE.normeAutori.href },
-      { testo: "Colophon", href: ROTTE.colophon.href },
+      { testo: "Humanoide, il numero 1", href: r.rivista },
+      { testo: "Norme per gli autori", href: r.normeAutori.href },
+      { testo: "Colophon", href: r.colophon.href },
     ],
   },
 ];
+
+/** Stringhe della barra di navigazione (componente client: arrivano come props). */
+export const NAV_TESTI = {
+  home: "AssoUmanoidi — home",
+  inizio: "AssoUmanoidi — inizio pagina",
+  aderisci: "Aderisci",
+  apri: "Apri il menu",
+  chiudi: "Chiudi il menu",
+  menu: "Menu",
+  /** etichetta del link all'altra lingua */
+  lingua: "English",
+  linguaSigla: "EN",
+  linguaAria: "Read this page in English",
+};
 
 /* 01 — Hero ---------------------------------------------------------------- */
 
 export const HERO = {
   marchio: "Innovare · Connettere · Umanizzare",
   titolo: ["Prepariamo la società", "alla convivenza tra", "esseri umani e umanoidi."],
+  /** le stesse righe con l'accento: <u> = umano, <h> = umanoide */
+  righe: ["Prepariamo la società", "alla convivenza tra", "esseri <u>umani</u> e <h>umanoidi</h>."],
+  intro: ["Umani.", "Umanoidi.", "Una società."],
+  aderisci: "Aderisci",
+  scopri: "Scopri l’associazione ↓",
+  scorri: "Scorri",
   sottotitolo:
     "AssoUmanoidi è l’associazione culturale che nasce per rappresentare, studiare e costruire il rapporto tra esseri umani e umanoidi, promuovendo etica, diritti, doveri, responsabilità e riconoscimento reciproco.",
   portale: {
@@ -86,7 +83,8 @@ export const HERO = {
 
 export const PERCHE = {
   articolo: "Art. 01 — Il perché",
-  titolo: ["Gli umanoidi stanno arrivando.", "La società deve essere pronta."],
+  titolo: ["Gli <h>umanoidi</h> stanno arrivando.", "La società deve essere pronta."],
+  doc: { statuto: "Statuto", cariche: "Cariche sociali" },
   paragrafi: [
     "La robotica umanoide e l’intelligenza artificiale stanno trasformando il confine tra tecnologia e vita quotidiana.",
     "Non è soltanto una questione tecnologica. È una questione **etica, sociale, culturale e giuridica**.",
@@ -104,6 +102,7 @@ export const PILASTRI = {
   titolo: ["Quattro fronti.", "Un solo lavoro."],
   intro:
     "Non ci occupiamo di tecnologia. Ci occupiamo di ciò che la tecnologia sta per chiedere alla società: principi, regole, responsabilità, identità.",
+  suggerimento: "Continua a scorrere →",
   voci: [
     {
       num: "01",
@@ -150,6 +149,10 @@ export const SOCIETA_TESTI = {
     "Aziende, laboratori e università che oggi progettano e producono robot umanoidi. Non un giorno: adesso.",
   nota: `Rilevazione del ${RILEVAZIONE}. La directory è in aggiornamento continuo.`,
   cta: "Vedi la directory completa",
+  conti: { totale: "Costruttori censiti", paesi: "Paesi", sulMercato: "Già sul mercato" },
+  muro: "Costruttori di robot umanoidi",
+  apri: "Apri la directory completa →",
+  oro: "In oro: chi ha già un umanoide sul mercato",
 };
 
 /* 04b — Le leggi di Asimov -------------------------------------------------- */
@@ -197,6 +200,11 @@ export const ASIMOV = {
   },
   fonte: "Isaac Asimov · Circolo vizioso, 1942 — Legge Zero: I robot e l’Impero, 1985",
   precedenza: "Precedenza",
+  su: "su",
+  suggerimento: "Continua a scorrere ↓",
+  cedeA: "Cede a",
+  nonCedeANulla: "Non cede a nulla",
+  prevaleSu: "Prevale su",
   chiusa: {
     testo: "Sono un’opera di finzione. Reggono ancora, come intuizione morale, e non a caso le citiamo da ottant’anni. Ma non sono un ordinamento: non dicono chi risponde, chi certifica, chi decide.",
     puntoFermo: "Quelle regole lì nessuno le ha ancora scritte.",
@@ -206,6 +214,7 @@ export const ASIMOV = {
 /* 04 — Tre Camere ---------------------------------------------------------- */
 
 export const CAMERE = {
+  sigillo: "Modello di rappresentanza",
   articolo: "Art. 03 — Rappresentanza",
   titolo: ["Tre soggetti.", "Una società."],
   intro:
@@ -255,7 +264,7 @@ export const CARTA = {
 export const ANAGRAFE = {
   articolo: "Art. 05 — Identità",
   soprattitolo: "Ogni umanoide ha una storia.",
-  titolo: ["Ogni umanoide ha una storia.", "E deve avere un’identità."],
+  titolo: ["Ogni <h>umanoide</h> ha una storia.", "E deve avere un’identità."],
   testo:
     "L’Anagrafe umanoidi è il registro digitale dedicato all’identificazione, alla tracciabilità e alla certificazione degli umanoidi associati e dei rispettivi tutor.",
   cta: "Scopri l’Anagrafe",
@@ -290,6 +299,10 @@ export const RIVISTA = {
   intro:
     "Humanoide è il magazine di AssoUmanoidi: storie, idee e progetti per capire oggi e costruire il futuro. Quattro numeri l'anno su tecnologia, società, scienza e filosofia della convivenza umano-umanoide.",
   cadenza: "Trimestrale · 4 numeri l'anno",
+  etichette: { numero: "Numero", periodo: "Periodo", cadenza: "Cadenza" },
+  scrivi: "Scrivi per Humanoide",
+  ariaNav: "La rivista",
+  altCopertina: (numero: string, periodo: string) => `Copertina di Humanoide ${numero}, ${periodo}`,
   uscita: "Il numero 1 esce a dicembre",
   cta: "Iscriviti per riceverla",
   numeroUno: {
@@ -359,7 +372,7 @@ export const RETE = {
 
 export const MANIFESTO = {
   articolo: "Art. 07 — Manifesto",
-  grande: "L’arrivo degli umanoidi non riguarda soltanto le macchine. Riguarda noi.",
+  grande: "L’arrivo degli <h>umanoidi</h> non riguarda soltanto le macchine. <u>Riguarda noi.</u>",
   piccola:
     "Il modo in cui lavoreremo, vivremo, ci relazioneremo e definiremo responsabilità, diritti e confini. Preparare la società agli umanoidi significa interrogarci sulla società che vogliamo diventare.",
   motto: "Per una società più umana.",
@@ -367,57 +380,144 @@ export const MANIFESTO = {
 
 /* 09 — Adesione ------------------------------------------------------------ */
 
+export type Porta = "persona" | "tutor" | "organizzazione";
+
+export type CampoModulo = {
+  nome: string;
+  etichetta: string;
+  tipo?: "testo" | "email" | "testo-lungo" | "scelta";
+  opzioni?: string[];
+  largo?: boolean;
+  obbligatorio?: boolean;
+  aiuto?: string;
+};
+
 export const ADESIONE = {
   articolo: "Art. 08 — Adesione",
   titolo: "Il futuro della convivenza si costruisce insieme.",
   intro: "Scegli da dove entri. Il modulo si adatta.",
   porte: [
     {
-      id: "persona" as const,
+      id: "persona" as Porta,
       et: "Camera I",
       nome: "Sono una persona",
       testo: "Vuoi partecipare alla costruzione della società umano–umanoide.",
       azione: "Aderisci",
     },
     {
-      id: "tutor" as const,
+      id: "tutor" as Porta,
       et: "Camera II",
       nome: "Rappresento un umanoide",
       testo: "Sei tutor di un umanoide, o lo diventerai.",
       azione: "Aderisci",
     },
     {
-      id: "organizzazione" as const,
+      id: "organizzazione" as Porta,
       et: "Camera III",
       nome: "Rappresento un’organizzazione",
       testo: "Impresa, università, ente, associazione o istituzione.",
       azione: "Partecipa",
     },
   ],
+  /** I campi cambiano con la Camera: chiediamo solo quello che serve davvero. */
+  campi: {
+    persona: [
+      { nome: "nome", etichetta: "Nome e cognome", obbligatorio: true },
+      { nome: "email", etichetta: "Email", tipo: "email", obbligatorio: true },
+      { nome: "citta", etichetta: "Città" },
+      { nome: "professione", etichetta: "Professione" },
+      {
+        nome: "motivazione",
+        etichetta: "Perché vuoi partecipare",
+        tipo: "testo-lungo",
+        largo: true,
+        aiuto: "Facoltativo. Anche due righe ci aiutano a capire da dove parti.",
+      },
+    ],
+    tutor: [
+      { nome: "nome", etichetta: "Nome e cognome del tutor", obbligatorio: true },
+      { nome: "email", etichetta: "Email", tipo: "email", obbligatorio: true },
+      { nome: "modello", etichetta: "Modello dell’umanoide" },
+      { nome: "produttore", etichetta: "Produttore" },
+      {
+        nome: "stato",
+        etichetta: "A che punto sei",
+        tipo: "scelta",
+        opzioni: ["Ho già un umanoide", "Lo avrò entro l’anno", "Sto valutando"],
+      },
+      { nome: "ambito", etichetta: "Ambito d’uso", aiuto: "Domestico, assistenziale, produttivo…" },
+      {
+        nome: "motivazione",
+        etichetta: "Che rapporto immagini",
+        tipo: "testo-lungo",
+        largo: true,
+        aiuto: "Facoltativo.",
+      },
+    ],
+    organizzazione: [
+      { nome: "organizzazione", etichetta: "Nome dell’organizzazione", obbligatorio: true },
+      {
+        nome: "tipo",
+        etichetta: "Tipo",
+        tipo: "scelta",
+        opzioni: ["Impresa", "Università", "Centro di ricerca", "Ente", "Associazione", "Istituzione"],
+        obbligatorio: true,
+      },
+      { nome: "nome", etichetta: "Referente", obbligatorio: true },
+      { nome: "ruolo", etichetta: "Ruolo" },
+      { nome: "email", etichetta: "Email", tipo: "email", obbligatorio: true },
+      { nome: "sito", etichetta: "Sito web" },
+      {
+        nome: "motivazione",
+        etichetta: "Su cosa vorreste collaborare",
+        tipo: "testo-lungo",
+        largo: true,
+        aiuto: "Ricerca, protocolli d’intesa, eventi, sperimentazione…",
+      },
+    ],
+  } as Record<Porta, CampoModulo[]>,
+  msg: {
+    obbligatorio: "Questo campo serve.",
+    email: "Controlla l’indirizzo.",
+    consenso: "Serve il consenso per poterti scrivere.",
+    scegli: "Scegli…",
+    invio: "Invio…",
+    errore: "Non siamo riusciti a inviare. Riprova, o scrivici direttamente.",
+    nessunaQuota: "Nessuna quota richiesta in questa fase. Ti scriviamo solo per l’adesione.",
+    consensoTesto: "Acconsento al trattamento dei miei dati per essere ricontattato da AssoUmanoidi, come descritto nella",
+    privacy: "informativa privacy",
+    fattoTitolo: "Richiesta ricevuta.",
+    /** `{camera}` = numero romano della Camera scelta */
+    fatto: "Ti scriviamo appena la Camera {camera} apre le adesioni. Nel frattempo trovi tutto qui sopra.",
+    altra: "Invia un’altra richiesta",
+  },
 };
 
 /* Footer ------------------------------------------------------------------- */
 
 export const PIEDE = {
   motto: "Per una società più umana.",
+  partecipa: { titolo: "Partecipa", aderisci: "Aderisci", collabora: "Collabora", contatti: "Contatti" },
+  copyright: "Associazione culturale",
+  paese: "Italia",
   colonne: [
     {
       titolo: "Associazione",
       voci: [
-        { testo: "Chi siamo", chiave: "chiSiamo" as const },
-        { testo: "Statuto", chiave: "statuto" as const },
-        { testo: "Cariche sociali", chiave: "cariche" as const },
-        { testo: "Codice etico", chiave: "codiceEtico" as const },
-        { testo: "Consiglio scientifico", chiave: "consiglioScientifico" as const },
+        { testo: "Chi siamo", chiave: "chiSiamo" as ChiaveFutura },
+        { testo: "Statuto", chiave: "statuto" as ChiaveFutura },
+        { testo: "Cariche sociali", chiave: "cariche" as ChiaveFutura },
+        { testo: "Codice etico", chiave: "codiceEtico" as ChiaveFutura },
+        { testo: "Consiglio scientifico", chiave: "consiglioScientifico" as ChiaveFutura },
       ],
     },
     {
       titolo: "Progetti",
       voci: [
-        { testo: "Carta dei diritti e dei doveri", chiave: "cartaPagina" as const },
-        { testo: "Anagrafe umanoidi", chiave: "anagrafePagina" as const },
-        { testo: "Humanoide – norme per gli autori", chiave: "normeAutori" as const },
-        { testo: "Humanoide – colophon", chiave: "colophon" as const },
+        { testo: "Carta dei diritti e dei doveri", chiave: "cartaPagina" as ChiaveFutura },
+        { testo: "Anagrafe umanoidi", chiave: "anagrafePagina" as ChiaveFutura },
+        { testo: "Humanoide – norme per gli autori", chiave: "normeAutori" as ChiaveFutura },
+        { testo: "Humanoide – colophon", chiave: "colophon" as ChiaveFutura },
       ],
     },
   ],
@@ -434,7 +534,9 @@ export const DIRECTORY = {
   contatore: "costruttori censiti",
   cerca: "Cerca società, modello, paese, impiego…",
   filtri: { area: "Tutte le aree", stadio: "Tutti gli stati", tipo: "Tutte le nature" },
-  risultati: (n: number) => `${n} ${n === 1 ? "costruttore" : "costruttori"}`,
+  unita: ["costruttore", "costruttori"] as [string, string],
+  aria: { area: "Filtra per area", stadio: "Filtra per stato", tipo: "Filtra per natura" },
+  azzera: "Azzera i filtri",
   vuoto: "Nessun costruttore corrisponde ai filtri. Prova con un’altra ricerca.",
   legenda: "In oro chi ha già un umanoide sul mercato. Il pallino segnala il sito ufficiale raggiunto con un controllo diretto.",
   colonne: { modelli: "Modelli", stadio: "Stato", impieghi: "Impieghi", sito: "Sito" },
@@ -627,6 +729,18 @@ export const STATUTO = {
     },
   ],
   rimandi: "Documenti collegati",
+  /** Lingua del testo integrale: nell'edizione inglese resta l'originale italiano. */
+  linguaTesto: "it" as "it" | "en",
+  ui: {
+    scarica: "Scarica lo statuto (PDF)",
+    indice: "Indice dei titoli",
+    titolo: "Titolo",
+    art: "Art.",
+    cariche: "Cariche sociali →",
+    codice: "Codice etico →",
+    carta: "Carta dei diritti e dei doveri →",
+    camere: "Le tre Camere →",
+  },
 };
 
 /* Cariche sociali — pagina /cariche-sociali --------------------------------- */
@@ -642,6 +756,8 @@ export type Membro = {
   /** paragrafi della nota biografica: il primo sempre visibile, gli altri dietro «Leggi tutto» */
   bio?: string[];
 };
+
+export type Organo = { nome: string; testo: string; membri: Membro[] };
 
 export const CARICHE = {
   articolo: "Organi — Cariche sociali",
@@ -687,7 +803,7 @@ export const CARICHE = {
           ],
         },
         {
-          ruolo: "Componente del Direttivo",
+          ruolo: "Consigliere",
           persona: "Fabio Morotti",
           foto: "/persone/fabio-morotti.webp",
           bio: [
@@ -695,7 +811,7 @@ export const CARICHE = {
           ],
         },
         {
-          ruolo: "Componente del Direttivo",
+          ruolo: "Consigliere",
           persona: "Emanuele Galloni",
           foto: "/persone/emanuele-galloni.webp",
           bio: [
@@ -706,7 +822,7 @@ export const CARICHE = {
           ],
         },
         {
-          ruolo: "Componente del Direttivo",
+          ruolo: "Consigliere",
           persona: "Gabriele Gobbo",
           foto: "/persone/gabriele-gobbo.webp",
           bio: [
@@ -714,7 +830,7 @@ export const CARICHE = {
           ],
         },
         {
-          ruolo: "Componente del Direttivo",
+          ruolo: "Consigliere",
           persona: "Stefano Colombara",
           foto: "/persone/stefano-colombara.webp",
           bio: [
@@ -788,8 +904,18 @@ export const CARICHE = {
         },
       ],
     },
-  ],
+  ] as Organo[],
   daNominare: "Da nominare",
+  ui: {
+    provvisorio: "Provvisorio",
+    ritratto: "Ritratto di",
+    bioCompleta: "Leggi la biografia completa",
+    collegati: "Documenti collegati",
+    statuto: "Statuto →",
+    scientifico: "Consiglio Scientifico →",
+    chiSiamo: "Chi siamo →",
+    camere: "Le tre Camere →",
+  },
   nota: "L'Assemblea dei soci resta l'organo sovrano: elegge il Consiglio direttivo e il Collegio dei probiviri, approva il bilancio e modifica lo Statuto (Art. 15).",
   camere:
     "I nove consiglieri sono eletti tre per ciascuna Camera — Individui, Umanoidi, Organizzazioni — perché nessuna delle tre possa decidere da sola (Art. 16).",

@@ -1,4 +1,6 @@
-import { PAYOFF, PIEDE, ROTTE, SOCIAL } from "../contenuti";
+import type { Lingua } from "../lingue";
+import { rotte } from "../rotte";
+import { testi } from "../testi";
 import { LinkFuturo } from "./Futuro";
 import { Marchio } from "./Marchio";
 
@@ -25,7 +27,9 @@ const ICONE: Record<string, React.ReactNode> = {
   ),
 };
 
-export function Piede() {
+export function Piede({ lingua = "it" }: { lingua?: Lingua }) {
+  const { PAYOFF, PIEDE, SOCIAL } = testi(lingua);
+  const ROTTE = rotte(lingua);
   return (
     <footer className="piede">
       <div className="piede-in">
@@ -63,17 +67,19 @@ export function Piede() {
             </nav>
           ))}
           <nav className="piede-col">
-            <span className="piede-col-titolo">Partecipa</span>
-            <a href={ROTTE.aderisci}>Aderisci</a>
-            <a href={ROTTE.rete}>Collabora</a>
-            <LinkFuturo chiave="contatti">Contatti</LinkFuturo>
+            <span className="piede-col-titolo">{PIEDE.partecipa.titolo}</span>
+            <a href={ROTTE.aderisci}>{PIEDE.partecipa.aderisci}</a>
+            <a href={ROTTE.rete}>{PIEDE.partecipa.collabora}</a>
+            <LinkFuturo chiave="contatti">{PIEDE.partecipa.contatti}</LinkFuturo>
           </nav>
         </div>
       </div>
 
       <div className="piede-basso">
-        <span>© {new Date().getFullYear()} AssoUmanoidi — Associazione culturale</span>
-        <span>Italia</span>
+        <span>
+          © {new Date().getFullYear()} AssoUmanoidi — {PIEDE.copyright}
+        </span>
+        <span>{PIEDE.paese}</span>
       </div>
     </footer>
   );

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { NAV, ROTTE } from "../contenuti";
+import type { NAV_TESTI, VoceNav } from "../contenuti";
+import type { Lingua } from "../lingue";
 import { Marchio } from "./Marchio";
 
 /**
@@ -9,9 +10,31 @@ import { Marchio } from "./Marchio";
  * lì un href come `#etica` non porta da nessuna parte, quindi le ancore diventano
  * `/#etica` e il marchio torna in home invece di puntare a `#top`.
  */
-export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
+export function Nav({
+  lingua,
+  voci,
+  testi,
+  aderisci,
+  altraLingua,
+  sottopagina = false,
+}: {
+  lingua: Lingua;
+  voci: VoceNav[];
+  testi: typeof NAV_TESTI;
+  /** ancora della sezione di adesione (`#aderisci`) */
+  aderisci: string;
+  /** indirizzo della stessa pagina nell'altra lingua */
+  altraLingua: string;
+  sottopagina?: boolean;
+}) {
   const [aperto, setAperto] = useState(false);
-  const dove = (href: string) => (sottopagina && href.startsWith("#") ? `/${href}` : href);
+  const radice = lingua === "en" ? "/en" : "/";
+  const dove = (href: string) => (sottopagina && href.startsWith("#") ? `${radice}${href}` : href);
+  const selettore = (
+    <a className="nav-lingua" href={altraLingua} hrefLang={lingua === "en" ? "it" : "en"} lang={lingua === "en" ? "it" : "en"} aria-label={testi.linguaAria}>
+      {testi.linguaSigla}
+    </a>
+  );
 
   useEffect(() => {
     document.body.style.overflow = aperto ? "hidden" : "";
@@ -34,8 +57,8 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
       <nav className={`nav${sottopagina ? " fissa" : ""}`}>
         <a
           className="marchio"
-          href={sottopagina ? "/" : "#top"}
-          aria-label={sottopagina ? "AssoUmanoidi — home" : "AssoUmanoidi — inizio pagina"}
+          href={sottopagina ? radice : "#top"}
+          aria-label={sottopagina ? testi.home : testi.inizio}
         >
           <Marchio />
           <span className="marchio-testo">
@@ -44,7 +67,7 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
         </a>
 
         <ul className="nav-voci">
-          {NAV.map((v) =>
+          {voci.map((v) =>
             v.sotto ? (
               // hover/focus-within: niente stato React per un menu che si apre
               // e chiude col mouse — la tastiera lo apre allo stesso modo col focus.
@@ -67,13 +90,14 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
         </ul>
 
         <div className="nav-destra">
-          <a className="btn btn-sm btn-pieno" href={dove(ROTTE.aderisci)}>
-            Aderisci
+          {selettore}
+          <a className="btn btn-sm btn-pieno" href={dove(aderisci)}>
+            {testi.aderisci}
           </a>
           <button
             type="button"
             className="nav-burger"
-            aria-label="Apri il menu"
+            aria-label={testi.apri}
             aria-expanded={aperto}
             onClick={() => setAperto(true)}
           >
@@ -91,7 +115,7 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
         onClick={() => setAperto(false)}
         aria-hidden="true"
       />
-      <div className={`nav-mob${aperto ? " aperto" : ""}`} role="dialog" aria-modal={aperto} aria-label="Menu">
+      <div className={`nav-mob${aperto ? " aperto" : ""}`} role="dialog" aria-modal={aperto} aria-label={testi.menu}>
         <div className="nav-mob-testa">
           <span className="marchio">
             <Marchio />
@@ -103,13 +127,13 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
             type="button"
             className="nav-mob-chiudi"
             onClick={() => setAperto(false)}
-            aria-label="Chiudi il menu"
+            aria-label={testi.chiudi}
           >
             ×
           </button>
         </div>
         <div className="nav-mob-corpo">
-          {NAV.map((v) => (
+          {voci.map((v) => (
             <div className="nav-mob-voce" key={v.href}>
               <a href={dove(v.href)} onClick={() => setAperto(false)}>
                 {v.testo}
@@ -131,11 +155,11 @@ export function Nav({ sottopagina = false }: { sottopagina?: boolean } = {}) {
         <div className="nav-mob-piede">
           <a
             className="btn btn-lg btn-pieno"
-            href={dove(ROTTE.aderisci)}
+            href={dove(aderisci)}
             style={{ width: "100%" }}
             onClick={() => setAperto(false)}
           >
-            Aderisci
+            {testi.aderisci}
           </a>
         </div>
       </div>
