@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DIRECTORY, SOCIETA_TESTI } from "../contenuti";
-import { SOCIETA_CONTI } from "../societa";
+import { RILEVAZIONE, SOCIETA_CONTI } from "../societa";
 import { Elenco } from "../components/Elenco";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
@@ -8,7 +8,7 @@ import { Piede } from "../components/Piede";
 export const metadata: Metadata = {
   title: "Directory dei costruttori di umanoidi — AssoUmanoidi",
   description:
-    "Il registro dei costruttori di robot umanoidi: 64 società censite in 21 paesi, con modelli, stato di sviluppo e impieghi. Rilevazione del 21 agosto 2026.",
+    `Il registro dei costruttori di robot umanoidi: ${SOCIETA_CONTI.totale} società censite in ${SOCIETA_CONTI.paesi} paesi, con modelli, stato di sviluppo e impieghi. Rilevazione del ${RILEVAZIONE}.`,
   alternates: { canonical: "/directory" },
 };
 

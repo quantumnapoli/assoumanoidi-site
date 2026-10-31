@@ -8,8 +8,8 @@ import { SOCIETA, type Societa } from "../societa";
  * Elenco filtrabile dei costruttori (pagina /directory).
  *
  * I dati arrivano già impaginati da `societa.ts`: qui non si fetcha niente, la
- * lista è nel bundle e i filtri lavorano in memoria. Sono 64 record, non serve
- * altro — se un giorno diventassero migliaia, questo è il punto da paginare.
+ * lista è nel bundle e i filtri lavorano in memoria. Sono poco più di cento record,
+ * non serve altro — se un giorno diventassero migliaia, questo è il punto da paginare.
  */
 
 const TUTTE = "__tutte__";

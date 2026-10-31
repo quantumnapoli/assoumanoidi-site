@@ -52,7 +52,7 @@ versione vettoriale prima di usarlo a schermo.
 ```
 app/
   contenuti.ts        tutti i testi + la mappa delle rotte  ← si modifica quasi solo questo
-  societa.ts          la directory dei costruttori (generata dal CSV)
+  societa.ts          la directory dei costruttori (fonte dei dati)
   globals.css         token, reset, nav, bottoni, footer
   landing.css         le sezioni della landing
   pagine.css          le pagine interne (/directory, /statuto, /cariche-sociali)
@@ -79,7 +79,7 @@ pagine senza toccare il motore.
 
 | Rotta | Che cos'è | Stato |
 |---|---|---|
-| `/directory` | I 64 costruttori, con ricerca e filtri per area, stato e natura | pronta |
+| `/directory` | I costruttori censiti, con ricerca e filtri per area, stato e natura | pronta |
 | `/statuto` | Lo statuto integrale: 29 articoli in 4 titoli | pronta |
 | `/cariche-sociali` | Consiglio Direttivo, Probiviri, Consiglio Scientifico | **nomi provvisori** |
 
@@ -96,8 +96,8 @@ Tutte e tre si riempiono da `contenuti.ts`, non dai componenti:
   non sono nomine vere: **toglietela solo quando mettete le persone reali**. Ogni voce ha
   `persona` e `nota` (tre righe di scheda); `persona` vuota fa scrivere *"Da nominare"*.
 
-`app/societa.ts` è stato rigenerato dal CSV con quattro campi in più — `tipo`, `usi`, `nota`,
-`sitoVerificato` — che servono alla directory. Resta un file generato: non si modifica a mano.
+`app/societa.ts` contiene, oltre ai campi del CSV d'origine, `tipo`, `usi`, `nota` e
+`sitoVerificato`, che servono alla directory. Oggi è il file da modificare: vedi «La directory dei costruttori».
 
 ## Da collegare prima di andare online
 
@@ -142,7 +142,7 @@ invece che oro. Se il logo cambia, si rigenera il ritaglio.
 selettore. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
 riservata con password, tolta il 30 ottobre 2026 su richiesta dell'associazione.
 
-**Hosting.** Il colophon dichiara Netlify, Inc. (il documento diceva Ileven). La frase «server
+**Hosting.** Il colophon dichiara Netlify, Inc. La frase «server
 situati all'interno dell'Unione europea» è stata tolta: Netlify non è un fornitore europeo.
 
 **Segnaposto dei documenti.** Sede legale, codice fiscale e le due email di invio erano
@@ -174,8 +174,28 @@ un posto: è già successo una volta e andava tolto.
 
 ## La directory dei costruttori
 
-`app/societa.ts` è generato da `site/public/companies.csv` (64 aziende, rilevazione del
-21 agosto 2026). Non modificarlo a mano: si rigenera dal CSV.
+`app/societa.ts` è la fonte dei dati. Il CSV d'origine (`site/public/companies.csv`, 64 aziende,
+21 agosto 2026) non è nel repository, quindi gli aggiornamenti si fanno direttamente qui, una voce
+per oggetto, in ordine alfabetico. I contatori di home e directory si calcolano dall'elenco; la data
+sta in `RILEVAZIONE`, sempre in `societa.ts`.
+
+**Rilevazione del 30 ottobre 2026: 116 voci in 23 paesi.** Rispetto ad agosto:
+
+- **Aggiunte 55 voci**, tra cui Generative Bionics e Oversonic Robotics (Italia), Hexagon, Agile
+  Robots, Wandercraft, Galaxea, X-Humanoid, Midea, LG, Kawada. Aree nuove: Medio Oriente, Oceania.
+- **Tolte 3 voci**: Halodi Robotics (è il vecchio nome di 1X, EVE compariva due volte), CloudMinds
+  (liquidazione a ottobre 2025) e K-Scale Labs (chiusa a novembre 2025).
+- **Aggiornate quasi tutte le voci esistenti**: modelli nuovi (Figure 03, Atlas di produzione, Walker S2…),
+  stato, quotazioni (Unitree, UBTECH, DOBOT), domini cambiati (Booster, Kepler, Aldebaran…).
+
+Ogni voce è stata controllata con ricerche web. **I siti però non sono stati aperti**: la rete della
+sessione bloccava i domini delle aziende. Per questo `sitoVerificato` (il pallino) resta `true` solo
+dove il dominio è lo stesso del controllo HTTP di agosto; le voci nuove o con dominio cambiato sono
+`false` finché qualcuno non ripete il controllo. Domini confermati da una sola scheda di settore, da
+ricontrollare per primi: TARS Robotics, Zerith, DroidUp, AKINROBOTICS, VinMotion, Kinisi, Prosper.
+
+Rimasti fuori in attesa di conferma: Boardwalk Robotics e QSS AI & Robotics (sito ufficiale non
+trovato), Unlimited Robotics (risulta inattiva da novembre 2025).
 
 Le icone delle aziende arrivano dal servizio favicon di Google a partire dal dominio. Se una non
 carica resta l'iniziale nel cerchio, quindi nessun buco. In oro sono segnate le aziende che hanno

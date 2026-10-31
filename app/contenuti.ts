@@ -1,3 +1,5 @@
+import { RILEVAZIONE } from "./societa";
+
 /**
  * Tutti i testi della landing, in un posto solo.
  *
@@ -146,7 +148,7 @@ export const SOCIETA_TESTI = {
   titolo: ["Non è una previsione.", "Lo stanno già costruendo."],
   intro:
     "Aziende, laboratori e università che oggi progettano e producono robot umanoidi. Non un giorno: adesso.",
-  nota: "Rilevazione del 21 agosto 2026. La directory è in aggiornamento continuo.",
+  nota: `Rilevazione del ${RILEVAZIONE}. La directory è in aggiornamento continuo.`,
   cta: "Vedi la directory completa",
 };
 
@@ -434,7 +436,7 @@ export const DIRECTORY = {
   filtri: { area: "Tutte le aree", stadio: "Tutti gli stati", tipo: "Tutte le nature" },
   risultati: (n: number) => `${n} ${n === 1 ? "costruttore" : "costruttori"}`,
   vuoto: "Nessun costruttore corrisponde ai filtri. Prova con un’altra ricerca.",
-  legenda: "In oro chi ha già un umanoide sul mercato. Il pallino segnala il sito ufficiale raggiunto e verificato alla rilevazione.",
+  legenda: "In oro chi ha già un umanoide sul mercato. Il pallino segnala il sito ufficiale raggiunto con un controllo diretto.",
   colonne: { modelli: "Modelli", stadio: "Stato", impieghi: "Impieghi", sito: "Sito" },
 };
 
@@ -714,6 +716,7 @@ export const CARICHE = {
         {
           ruolo: "Componente del Direttivo",
           persona: "Stefano Colombara",
+          foto: "/persone/stefano-colombara.webp",
           bio: [
             "È laureato in Storia e in Scienze della formazione. È funzionario amministrativo presso la Regione Emilia-Romagna a Bologna dal febbraio 2014. In precedenza ha lavorato nella strategia di brand e comunicazione come project leader per la rete “Liberate le aragoste”. In AssoUmanoidi è responsabile delle attività formative e della comunicazione associativa, e integra il direttivo con competenze di gestione, coordinamento e organizzazione, orientate a strutturare percorsi formativi su statuto, Codice etico, Carta dei diritti e dei doveri degli umanoidi e Regolamento dell’Anagrafe telematica.",
           ],
