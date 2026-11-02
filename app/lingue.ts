@@ -14,6 +14,7 @@ export const PAGINE = {
   colophon: { it: "/rivista/colophon", en: "/en/journal/colophon" },
   normeAutori: { it: "/rivista/norme-per-autori", en: "/en/journal/author-guidelines" },
   privacy: { it: "/privacy", en: "/en/privacy" },
+  chiSiamo: { it: "/chi-siamo", en: "/en/about" },
 } as const;
 
 export type Pagina = keyof typeof PAGINE;
