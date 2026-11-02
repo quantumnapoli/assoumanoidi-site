@@ -668,7 +668,7 @@ export function Home({ lingua }: { lingua: Lingua }) {
               <h2>{ADESIONE.titolo}</h2>
               <p>{ADESIONE.intro}</p>
             </div>
-            <Adesione t={ADESIONE} privacyHref={ROTTE.aderisci} />
+            <Adesione t={ADESIONE} privacyHref={ROTTE.privacy.href} />
           </div>
         </section>
 

@@ -80,6 +80,7 @@ export function Piede({ lingua = "it" }: { lingua?: Lingua }) {
           © {new Date().getFullYear()} AssoUmanoidi — {PIEDE.copyright}
         </span>
         <span>{PIEDE.paese}</span>
+        <LinkFuturo chiave="privacy">{lingua === "en" ? "Privacy policy" : "Privacy"}</LinkFuturo>
       </div>
     </footer>
   );

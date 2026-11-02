@@ -33,7 +33,8 @@ export type ChiaveFutura =
   | "codiceEtico"
   | "chiSiamo"
   | "consiglioScientifico"
-  | "contatti";
+  | "contatti"
+  | "privacy";
 
 export type Rotte = Record<Ancora, string> & Record<ChiaveFutura, Destinazione>;
 
@@ -61,9 +62,10 @@ const IT: Rotte = {
   colophon: { href: "/rivista/colophon", pronta: true },
   normeAutori: { href: "/rivista/norme-per-autori", pronta: true },
   codiceEtico: { href: "/codice-etico", pronta: false },
-  chiSiamo: { href: "/chi-siamo", pronta: false },
+  chiSiamo: { href: "/chi-siamo", pronta: true },
   consiglioScientifico: { href: "/consiglio-scientifico", pronta: false },
   contatti: { href: "/contatti", pronta: false },
+  privacy: { href: "/privacy", pronta: true },
 };
 
 const EN: Rotte = {
@@ -76,9 +78,10 @@ const EN: Rotte = {
   colophon: { href: "/en/journal/colophon", pronta: true },
   normeAutori: { href: "/en/journal/author-guidelines", pronta: true },
   codiceEtico: { href: "/en/code-of-ethics", pronta: false },
-  chiSiamo: { href: "/en/about", pronta: false },
+  chiSiamo: { href: "/en/about", pronta: true },
   consiglioScientifico: { href: "/en/scientific-council", pronta: false },
   contatti: { href: "/en/contact", pronta: false },
+  privacy: { href: "/en/privacy", pronta: true },
 };
 
 export const rotte = (l: Lingua): Rotte => (l === "en" ? EN : IT);
