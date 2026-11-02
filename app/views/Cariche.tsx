@@ -127,7 +127,7 @@ export function Cariche({ lingua }: { lingua: Lingua }) {
                 <ul className="au-car-membri">
                   {(o.membri as Membro[]).map((m, i) =>
                     m.bio ? (
-                      <li className="profilo" key={`${m.ruolo}-${i}`}>
+                      <li className={m.ampio ? "profilo ampio" : "profilo"} key={`${m.ruolo}-${i}`}>
                         <Profilo m={m} ui={CARICHE.ui} />
                       </li>
                     ) : (
