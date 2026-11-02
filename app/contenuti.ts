@@ -791,7 +791,7 @@ export const CARICHE = {
         {
           ruolo: "Presidente",
           persona: "Vito Petrocelli",
-          foto: "/persone/vito-petrocelli.webp",
+          foto: "/persone/vito-petrocelli-v2.webp",
           ampio: true,
           bio: [
             "Geologo di formazione, è stato senatore della Repubblica dal 2013 al 2022. Nel corso del suo mandato parlamentare ha ricoperto incarichi di rilievo, tra cui quello di segretario d’aula e capogruppo, per poi essere eletto Presidente della 3ª Commissione permanente Affari Esteri ed Emigrazione del Senato, ruolo che ha ricoperto dal giugno 2018 al maggio 2022. La sua scheda di attività è consultabile sul sito del Senato della Repubblica. Attualmente presiede l’Istituto Italia-BRICS, ente impegnato nel promuovere il dialogo e le relazioni con i Paesi del blocco emergente, ed è direttore editoriale della testata giornalistica online L’AntiDiplomatico. Guida AssoUmanoidi con l’obiettivo di costruire un presidio di riflessione, rappresentanza e advocacy sui diritti degli umanoidi dotati di intelligenza artificiale antropomorfa, promuovendo una convivenza fondata su diritti, doveri, responsabilità e riconoscimento reciproco, in dialogo con istituzioni, ricerca e industria.",
