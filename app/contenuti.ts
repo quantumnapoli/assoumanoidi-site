@@ -490,6 +490,10 @@ export const ADESIONE = {
     /** `{camera}` = numero romano della Camera scelta */
     fatto: "Ti scriviamo appena la Camera {camera} apre le adesioni. Nel frattempo trovi tutto qui sopra.",
     altra: "Invia un’altra richiesta",
+    nonAttive: {
+      titolo: "Non è ancora possibile inviare informazioni.",
+      testo: "Il modulo di adesione è disattivato: per ora non raccogliamo dati personali. Torna presto.",
+    },
   },
 };
 
@@ -554,8 +558,6 @@ export const STATUTO = {
   pdf: "",
   /**
    * Testo integrale, per titolo e articolo — trascritto dal documento depositato.
-   * NOTA: l'Art. 1 riporta ancora "[Città]" come sede legale: è un segnaposto nel
-   * documento originale, va sostituito con la sede vera prima del deposito.
    */
   titoli: [
     {

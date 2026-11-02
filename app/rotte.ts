@@ -33,7 +33,8 @@ export type ChiaveFutura =
   | "codiceEtico"
   | "chiSiamo"
   | "consiglioScientifico"
-  | "contatti";
+  | "contatti"
+  | "privacy";
 
 export type Rotte = Record<Ancora, string> & Record<ChiaveFutura, Destinazione>;
 
@@ -64,6 +65,7 @@ const IT: Rotte = {
   chiSiamo: { href: "/chi-siamo", pronta: false },
   consiglioScientifico: { href: "/consiglio-scientifico", pronta: false },
   contatti: { href: "/contatti", pronta: false },
+  privacy: { href: "/privacy", pronta: true },
 };
 
 const EN: Rotte = {
@@ -79,6 +81,7 @@ const EN: Rotte = {
   chiSiamo: { href: "/en/about", pronta: false },
   consiglioScientifico: { href: "/en/scientific-council", pronta: false },
   contatti: { href: "/en/contact", pronta: false },
+  privacy: { href: "/en/privacy", pronta: true },
 };
 
 export const rotte = (l: Lingua): Rotte => (l === "en" ? EN : IT);

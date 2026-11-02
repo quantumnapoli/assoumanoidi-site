@@ -434,6 +434,10 @@ export const ADESIONE = {
     fattoTitolo: "Request received.",
     fatto: "We will write to you as soon as Chamber {camera} opens memberships. In the meantime, everything is above.",
     altra: "Send another request",
+    nonAttive: {
+      titolo: "It is not yet possible to send information.",
+      testo: "The membership form is disabled: for now we do not collect personal data. Please check back soon.",
+    },
   },
 };
 

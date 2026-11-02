@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { ADESIONI_ATTIVE } from "../../adesioni";
 
 /**
  * Riceve le adesioni dalla landing.
@@ -14,6 +15,10 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const CAMERE = ["persona", "tutor", "organizzazione"];
 
 export async function POST(richiesta: Request) {
+  if (!ADESIONI_ATTIVE) {
+    return NextResponse.json({ errore: "Le adesioni online non sono ancora attive." }, { status: 503 });
+  }
+
   let corpo: Record<string, unknown>;
   try {
     corpo = await richiesta.json();
@@ -38,8 +43,7 @@ export async function POST(richiesta: Request) {
     return NextResponse.json({ errore: "Manca il consenso al trattamento." }, { status: 400 });
   }
 
-  // TODO(v2): sostituire con invio email / scrittura su CRM.
-  console.log("[adesione]", { camera, nome, email, ricevuta: new Date().toISOString() });
+  // TODO(v2): invio email / scrittura su CRM, solo dopo aver aggiornato l'informativa privacy.
 
   return NextResponse.json({ ok: true });
 }

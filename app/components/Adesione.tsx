@@ -3,6 +3,7 @@
 import { useMemo, useState, type FormEvent } from "react";
 import type { ADESIONE, Porta } from "../contenuti";
 import { Marchio } from "./Marchio";
+import { ADESIONI_ATTIVE } from "../adesioni";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -50,6 +51,16 @@ export function Adesione({ t, privacyHref }: { t: typeof ADESIONE; privacyHref: 
     } catch {
       setInvio("errore");
     }
+  }
+
+  if (!ADESIONI_ATTIVE) {
+    return (
+      <div className="au-modulo au-esito">
+        <Marchio />
+        <h3>{m.nonAttive.titolo}</h3>
+        <p>{m.nonAttive.testo}</p>
+      </div>
+    );
   }
 
   if (invio === "fatto") {
