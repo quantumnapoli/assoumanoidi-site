@@ -556,7 +556,7 @@ export const CARICHE = {
       testo:
         "Governs the association between one assembly and the next: direction, budget, admission of members, affiliation of territorial bodies. Nine Board Members elected by the Assembly, three representing each Chamber; it elects a President and a Vice President from among its members.",
       membri: [
-        { ruolo: "President", persona: "Vito Petrocelli", foto: "/persone/vito-petrocelli-v2.webp", ampio: true, bio: BIO["Vito Petrocelli"] },
+        { ruolo: "President", persona: "Vito Petrocelli", foto: "/persone/vito-petrocelli-v3.webp", ampio: true, bio: BIO["Vito Petrocelli"] },
         { ruolo: "Vice President", persona: "Massimo Morgante", foto: "/persone/massimo-morgante.webp", bio: BIO["Massimo Morgante"] },
         { ruolo: "Board Member", persona: "Fabio Morotti", foto: "/persone/fabio-morotti.webp", bio: BIO["Fabio Morotti"] },
         { ruolo: "Board Member", persona: "Emanuele Galloni", foto: "/persone/emanuele-galloni.webp", bio: BIO["Emanuele Galloni"] },
