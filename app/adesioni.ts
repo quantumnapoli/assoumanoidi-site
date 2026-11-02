@@ -6,4 +6,4 @@
  * Si mette `true` solo quando c'è un destinatario reale (casella o CRM) e l'informativa
  * privacy descrive il trattamento.
  */
-export const ADESIONI_ATTIVE = false;
+export const ADESIONI_ATTIVE = true;
