@@ -638,6 +638,21 @@
   padding-top: 18px;
   border-top: 1px solid var(--linea-i);
 }
+/* il Presidente: scheda a tutta larghezza sulle due colonne, con ritratto più grande */
+.au-car-membri li.profilo.ampio {
+  grid-column: 1 / -1;
+}
+.au-car-membri li.profilo.ampio .au-car-testa {
+  gap: 28px;
+}
+.au-car-membri li.profilo.ampio .au-car-foto {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+}
+.au-car-membri li.profilo.ampio .au-car-nome {
+  font-size: clamp(24px, 2.6vw, 30px);
+}
 .au-car-membri li.profilo:last-child {
   border-bottom: 1px solid var(--linea-i);
   margin-bottom: 0;
@@ -745,6 +760,11 @@
     width: 72px;
     height: 72px;
     border-radius: 12px;
+  }
+  .au-car-membri li.profilo.ampio .au-car-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
   }
   .au-car-foto.monogramma {
     font-size: 22px;
