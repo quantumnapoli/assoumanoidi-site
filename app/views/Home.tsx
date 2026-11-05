@@ -63,7 +63,13 @@ export function Home({ lingua }: { lingua: Lingua }) {
         {/* ---------------------------------------------------------- intro */}
         <div className="au-intro" aria-hidden="true">
           <div className="au-intro-centro">
-            <Marchio />
+            <img
+              className="au-intro-logo"
+              src="/loghi/assoumanoidi-verticale-scuro.svg"
+              alt=""
+              width={240}
+              height={101}
+            />
             <div className="au-intro-parole">
               <span className="au-intro-parola">
                 <span className="u">{HERO.intro[0]}</span>
@@ -72,9 +78,6 @@ export function Home({ lingua }: { lingua: Lingua }) {
                 <span className="h">{HERO.intro[1]}</span>
               </span>
               <span className="au-intro-parola">{HERO.intro[2]}</span>
-              <span className="au-intro-parola">
-                Asso<span className="h">Umanoidi</span>
-              </span>
             </div>
           </div>
         </div>

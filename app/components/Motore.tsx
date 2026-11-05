@@ -319,7 +319,7 @@ export function Motore({ children }: { children: ReactNode }) {
         );
 
       const parole = q(".au-intro-parola");
-      const introMarchio = uno(".au-intro .marchio-svg");
+      const introMarchio = uno(".au-intro .au-intro-logo");
 
       // Se la pagina viene aperta in una scheda di sfondo, requestAnimationFrame è
       // fermo: l'intro resterebbe congelata a metà e la hero mezza invisibile.
@@ -355,7 +355,6 @@ export function Motore({ children }: { children: ReactNode }) {
           .to(parole[1], { yPercent: -130, duration: 0.24, ease: "power3.in" }, "+=0.14")
           .to(parole[2], { yPercent: 0, duration: 0.3, ease: "power3.out" }, "-=0.05")
           .to(parole[2], { yPercent: -130, duration: 0.24, ease: "power3.in" }, "+=0.14")
-          .to(parole[3], { yPercent: 0, duration: 0.34, ease: "power3.out" }, "-=0.05")
           .to(uno(".au-intro"), { yPercent: -100, duration: 0.65, ease: "power3.inOut" }, "+=0.3")
           .call(() => heroTl.play(), [], "-=0.45")
           .set(uno(".au-intro"), { display: "none" });
