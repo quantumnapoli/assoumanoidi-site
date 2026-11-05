@@ -2,7 +2,6 @@ import type { Lingua } from "../lingue";
 import { rotte } from "../rotte";
 import { testi } from "../testi";
 import { LinkFuturo } from "./Futuro";
-import { Marchio } from "./Marchio";
 
 const ICONE: Record<string, React.ReactNode> = {
   Instagram: (
@@ -34,8 +33,7 @@ export function Piede({ lingua = "it" }: { lingua?: Lingua }) {
     <footer className="piede">
       <div className="piede-in">
         <div className="piede-marchio">
-          <Marchio />
-          <div className="piede-nome">Assoumanoidi</div>
+          <img className="piede-logo" src="/loghi/assoumanoidi-verticale-scuro.svg" alt="AssoUmanoidi" width={240} height={101} />
           <p className="piede-payoff">{PAYOFF}</p>
           <p className="piede-motto">{PIEDE.motto}</p>
           <div className="social" style={{ marginTop: 22 }}>

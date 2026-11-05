@@ -32,18 +32,22 @@ Due note sul perché di alcune scelte:
 
 ## Marchio
 
-Il logo ufficiale, in due varianti generate dagli originali in `public/assets/`:
+I loghi ufficiali sono **vettoriali**, estratti dal PDF del brand (`Assoumanoidi_logo.pdf`, carattere
+Gilroy Medium, lettere già convertite in contorni) senza ridisegnare niente. Stanno in `public/loghi/`,
+ognuno in due varianti: `-scuro` per i fondi scuri (il blu diventa chiaro, oro invariato) e `-chiaro`
+per i fondi chiari (colori originali).
 
-| File | Da | Uso |
+| File | Cos'è | Dove si usa |
 |---|---|---|
-| `public/marchio.webp` | `logo_02.png` | fondi scuri (navy, nero) |
-| `public/marchio-scuro.webp` | `logo_01.png` | fondi chiari (`#F4F4F4`) |
+| `assoumanoidi-simbolo-*.svg` | il cerchio con la figura | componente `Marchio` (intro, rail, motto, modulo) |
+| `assoumanoidi-verticale-*.svg` | simbolo sopra la scritta, **come nel PDF** | footer |
+| `assoumanoidi-orizzontale-*.svg` | simbolo e scritta affiancati, **composti dagli stessi tracciati** (non è nel PDF) | barra di navigazione |
+| `humanoide-*.svg` | la scritta Humanoide con la O-simbolo | componente `Testata` |
 
-Lo sfondo è stato reso trasparente con un riempimento dai bordi (le forme bianche interne —
-braccia e anello — restano intatte), poi ritagliato al vivo e portato a 512×512.
-La variante giusta la sceglie il CSS in base al contesto: nei componenti non si passa nulla.
-
-Se cambiate gli originali, rigenerate i due `.webp` con lo stesso procedimento e basta.
+La variante giusta del simbolo la sceglie il CSS in base al contesto (`.carta`): nei componenti non si
+passa nulla. Se il logo cambia, si sostituiscono gli `.svg` e basta. `app/icon.svg` e
+`app/apple-icon.png` sono la favicon (simbolo su fondo navy). `public/logoau.png` è il vecchio logo:
+non è più usato dal sito.
 Se vi serve anche il lockup orizzontale (`assets/assoumanoidi.jpg`), è a 380px: serve una
 versione vettoriale prima di usarlo a schermo.
 
@@ -133,11 +137,9 @@ Tutte e tre si riempiono da `contenuti.ts`, non dai componenti:
 
 ## La testata di Humanoide
 
-`public/humanoide-testata.webp` è il logotipo originale, ritagliato dal file del brand e reso
-trasparente sul fondo navy (l'alfa è ricavata da quanto ogni pixel è più chiaro del fondo, così
-bianco e oro restano puliti sui bordi). **Non va ricostruito in CSS**: un primo tentativo metteva
-il marchio del sito dentro un bordo tondo e veniva sbagliato — doppio cerchio e figura bianca
-invece che oro. Se il logo cambia, si rigenera il ritaglio.
+`public/loghi/humanoide-scuro.svg` è il logotipo ufficiale, vettoriale, estratto dal PDF del brand
+(vedi «Marchio»). **Non va ricostruito in CSS**: un primo tentativo metteva il marchio del sito dentro
+un bordo tondo e veniva sbagliato. Se il logo cambia, si sostituisce l'`.svg`.
 
 ## La rivista Humanoide: colophon e norme per gli autori
 

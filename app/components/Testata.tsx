@@ -3,24 +3,22 @@
 /**
  * La testata di Humanoide.
  *
- * È il logotipo originale del brand, ritagliato dal file fornito e reso
- * trasparente sul fondo navy (`public/humanoide-testata.webp`): letterforme,
- * spaziatura e la O — anello d'oro con la figura in oro dentro — sono quelle
- * vere. Prima era ricostruita in CSS mettendo il marchio del sito dentro un
- * bordo tondo, e veniva sbagliata: doppio cerchio e figura bianca invece che
- * oro. Un logo non si riscrive a mano, si usa quello.
+ * È il logotipo ufficiale, vettoriale, estratto dal PDF del logo
+ * (`public/loghi/humanoide-scuro.svg`, variante per fondi scuri; la variante
+ * `humanoide-chiaro.svg` è per fondi chiari): lettere, spaziatura e la O con
+ * la figura dentro sono quelle vere. Un logo non si riscrive a mano, si usa quello.
  *
- * Il `role="img"` con l'etichetta serve perché chi legge con lo schermo senta
- * "Humanoide" e non un file .webp.
+ * L'`alt` serve perché chi legge con lo schermo senta "Humanoide" e non il
+ * nome di un file.
  */
 export function Testata({ className = "" }: { className?: string }) {
   return (
     <img
       className={`au-testata ${className}`}
-      src="/humanoide-testata.webp"
+      src="/loghi/humanoide-scuro.svg"
       alt="Humanoide"
-      width={1347}
-      height={189}
+      width={729}
+      height={100}
       draggable={false}
     />
   );

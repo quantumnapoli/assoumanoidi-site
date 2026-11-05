@@ -285,16 +285,11 @@ button {
   align-items: center;
   gap: 11px;
 }
-.marchio .marchio-svg {
-  width: 34px;
+.marchio .logo-orizz {
+  display: block;
+  height: 34px;
+  width: auto;
   flex-shrink: 0;
-}
-.marchio-testo {
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1;
 }
 
 .nav-voci {
@@ -514,16 +509,11 @@ button {
   gap: 56px 40px;
   align-items: start;
 }
-.piede-marchio .marchio-svg {
-  width: 48px;
-  margin-bottom: 20px;
-}
-.piede-nome {
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  font-weight: 800;
-  font-size: 19px;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+.piede-logo {
+  display: block;
+  width: 230px;
+  max-width: 100%;
+  height: auto;
 }
 /* il payoff sotto il nome, fra due filetti oro, come nel lockup del brand book */
 .piede-payoff {

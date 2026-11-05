@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import type { NAV_TESTI, VoceNav } from "../contenuti";
 import type { Lingua } from "../lingue";
-import { Marchio } from "./Marchio";
 
 /**
  * `sottopagina` serve alle pagine che non sono la landing (/directory, /statuto…):
@@ -60,10 +59,8 @@ export function Nav({
           href={sottopagina ? radice : "#top"}
           aria-label={sottopagina ? testi.home : testi.inizio}
         >
-          <Marchio />
-          <span className="marchio-testo">
-            Assoumanoidi
-          </span>
+          {/* logo orizzontale: il simbolo e la scritta ufficiali; il nome accessibile sta sul link */}
+          <img className="logo-orizz" src="/loghi/assoumanoidi-orizzontale-scuro.svg" alt="" width={190} height={36} />
         </a>
 
         <ul className="nav-voci">
@@ -118,10 +115,7 @@ export function Nav({
       <div className={`nav-mob${aperto ? " aperto" : ""}`} role="dialog" aria-modal={aperto} aria-label={testi.menu}>
         <div className="nav-mob-testa">
           <span className="marchio">
-            <Marchio />
-            <span className="marchio-testo">
-              Assoumanoidi
-            </span>
+            <img className="logo-orizz" src="/loghi/assoumanoidi-orizzontale-scuro.svg" alt="AssoUmanoidi" width={190} height={36} />
           </span>
           <button
             type="button"
