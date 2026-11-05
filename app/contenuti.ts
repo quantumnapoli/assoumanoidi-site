@@ -903,6 +903,11 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
+          persona: "István Polgár",
+          nota: "Università di Oradea, Romania · Relazioni internazionali e studi europei",
+        },
+        {
+          ruolo: "Membro",
           persona: "Jesús Ignacio Delgado Rojas",
           nota: "Università di Siviglia · Filosofia del diritto",
         },
