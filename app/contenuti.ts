@@ -888,19 +888,38 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Carla Petrocelli",
+          nota: "Università di Bari Aldo Moro · Storia della scienza e delle tecniche",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Dorota Domalewska",
+          nota: "War Studies University, Varsavia · Scuola di dottorato",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Jesús Ignacio Delgado Rojas",
+          nota: "Università di Siviglia · Filosofia del diritto",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Małgorzata Kamola-Cieślik",
+          nota: "Università di Szczecin · Sistemi politici e politiche pubbliche",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Marek Górka",
+          nota: "Koszalin University of Technology · Facoltà di Scienze umanistiche",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Özgür Tüfekçi",
+          nota: "Karadeniz Technical University, Trebisonda · Relazioni internazionali",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Rashed Daher",
+          nota: "Centro per il mondo arabo contemporaneo, ELTE, Budapest",
         },
       ],
     },
