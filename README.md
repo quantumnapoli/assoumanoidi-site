@@ -141,8 +141,8 @@ invece che oro. Se il logo cambia, si rigenera il ritaglio.
 
 ## La rivista Humanoide: colophon e norme per gli autori
 
-`/rivista/colophon` e `/rivista/norme-per-autori`, entrambe pubbliche, in italiano e inglese con
-selettore. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
+`/rivista/colophon` e `/rivista/norme-per-autori` (e i gemelli sotto `/en/journal`), entrambe pubbliche,
+ciascuna nella lingua della pagina. I testi sono in `app/rivista-testi.ts`. `/autori` reindirizza alle norme: era l'area
 riservata con password, tolta il 30 ottobre 2026 su richiesta dell'associazione.
 
 **Hosting.** Il colophon dichiara Netlify, Inc. La frase «server
@@ -182,9 +182,9 @@ un posto: è già successo una volta e andava tolto.
 per oggetto, in ordine alfabetico. I contatori di home e directory si calcolano dall'elenco; la data
 sta in `DATA_RILEVAZIONE`, sempre in `societa.ts`.
 
-**Rilevazione del 30 ottobre 2026: 116 voci in 23 paesi.** Rispetto ad agosto:
+**Rilevazione del 30 ottobre 2026: 117 voci in 23 paesi.** Rispetto ad agosto:
 
-- **Aggiunte 55 voci**, tra cui Generative Bionics e Oversonic Robotics (Italia), Hexagon, Agile
+- **Aggiunte 56 voci**, tra cui Generative Bionics e Oversonic Robotics (Italia), Hexagon, Agile
   Robots, Wandercraft, Galaxea, X-Humanoid, Midea, LG, Kawada. Aree nuove: Medio Oriente, Oceania.
 - **Tolte 3 voci**: Halodi Robotics (è il vecchio nome di 1X, EVE compariva due volte), CloudMinds
   (liquidazione a ottobre 2025) e K-Scale Labs (chiusa a novembre 2025).
@@ -235,7 +235,8 @@ impostano i metadati e chiamano la stessa vista in `app/views/` con `lingua="it"
   (umano), `\n` per andare a capo: l'accento cade dove vuole la frase di ogni lingua.
 - **Lo statuto non è tradotto**: `/en/statute` ha intestazione e indice in inglese, e il testo
   integrale resta nell'originale italiano (con `lang="it"`), l'unica versione vincolante.
-- **Rivista**: colophon e norme per gli autori erano già bilingui; sotto `/en` si aprono in inglese.
+- **Rivista**: colophon e norme per gli autori hanno i testi nelle due lingue in `rivista-testi.ts`; ogni
+  pagina mostra solo la propria (niente selettore nella pagina: si cambia lingua dalla barra).
 - La data della rilevazione è una sola, `DATA_RILEVAZIONE` in `societa.ts`, e si formatta per lingua.
 - Il selettore **IT/EN** sta nella barra di navigazione. Non c'è reindirizzamento automatico in base
   alla lingua del browser.

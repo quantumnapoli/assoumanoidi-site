@@ -804,7 +804,7 @@ export const CARICHE = {
           persona: "Massimo Morgante",
           foto: "/persone/massimo-morgante.webp",
           bio: [
-            "Imprenditore seriale ed esperto di innovazione digitale, ha conseguito un Master in comunicazione e giornalismo multimediale. Tra i pionieri in Italia nell’applicazione dell’intelligenza artificiale ai processi aziendali, ha fondato un AI Lab dedicato alla sperimentazione e allo sviluppo di soluzioni tecnologiche innovative. Già CMO di Innereo, è fondatore di Speaqi, infrastruttura digitale che integra intelligenza artificiale, guide turistiche multilingua e assistenti AI per valorizzare destinazioni, territori e patrimonio culturale. In AssoUmanoidi contribuisce allo sviluppo strategico, promuovendo relazioni con istituzioni, imprese e organizzazioni e partecipando a fiere ed eventi sull’innovazione. Favorisce il dialogo tra impresa, ricerca e società civile sulle sfide etiche della futura convivenza tra esseri umani e sistemi intelligenti.",
+            "Imprenditore seriale ed esperto di innovazione digitale, ha conseguito un Master in comunicazione e giornalismo multimediale. Tra i pionieri in Italia nell’applicazione dell’intelligenza artificiale ai processi aziendali, ha fondato un AI Lab dedicato alla sperimentazione e allo sviluppo di soluzioni tecnologiche innovative. Già CMO di Innereo, è fondatore di Speaqi, infrastruttura digitale che integra intelligenza artificiale, guide turistiche multilingua e assistenti AI per valorizzare destinazioni, territori e patrimonio culturale. In AssoUmanoidi contribuisce allo sviluppo strategico, promuovendo relazioni con istituzioni, imprese e organizzazioni e partecipando a fiere ed eventi sull’innovazione. È direttore editoriale di Humanoide, la rivista ufficiale dell’Associazione. Favorisce il dialogo tra impresa, ricerca e società civile sulle sfide etiche della futura convivenza tra esseri umani e sistemi intelligenti.",
           ],
         },
         {
@@ -893,19 +893,38 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Carla Petrocelli",
+          nota: "Università di Bari Aldo Moro · Storia della scienza e delle tecniche",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Dorota Domalewska",
+          nota: "War Studies University, Varsavia · Scuola di dottorato",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Jesús Ignacio Delgado Rojas",
+          nota: "Università di Siviglia · Filosofia del diritto",
         },
         {
           ruolo: "Membro",
-          persona: "",
+          persona: "Małgorzata Kamola-Cieślik",
+          nota: "Università di Szczecin · Sistemi politici e politiche pubbliche",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Marek Górka",
+          nota: "Koszalin University of Technology · Facoltà di Scienze umanistiche",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Özgür Tüfekçi",
+          nota: "Karadeniz Technical University, Trebisonda · Relazioni internazionali",
+        },
+        {
+          ruolo: "Membro",
+          persona: "Rashed Daher",
+          nota: "Centro per il mondo arabo contemporaneo, ELTE, Budapest",
         },
       ],
     },

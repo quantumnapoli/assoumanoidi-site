@@ -2062,6 +2062,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Tau Robotics",
+    "sito": "https://www.tau-robotics.com/",
+    "dominio": "tau-robotics.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Tau Humanoid"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "servizi",
+      "casa"
+    ],
+    "nota": "Startup di San Francisco: dal luglio 2026 offre pulizie domestiche a 30 dollari l'ora con umanoidi teleoperati da operatori umani.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Techman Robot",
     "sito": "https://www.tm-robot.com/",
     "dominio": "tm-robot.com",

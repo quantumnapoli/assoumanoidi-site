@@ -522,7 +522,7 @@ const BIO: Record<string, string[]> = {
     "A geologist by training, he served as a Senator of the Italian Republic from 2013 to 2022. During his parliamentary term he held senior positions, including those of Senate floor secretary and parliamentary group leader, and was then elected Chair of the Senate’s 3rd Standing Committee on Foreign Affairs and Emigration, a role he held from June 2018 to May 2022. A record of his parliamentary activity is available on the website of the Senate of the Republic. He currently chairs the Istituto Italia-BRICS, a body committed to promoting dialogue and relations with the countries of the emerging bloc, and is Editorial Director of the online news outlet L’AntiDiplomatico. He leads AssoUmanoidi with the aim of building a hub for reflection, representation and advocacy on the rights of humanoids endowed with anthropomorphic artificial intelligence, promoting a coexistence founded on rights, duties, responsibilities and mutual recognition, in dialogue with institutions, research and industry."
   ],
   "Massimo Morgante": [
-    "A serial entrepreneur and expert in digital innovation, he holds a Master’s in Communication and Multimedia Journalism. One of the pioneers in Italy in applying artificial intelligence to business processes, he founded an AI Lab dedicated to experimenting with and developing innovative technological solutions. Formerly CMO of Innereo, he is the founder of Speaqi, a digital infrastructure that combines artificial intelligence, multilingual tourist guides and AI assistants to enhance destinations, local areas and cultural heritage. At AssoUmanoidi he contributes to strategic development, fostering relations with institutions, businesses and organizations and taking part in trade fairs and events on innovation. He encourages dialogue between business, research and civil society on the ethical challenges of the future coexistence of human beings and intelligent systems."
+    "A serial entrepreneur and expert in digital innovation, he holds a Master’s in Communication and Multimedia Journalism. One of the pioneers in Italy in applying artificial intelligence to business processes, he founded an AI Lab dedicated to experimenting with and developing innovative technological solutions. Formerly CMO of Innereo, he is the founder of Speaqi, a digital infrastructure that combines artificial intelligence, multilingual tourist guides and AI assistants to enhance destinations, local areas and cultural heritage. At AssoUmanoidi he contributes to strategic development, fostering relations with institutions, businesses and organizations and taking part in trade fairs and events on innovation. He is Editorial Director of Humanoide, the Association’s official journal. He encourages dialogue between business, research and civil society on the ethical challenges of the future coexistence of human beings and intelligent systems."
   ],
   "Fabio Morotti": [
     "A writer and essayist, he holds a PhD in Visual and Media Studies from IULM University in Milan. His academic and professional work rests on a multidisciplinary approach that draws on anthropological categories to analyse contemporary visual culture. His fields of study include cinema, generative AI, intangible cultural heritage, Cambodian culture, aerial vision and travel literature. He is the author of novels and of a monograph on the Cambodian performing arts. At AssoUmanoidi he has been delegated responsibility for audiovisual and cultural matters and is Senior Deputy Editor of Humanoide, the Association’s official magazine, contributing to the promotion of the culture and imagery of the humanoid through art, communication and the symbol of contact between human being and robot."
@@ -586,10 +586,13 @@ export const CARICHE = {
         "Advisory body: prepares the association’s positions on ethics, law, robotics and social impact. Members need not be association members; it is chaired by the Scientific Director, appointed by the Executive Board.",
       membri: [
         { ruolo: "Scientific Director", persona: "Marco Marsili", foto: "/persone/marco-marsili.webp", bio: BIO["Marco Marsili"] },
-        { ruolo: "Member", persona: "" },
-        { ruolo: "Member", persona: "" },
-        { ruolo: "Member", persona: "" },
-        { ruolo: "Member", persona: "" },
+        { ruolo: "Member", persona: "Carla Petrocelli", nota: "University of Bari Aldo Moro · History of Science and Techniques" },
+        { ruolo: "Member", persona: "Dorota Domalewska", nota: "War Studies University, Warsaw · Doctoral School" },
+        { ruolo: "Member", persona: "Jesús Ignacio Delgado Rojas", nota: "University of Seville · Philosophy of Law" },
+        { ruolo: "Member", persona: "Małgorzata Kamola-Cieślik", nota: "University of Szczecin · Political Systems and Public Policy" },
+        { ruolo: "Member", persona: "Marek Górka", nota: "Koszalin University of Technology · Faculty of Humanities" },
+        { ruolo: "Member", persona: "Özgür Tüfekçi", nota: "Karadeniz Technical University, Trabzon · International Relations" },
+        { ruolo: "Member", persona: "Rashed Daher", nota: "Center for the Contemporary Arab World, ELTE, Budapest" },
       ],
     },
   ] as Organo[],
