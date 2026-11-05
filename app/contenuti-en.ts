@@ -593,6 +593,7 @@ export const CARICHE = {
         { ruolo: "Member", persona: "Małgorzata Kamola-Cieślik", nota: "University of Szczecin · Political Systems and Public Policy" },
         { ruolo: "Member", persona: "Marek Górka", nota: "Koszalin University of Technology · Faculty of Humanities" },
         { ruolo: "Member", persona: "Özgür Tüfekçi", nota: "Karadeniz Technical University, Trabzon · International Relations" },
+        { ruolo: "Member", persona: "Rahman Dağ", nota: "Marmara University · Political Science and International Relations" },
         { ruolo: "Member", persona: "Rashed Daher", nota: "Center for the Contemporary Arab World, ELTE, Budapest" },
       ],
     },

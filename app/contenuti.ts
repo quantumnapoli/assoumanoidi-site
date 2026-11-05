@@ -928,6 +928,11 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
+          persona: "Rahman Dağ",
+          nota: "Marmara University · Scienze politiche e relazioni internazionali",
+        },
+        {
+          ruolo: "Membro",
           persona: "Rashed Daher",
           nota: "Centro per il mondo arabo contemporaneo, ELTE, Budapest",
         },
