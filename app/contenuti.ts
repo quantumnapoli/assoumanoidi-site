@@ -318,8 +318,8 @@ export const RIVISTA = {
       },
       {
         rubrica: "Intervista",
-        titolo: "Dario Amodei",
-        testo: "L'intelligenza artificiale e le nostre scelte di domani.",
+        titolo: "Voci dal futuro",
+        testo: "Chi costruisce la convivenza di domani.",
       },
       {
         rubrica: "Società",

@@ -298,7 +298,7 @@ export const RIVISTA = {
     copertina: "/rivista-copertina.webp",
     sommario: [
       { rubrica: "Technology", titolo: "Human by choice", testo: "Innovation that puts people first." },
-      { rubrica: "Interview", titolo: "Dario Amodei", testo: "Artificial intelligence and our choices of tomorrow." },
+      { rubrica: "Interview", titolo: "Voices of the future", testo: "Those who build tomorrow's coexistence." },
       { rubrica: "Society", titolo: "New identities", testo: "Rights, work and relationships in the digital age." },
       { rubrica: "Philosophy", titolo: "Freedom and responsibility", testo: "The ethical meaning of our choices." },
       { rubrica: "Culture", titolo: "Visions", testo: "The stories that inspire change." },

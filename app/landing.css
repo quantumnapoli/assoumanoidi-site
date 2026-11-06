@@ -37,8 +37,10 @@
   align-items: center;
   gap: 38px;
 }
-.au-intro .marchio-svg {
-  width: clamp(104px, 13vw, 150px);
+.au-intro .au-intro-logo {
+  display: block;
+  width: clamp(190px, 24vw, 280px);
+  height: auto;
 }
 .au-intro-parole {
   position: relative;
