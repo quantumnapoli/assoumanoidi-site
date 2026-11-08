@@ -936,6 +936,11 @@ export const CARICHE = {
           persona: "Rashed Daher",
           nota: "Centro per il mondo arabo contemporaneo, ELTE, Budapest",
         },
+        {
+          ruolo: "Membro",
+          persona: "Salome Dundua",
+          nota: "Università statale di Tbilisi Iv. Javakhishvili, Georgia · Preside della Facoltà di Scienze sociali e politiche",
+        },
       ],
     },
   ] as Organo[],
