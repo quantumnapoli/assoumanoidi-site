@@ -679,7 +679,7 @@ export const STATUTO = {
         {
           num: "21",
           titolo: "CONSIGLIO SCIENTIFICO",
-          testo: ["1. È composto da cinque a nove membri di alta competenza scientifica, etica, giuridica o industriale.", "2. I membri non devono necessariamente essere soci.", "3. Il Direttore scientifico lo presiede ed è nominato dal Consiglio direttivo.", "4. I membri sono nominati dal Consiglio su proposta del Direttore scientifico.", "5. Il Consiglio scientifico ha autonomia gestionale nell'ambito dei programmi approvati e delle risorse assegnate dal Consiglio direttivo.", "6. Non ha autonomia patrimoniale. La gestione dei fondi assegnati avviene a cura degli organi preposti."],
+          testo: ["1. È composto da membri di alta competenza scientifica, etica, giuridica o industriale.", "2. I membri non devono necessariamente essere soci.", "3. Il Direttore scientifico lo presiede ed è nominato dal Consiglio direttivo.", "4. I membri sono nominati dal Consiglio su proposta del Direttore scientifico.", "5. Il Consiglio scientifico ha autonomia gestionale nell'ambito dei programmi approvati e delle risorse assegnate dal Consiglio direttivo.", "6. Non ha autonomia patrimoniale. La gestione dei fondi assegnati avviene a cura degli organi preposti."],
         },
         {
           num: "22",
@@ -782,7 +782,7 @@ export const CARICHE = {
   /**
    * Composizione da Statuto: nove consiglieri, tre per ciascuna Camera (Art. 16);
    * tre probiviri effettivi più due supplenti (Art. 24); Consiglio scientifico
-   * da cinque a nove membri, presieduto dal Direttore scientifico (Art. 21).
+   * presieduto dal Direttore scientifico (Art. 21).
    */
   organi: [
     {
@@ -939,7 +939,7 @@ export const CARICHE = {
         {
           ruolo: "Membro",
           persona: "Salome Dundua",
-          nota: "Università statale di Tbilisi Iv. Javakhishvili, Georgia · Preside della Facoltà di Scienze sociali e politiche",
+          nota: "PhD, professoressa associata · Università statale di Tbilisi Iv. Javakhishvili, Georgia · Preside della Facoltà di Scienze sociali e politiche",
         },
       ],
     },
