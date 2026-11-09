@@ -595,7 +595,7 @@ export const CARICHE = {
         { ruolo: "Member", persona: "Özgür Tüfekçi", nota: "Karadeniz Technical University, Trabzon · International Relations" },
         { ruolo: "Member", persona: "Rahman Dağ", nota: "Marmara University · Political Science and International Relations" },
         { ruolo: "Member", persona: "Rashed Daher", nota: "Center for the Contemporary Arab World, ELTE, Budapest" },
-        { ruolo: "Member", persona: "Salome Dundua", nota: "Iv. Javakhishvili Tbilisi State University, Georgia · Dean of the Faculty of Social and Political Sciences" },
+        { ruolo: "Member", persona: "Salome Dundua", nota: "PhD, Associate Professor · Iv. Javakhishvili Tbilisi State University, Georgia · Dean of the Faculty of Social and Political Sciences" },
       ],
     },
   ] as Organo[],
