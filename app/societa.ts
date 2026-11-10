@@ -7,7 +7,7 @@
  */
 
 /** Data dell'ultima rilevazione (ISO): l'unico punto da aggiornare. */
-const DATA_RILEVAZIONE = "2026-10-30";
+const DATA_RILEVAZIONE = "2026-11-10";
 const formatta = (locale: string) =>
   new Date(`${DATA_RILEVAZIONE}T00:00:00Z`).toLocaleDateString(locale, {
     day: "numeric",
@@ -273,6 +273,45 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Alt-Bionics",
+    "sito": "https://altbionics.com/",
+    "dominio": "altbionics.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Surge Hand"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "sanità"
+    ],
+    "nota": "Azienda di San Antonio nata nelle protesi che ha adattato la sua mano agli umanoidi: la Surge Hand è in valutazione presso diversi costruttori, tra cui Apptronik.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Android Technics",
+    "sito": "https://npo-at.com/en/company",
+    "dominio": "npo-at.com",
+    "paese": "Russia",
+    "area": "Europa",
+    "modelli": [
+      "FEDOR (Skybot F-850)"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "spazio",
+      "sicurezza",
+      "ricerca"
+    ],
+    "nota": "Costruttore moscovita dell'umanoide FEDOR, volato sulla Stazione spaziale internazionale nel 2019; nel 2025 la maggioranza è passata a JSC Robot Corporation.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Andromeda Robotics",
     "sito": "https://andromedarobotics.ai/",
     "dominio": "andromedarobotics.ai",
@@ -333,6 +372,44 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "ATOM",
+    "sito": "https://atom-humanoid.com/",
+    "dominio": "atom-humanoid.com",
+    "paese": "Giappone",
+    "area": "Asia",
+    "modelli": [
+      "umanoide bipede a cinque dita"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica"
+    ],
+    "nota": "Startup di Tokyo fondata a novembre 2025: 3 miliardi di yen raccolti a maggio 2026 e ad agosto l'apertura a Toyosu di una fabbrica-laboratorio con i propri umanoidi bipedi; lancio previsto nel 2027.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Blue Robin",
+    "sito": "https://bluerobin.co.kr/",
+    "dominio": "bluerobin.co.kr",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "P-73"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "sanità",
+      "ricerca"
+    ],
+    "nota": "Spin-off dell'Università Nazionale di Seul, dal laboratorio dell'umanoide TOCABI: sviluppa il bipede P-73 e guida un progetto di umanoide ospedaliero con l'ospedale Hallym.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Booster Robotics",
     "sito": "https://www.booster.tech/",
     "dominio": "booster.tech",
@@ -375,6 +452,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "BrainCo",
+    "sito": "https://www.brainco.tech/",
+    "dominio": "brainco.tech",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Revo 2",
+      "Revo 3"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Azienda di Hangzhou di interfacce cervello-computer che dal 2025 vende le mani bioniche Revo anche per umanoidi, con versioni per gli Unitree H2 e G1.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "BXI Robotics",
     "sito": "https://www.bxirobotics.com/",
     "dominio": "bxirobotics.com",
@@ -396,6 +493,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "BYD",
+    "sito": "https://www.byd.com/",
+    "dominio": "byd.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Xiao Di"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "retail",
+      "manifattura"
+    ],
+    "nota": "Il costruttore di auto ha presentato ad agosto 2026 Xiao Di, il suo primo umanoide di servizio sviluppato in casa (1,61 m, 31 gradi di libertà).",
+    "sitoVerificato": false
+  },
+  {
     "nome": "CASBOT / Zhongke Huiling",
     "sito": "https://www.casbot.tech/",
     "dominio": "casbot.tech",
@@ -414,6 +530,25 @@ export const SOCIETA: Societa[] = [
       "logistica"
     ],
     "nota": "Azienda di Pechino fondata nel 2023: dopo CASBOT 01 ha messo in vendita su JD.com il bipede CASBOT 02.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Changan Tianshu",
+    "sito": "https://www.changan.com.cn/",
+    "dominio": "changan.com.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Xiao An"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura",
+      "casa"
+    ],
+    "nota": "Changan ha mostrato l'umanoide Xiao An a novembre 2025 e nel 2026 ha creato la controllata Changan Tianshu Intelligent Robot, con produzione di serie prevista nel 2028.",
     "sitoVerificato": false
   },
   {
@@ -499,6 +634,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "DexForce",
+    "sito": "https://en.dexforce.com/",
+    "dominio": "dexforce.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "W1 Pro"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "retail",
+      "ricerca"
+    ],
+    "nota": "Azienda di Shenzhen che ha lanciato nel 2025 il W1 Pro, umanoide su ruote di seconda generazione venduto anche in Europa tramite RBTX.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Dexmate",
     "sito": "https://dexmate.ai/",
     "dominio": "dexmate.ai",
@@ -517,6 +672,26 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Dexmate vende in preordine Vega, umanoide su ruote per lavoro fisico; nel 2026 ha ricevuto investimenti da NEC e LG.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "DFKI Robotics Innovation Center",
+    "sito": "https://robotik.dfki-bremen.de/",
+    "dominio": "robotik.dfki-bremen.de",
+    "paese": "Germania",
+    "area": "Europa",
+    "modelli": [
+      "RH5",
+      "RH5 Manus"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Istituto di ricerca",
+    "usi": [
+      "ricerca",
+      "spazio"
+    ],
+    "nota": "Il centro di Brema del DFKI ha sviluppato RH5, umanoide bipede di 2 metri con 32 gradi di libertà pensato come robot di assistenza, anche per future missioni lunari.",
+    "sitoVerificato": false
   },
   {
     "nome": "DLR",
@@ -558,6 +733,24 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Atom è l'umanoide di DOBOT, produttore di cobot quotato a Hong Kong; consegne avviate da giugno 2025.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "Dongfeng Motor",
+    "sito": "https://www.dfmc.com.cn/",
+    "dominio": "dfmc.com.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Xiaodong"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Il gruppo automobilistico ha presentato l'umanoide Xiaodong alla World Robot Conference 2026; è in addestramento in fabbrica, con produzione di prova a fine anno.",
+    "sitoVerificato": false
   },
   {
     "nome": "Donut Robotics",
@@ -621,6 +814,25 @@ export const SOCIETA: Societa[] = [
       "servizi"
     ],
     "nota": "Azienda di Shenzhen che vende Mercury X1, umanoide a ruote con due braccia per ricerca e didattica.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Embodied AI",
+    "sito": "https://embodiedai.ch/",
+    "dominio": "embodiedai.ch",
+    "paese": "Svizzera",
+    "area": "Europa",
+    "modelli": [
+      "AIR"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "teleoperazione"
+    ],
+    "nota": "Spin-off dell'EPFL di Losanna, con un ufficio a Roma: a novembre 2026 ha presentato AIR, umanoide su ruote con braccia morbide che parte teleoperato e impara la mansione in fabbrica.",
     "sitoVerificato": false
   },
   {
@@ -711,6 +923,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "FAW",
+    "sito": "https://www.faw.com/",
+    "dominio": "faw.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "umanoide bipede FAW"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura",
+      "accoglienza"
+    ],
+    "nota": "Il gruppo automobilistico ha debuttato con un umanoide bipede a grandezza naturale al Salone di Pechino 2026, poi esposto con altri modelli alla World Robot Conference.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Figure AI",
     "sito": "https://www.figure.ai/",
     "dominio": "figure.ai",
@@ -774,6 +1005,25 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Fourier, nata nella riabilitazione a Shanghai, sviluppa la serie GRx; GR-3 è pensato per l'assistenza in ospedali e residenze.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "Foxconn",
+    "sito": "https://www.foxconn.com/",
+    "dominio": "foxconn.com",
+    "paese": "Taiwan",
+    "area": "Asia",
+    "modelli": [
+      "umanoide bipede",
+      "umanoide su ruote"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Foxconn sviluppa umanoidi propri con Nvidia, in versione bipede e su ruote, e dal 2026 ne prova alcune unità su una linea di server a Houston.",
+    "sitoVerificato": false
   },
   {
     "nome": "Furhat Robotics",
@@ -921,6 +1171,24 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Highlanders",
+    "sito": "https://highlanders.ai/",
+    "dominio": "highlanders.ai",
+    "paese": "Giappone",
+    "area": "Asia",
+    "modelli": [
+      "N"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Spin-off dell'Università di Tokyo: l'umanoide N è stato esposto al CEATEC 2026 e a luglio un accordo con Mitsubishi Motors ne prevede la produzione a Kyoto dal 2027.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "HighTorque Robotics",
     "sito": "https://www.hightorquerobotics.com/",
     "dominio": "hightorquerobotics.com",
@@ -1039,6 +1307,47 @@ export const SOCIETA: Societa[] = [
       "sicurezza"
     ],
     "nota": "L'Institute for Human and Machine Cognition (Florida) sviluppa Nadia, umanoide bipede di ricerca ad ampia mobilità pensato per soccorso in ambienti difficili.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "iHub Robotics",
+    "sito": "https://ihubrobotics.com/",
+    "dominio": "ihubrobotics.com",
+    "paese": "India",
+    "area": "Asia",
+    "modelli": [
+      "Tara",
+      "Daksha",
+      "Karna"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "accoglienza",
+      "manifattura",
+      "educazione"
+    ],
+    "nota": "Startup di Kochi fondata nel 2022 che esporta il semi-umanoide Tara nel Golfo; ha presentato l'umanoide industriale Daksha a febbraio 2026 e sviluppa il bipede Karna.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Inspire Robots",
+    "sito": "https://en.inspire-robots.com/",
+    "dominio": "inspire-robots.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "RH56"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Azienda di Pechino fondata nel 2016 le cui mani destre RH56 equipaggiano umanoidi come gli Unitree G1 e H2; dichiara oltre 10.000 mani consegnate nel 2025.",
     "sitoVerificato": false
   },
   {
@@ -1183,6 +1492,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "KIMM",
+    "sito": "https://www.kimm.re.kr/",
+    "dominio": "kimm.re.kr",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "KAIROS"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Istituto di ricerca",
+    "usi": [
+      "ricerca",
+      "manifattura",
+      "sanità"
+    ],
+    "nota": "Ad aprile 2026 l'istituto coreano di meccanica ha presentato KAIROS, bipede di 170 cm del programma K-Moonshot, con test previsti in ospedale e su una linea auto.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Kinisi Robotics",
     "sito": "https://www.kinisi.com/",
     "dominio": "kinisi.com",
@@ -1199,6 +1528,47 @@ export const SOCIETA: Societa[] = [
       "manifattura"
     ],
     "nota": "Startup di Bristol: KR1 è un umanoide su ruote con due braccia per magazzini; a giugno 2026 Bear Robotics ha annunciato di volerla acquisire.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "KIST",
+    "sito": "https://www.kist.re.kr/",
+    "dominio": "kist.re.kr",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "KAPEX"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Istituto di ricerca",
+    "usi": [
+      "casa",
+      "sanità",
+      "ricerca"
+    ],
+    "nota": "Istituto statale coreano che nel 2025 ha presentato, con LG, l'umanoide KAPEX (circa 170 cm); ne cura locomozione e hardware, con unità previste per l'ospedale Hallym.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "KIT – H²T (ARMAR)",
+    "sito": "https://h2t.iar.kit.edu/",
+    "dominio": "h2t.iar.kit.edu",
+    "paese": "Germania",
+    "area": "Europa",
+    "modelli": [
+      "ARMAR-7",
+      "ARMAR-6"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Università / laboratorio",
+    "usi": [
+      "ricerca",
+      "casa",
+      "manifattura"
+    ],
+    "nota": "Il laboratorio di Tamim Asfour al Karlsruhe Institute of Technology sviluppa la famiglia ARMAR dalla fine degli anni Novanta; ARMAR-7, busto umanoide su base mobile, è stato mostrato ad Automatica 2025.",
     "sitoVerificato": false
   },
   {
@@ -1306,6 +1676,27 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "Linkerbot",
+    "sito": "https://www.linkerbot.cn/",
+    "dominio": "linkerbot.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Linker Hand L20",
+      "Linker Hand L30"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca",
+      "manifattura"
+    ],
+    "nota": "Produttore pechinese di mani destre per umanoidi da 6 a 42 gradi di libertà; dichiara 10.000 mani consegnate e 150 milioni di dollari raccolti.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Lumos Robotics",
     "sito": "https://www.lumosbot.tech/",
     "dominio": "lumosbot.tech",
@@ -1411,6 +1802,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Minerva Humanoids",
+    "sito": "https://www.minervahumanoids.com/",
+    "dominio": "minervahumanoids.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Roger"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "sicurezza",
+      "teleoperazione"
+    ],
+    "nota": "Uscita dallo stealth a ottobre 2026 con 10 milioni di dollari guidati da General Catalyst; Roger è un umanoide teleoperato per sminamento ed emergenze con materiali pericolosi.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Mirsee Robotics",
     "sito": "https://mirsee.com/",
     "dominio": "mirsee.com",
@@ -1454,6 +1864,27 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "NASA Johnson Space Center",
+    "sito": "https://www.nasa.gov/",
+    "dominio": "nasa.gov",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Valkyrie",
+      "Robonaut 2"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Istituto di ricerca",
+    "usi": [
+      "spazio",
+      "energia",
+      "ricerca"
+    ],
+    "nota": "Valkyrie è l'umanoide bipede di 1,88 m della NASA; nel 2026-2027 è protagonista di una sperimentazione con Woodside Energy in Australia per la manutenzione a distanza di impianti.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Naver Labs",
     "sito": "https://www.naverlabs.com/",
     "dominio": "naverlabs.com",
@@ -1494,6 +1925,28 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Neura sviluppa l'umanoide full-size 4NE1 e il compatto 4NE1 Mini (CES 2026, prenotabile); prime consegne annunciate per fine 2026.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "Neuromeka",
+    "sito": "https://www.neuromeka.com/",
+    "dominio": "neuromeka.com",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "EIR",
+      "ZEN",
+      "NAMY"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "ricerca"
+    ],
+    "nota": "Produttore di cobot quotato al KOSDAQ: ha mostrato gli umanoidi ZEN e NAMY nel 2025 e la piattaforma a due braccia EIR, verificata nel 2026 su linee di assemblaggio di motori elettrici.",
+    "sitoVerificato": false
   },
   {
     "nome": "NimbRo",
@@ -1558,6 +2011,44 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Noetix vende l'umanoide consumer Bumi (da 9.998 yuan) e il bipede N2; a ottobre 2026 ha depositato in via riservata una domanda di IPO a Hong Kong.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "Nori Robotics",
+    "sito": "https://norirobotics.com/",
+    "dominio": "norirobotics.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Nori A3"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "casa",
+      "ricerca"
+    ],
+    "nota": "Startup di San Francisco (Y Combinator) che vende agli sviluppatori il Nori A3, umanoide su ruote a due braccia con busto telescopico, a 1.688 dollari; ordini aperti da agosto 2026.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "O-ID",
+    "sito": "https://o-id.net/",
+    "dominio": "o-id.net",
+    "paese": "Giappone",
+    "area": "Asia",
+    "modelli": [
+      "umanoide modulare"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica"
+    ],
+    "nota": "Startup di Tokyo fondata nel 2025 che sviluppa un umanoide modulare con giunti e arti sostituibili; pre-seed da 1,2 milioni di dollari a settembre 2026, pilot in fabbrica previsti nel 2027.",
+    "sitoVerificato": false
   },
   {
     "nome": "OpenLoong",
@@ -1736,6 +2227,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "Proception",
+    "sito": "https://proception.ai/",
+    "dominio": "proception.ai",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "ProHand"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Startup della Silicon Valley (Y Combinator) che produce mani destre per umanoidi azionate a tendini, con 22 gradi di libertà; seed da 11 milioni di dollari a giugno 2026.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Promobot",
     "sito": "https://promo-bot.ai/",
     "dominio": "promo-bot.ai",
@@ -1880,6 +2390,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "Robot.com",
+    "sito": "https://www.robot.com/",
+    "dominio": "robot.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "R-noid"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "logistica",
+      "servizi",
+      "accoglienza"
+    ],
+    "nota": "Già Kiwibot, nota per i robot delle consegne: ad Automate 2026 ha lanciato R-noid, umanoide su ruote con due braccia offerto come servizio a una dozzina di clienti.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "RobotEra",
     "sito": "https://www.robotera.com/",
     "dominio": "robotera.com",
@@ -1964,6 +2494,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "Sarcomere Dynamics",
+    "sito": "https://sarcomeredynamics.com/",
+    "dominio": "sarcomeredynamics.com",
+    "paese": "Canada",
+    "area": "Nord America",
+    "modelli": [
+      "ARTUS Lite",
+      "ARTUS Dex"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "teleoperazione"
+    ],
+    "nota": "Azienda canadese fondata nel 2021 che produce mani destre a 20 giunti destinate a umanoidi, teleoperazione e automazione.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Sber",
     "sito": "https://sber.ru/robocenter/en/green",
     "dominio": "sber.ru",
@@ -1980,6 +2530,24 @@ export const SOCIETA: Societa[] = [
       "sviluppo"
     ],
     "nota": "Il Robotics Center di Sber ha presentato a novembre 2025 Green, umanoide bipede con IA GigaChat, ancora piattaforma di test in vista di pilot.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Seres",
+    "sito": "https://www.seres.cn/",
+    "dominio": "seres.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Xiaosai"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Il gruppo automobilistico di Chongqing ha mostrato a giugno 2026 il suo primo umanoide, Xiaosai, nella propria fabbrica, con l'intelligenza artificiale di Volcengine.",
     "sitoVerificato": false
   },
   {
@@ -2000,6 +2568,27 @@ export const SOCIETA: Societa[] = [
       "ricerca"
     ],
     "nota": "Azienda di Singapore nota per la mano Wave; al CES 2026 ha presentato North, il suo primo umanoide a figura intera.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Siasun",
+    "sito": "https://www.siasun.com/",
+    "dominio": "siasun.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Songxing",
+      "Rico MR73"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "ricerca"
+    ],
+    "nota": "Il gruppo robotico di Shenyang ha lanciato nel 2025 gli umanoidi su ruote Rico MR73 e mostra il bipede Songxing, circa 165 cm.",
     "sitoVerificato": false
   },
   {
@@ -2024,6 +2613,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Stanford University (ToddlerBot)",
+    "sito": "https://toddlerbot.github.io/",
+    "dominio": "toddlerbot.github.io",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "ToddlerBot",
+      "ToddlerBot 2.0"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Università / laboratorio",
+    "usi": [
+      "ricerca"
+    ],
+    "nota": "Umanoide bipede open source di Stanford, stampato in 3D con meno di 6.000 dollari di componenti, pensato per raccogliere dati di apprendimento su locomozione e manipolazione.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Sunday Robotics",
     "sito": "https://www.sunday.ai/",
     "dominio": "sunday.ai",
@@ -2039,6 +2647,25 @@ export const SOCIETA: Societa[] = [
       "casa"
     ],
     "nota": "Startup di Mountain View che sviluppa Memo, robot domestico su ruote con torso e due braccia; beta nelle case prevista tra fine 2026 e 2027.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Synthoid.AI",
+    "sito": "https://www.synthoid.cn/",
+    "dominio": "synthoid.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "SynRobot 03",
+      "SaiVLA"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Azienda di Shanghai di intelligenza artificiale incarnata per l'industria: SynRobot 03 è un busto umanoide a due braccia su base mobile, guidato dal modello SaiVLA, mostrato in assemblaggio e avvitatura.",
     "sitoVerificato": false
   },
   {
@@ -2121,6 +2748,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Tesollo",
+    "sito": "https://www.tesollo.com/",
+    "dominio": "tesollo.com",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "DG-5F",
+      "DG-5F-S"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Produttore di Incheon di mani robotiche: la DG-5F a cinque dita e 20 gradi di libertà è pensata per umanoidi, e la versione compatta DG-5F-S è in commercio da marzo 2026.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Tokyo Robotics",
     "sito": "https://robotics.tokyo/",
     "dominio": "robotics.tokyo",
@@ -2182,6 +2829,85 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Quotata a Hong Kong: Walker S2 è in produzione di serie da novembre 2025 per fabbriche e logistica, con ordini anche da Airbus.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "UC Berkeley Hybrid Robotics",
+    "sito": "https://lite.berkeley-humanoid.org/",
+    "dominio": "lite.berkeley-humanoid.org",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Berkeley Humanoid",
+      "Berkeley Humanoid Lite"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Università / laboratorio",
+    "usi": [
+      "ricerca",
+      "educazione"
+    ],
+    "nota": "Il gruppo di Koushil Sreenath ha costruito Berkeley Humanoid Lite, bipede open source di circa un metro stampabile in 3D per meno di 5.000 dollari, presentato a RSS 2025.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "UCLA RoMeLa",
+    "sito": "https://artemis.romela.org/",
+    "dominio": "artemis.romela.org",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "ARTEMIS"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Università / laboratorio",
+    "usi": [
+      "ricerca"
+    ],
+    "nota": "Il laboratorio di Dennis Hong alla UCLA ha costruito ARTEMIS, bipede di 1,42 m con attuatori propri che arriva alla corsa; ha giocato alla RoboCup 2024 ed è stato reso open source.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "ugo",
+    "sito": "https://ugo.plus/",
+    "dominio": "ugo.plus",
+    "paese": "Giappone",
+    "area": "Asia",
+    "modelli": [
+      "ugo Nova",
+      "ugo Pro"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "teleoperazione"
+    ],
+    "nota": "A settembre 2026 ha presentato ugo Nova, semi-umanoide su ruote progettato e prodotto in Giappone con due braccia a sette assi; produzione di serie prevista nel 2027.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "UMA",
+    "sito": "https://uma.bot/",
+    "dominio": "uma.bot",
+    "paese": "Francia",
+    "area": "Europa",
+    "modelli": [
+      "Northstar"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "casa"
+    ],
+    "nota": "Startup parigina fondata nel 2025 da Rémi Cadene, ex Tesla Optimus e autore di LeRobot; il prototipo dell'umanoide Northstar è stato mostrato a luglio 2026.",
+    "sitoVerificato": false
   },
   {
     "nome": "Unitree Robotics",
@@ -2249,6 +2975,63 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Vbot (Vita Dynamics)",
+    "sito": "https://www.vbot.cn/",
+    "dominio": "vbot.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "ATOM"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "casa"
+    ],
+    "nota": "Startup di Pechino fondata a fine 2024 da un ex dirigente di Horizon Robotics; ha presentato l'umanoide domestico ATOM alla World Robot Conference 2026, aprendo i preordini.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Vesoma",
+    "sito": "https://vesoma.com/",
+    "dominio": "vesoma.com",
+    "paese": "Germania",
+    "area": "Europa",
+    "modelli": [
+      "Vesoma 1"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica"
+    ],
+    "nota": "Startup di Monaco uscita dallo stealth a settembre 2026 con oltre 60 persone; Vesoma 1 è un bipede di 170 cm i cui prototipi camminano già in laboratorio.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "VinDynamics",
+    "sito": "https://vindynamics.net/",
+    "dominio": "vindynamics.net",
+    "paese": "Vietnam",
+    "area": "Asia",
+    "modelli": [
+      "Dyno"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "accoglienza",
+      "sicurezza",
+      "retail"
+    ],
+    "nota": "Terza società di robotica di Vingroup: l'umanoide di servizio Dyno, con mani a cinque dita, è stato presentato nel 2026 e ha fatto da guida in un sito turistico del gruppo.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "VinMotion",
     "sito": "https://vinmotion.net/",
     "dominio": "vinmotion.net",
@@ -2268,6 +3051,24 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Controllata di Vingroup: dopo Motion 1 (2025) ha presentato Motion 2 al CES 2026, destinato a ricerca e pilot industriali.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "VinRobotics",
+    "sito": "https://vinrobotics.net/",
+    "dominio": "vinrobotics.net",
+    "paese": "Vietnam",
+    "area": "Asia",
+    "modelli": [
+      "VR-H3"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Società del gruppo Vingroup distinta da VinMotion: l'umanoide industriale VR-H3 (circa 178 cm) è stato presentato a ICRA e al Computex 2026 ed è in prova negli stabilimenti VinFast.",
+    "sitoVerificato": false
   },
   {
     "nome": "Wandercraft",
@@ -2328,6 +3129,25 @@ export const SOCIETA: Societa[] = [
       "manifattura"
     ],
     "nota": "Azienda coreana nata nel 2021 da ex ingegneri Samsung; ha presentato nel 2025 l'umanoide ALLEX.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Wonik Robotics",
+    "sito": "https://www.allegrohand.com/",
+    "dominio": "allegrohand.com",
+    "paese": "Corea del Sud",
+    "area": "Asia",
+    "modelli": [
+      "Allegro Hand V6"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Produttore della Allegro Hand, mano di riferimento nella ricerca: la V6, lanciata nel 2026 con sensori di pressione su tutta la mano, è ridotta per l'integrazione negli umanoidi.",
     "sitoVerificato": false
   },
   {
@@ -2413,6 +3233,66 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "Xynova",
+    "sito": "https://www.xynova.com.cn/en/",
+    "dominio": "xynova.com.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Flex 1",
+      "Flex 2",
+      "Prima 1"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "ricerca",
+      "componenti"
+    ],
+    "nota": "Startup di Hangzhou fondata a fine 2024 che produce mani destre ad alto numero di gradi di libertà per umanoidi; la Flex 2, ibrida a 23 gradi di libertà, è stata presentata a ICRA nel 2026.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "YMBot",
+    "sito": "https://www.ymbot.com/",
+    "dominio": "ymbot.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "YMBot D",
+      "YMBot D4"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica"
+    ],
+    "nota": "Azienda di Taicang, nel Jiangsu, con umanoidi industriali su ruote; il modello per carichi pesanti D4 è stato mostrato al WAIC 2026.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Youibot",
+    "sito": "https://www.youibot.com/",
+    "dominio": "youibot.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Ling Shu"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Produttore di robot mobili di Shenzhen che, con uno spin-off dell'Università Jiaotong di Xi'an, ha sviluppato l'umanoide industriale Ling Shu (1,66 m).",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Zerith Robotics",
     "sito": "https://zerith.ai/",
     "dominio": "zerith.ai",
@@ -2450,6 +3330,26 @@ export const SOCIETA: Societa[] = [
       "ricerca"
     ],
     "nota": "Centro di Ningbo sostenuto da SUPCON e Università di Zhejiang; ha presentato Navigator α nel 2024 e poi Navigator 2.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "ZWHAND (Zhaowei)",
+    "sito": "https://www.zwgearbox.com/robots",
+    "dominio": "zwgearbox.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "ZWHAND A17",
+      "ZWHAND B20"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "componenti",
+      "manifattura"
+    ],
+    "nota": "Controllata del gruppo di micro-trasmissioni Zhaowei di Shenzhen: ha presentato la prima mano destra a 17 gradi di libertà nel 2024 e una gamma di tre mani al CES 2026.",
     "sitoVerificato": false
   }
 ];
