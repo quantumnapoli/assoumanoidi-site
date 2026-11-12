@@ -7,7 +7,7 @@
  */
 
 /** Data dell'ultima rilevazione (ISO): l'unico punto da aggiornare. */
-const DATA_RILEVAZIONE = "2026-11-10";
+const DATA_RILEVAZIONE = "2026-11-12";
 const formatta = (locale: string) =>
   new Date(`${DATA_RILEVAZIONE}T00:00:00Z`).toLocaleDateString(locale, {
     day: "numeric",
@@ -391,6 +391,28 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Blogic (Robot George)",
+    "sito": "https://www.blogic.cz/en/post/robot-george-a-european-humanoid-that-opens-a-new-chapter",
+    "dominio": "blogic.cz",
+    "paese": "Repubblica Ceca",
+    "area": "Europa",
+    "modelli": [
+      "George G1",
+      "George G2",
+      "George G3"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "teleoperazione"
+    ],
+    "nota": "Business Logic di Zlín sviluppa dal 2025 l'umanoide industriale George: i prototipi da 130 cm camminano, la versione da 175 cm è in sviluppo nel 2026 ed è stata presentata agli ingegneri di Škoda Auto.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Blue Robin",
     "sito": "https://bluerobin.co.kr/",
     "dominio": "bluerobin.co.kr",
@@ -593,6 +615,48 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Cyborg Robotics (Xborg)",
+    "sito": "https://www.cyb-org.cn/",
+    "dominio": "cyb-org.cn",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Cyborg-R01",
+      "Cyborg-W01"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "manifattura",
+      "logistica",
+      "ispezione"
+    ],
+    "nota": "Azienda di Shenzhen fondata nel 2024 che ha presentato al WAIC 2025 l'umanoide per carichi pesanti Cyborg-R01, pensato per chimica, miniere e ambienti ad alto rischio.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Daimon Robotics",
+    "sito": "https://www.dmrobot.com/en/",
+    "dominio": "dmrobot.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Sparky 1",
+      "DM-Hand1"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "manifattura",
+      "teleoperazione"
+    ],
+    "nota": "Startup di Shenzhen nata da un gruppo di robotica della HKUST, nota per i sensori tattili; ha mostrato l'umanoide Sparky 1 e la mano visuo-tattile DM-Hand1.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "DEEP Robotics",
     "sito": "https://www.deeprobotics.cn/en/",
     "dominio": "deeprobotics.cn",
@@ -672,6 +736,25 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "Dexmate vende in preordine Vega, umanoide su ruote per lavoro fisico; nel 2026 ha ricevuto investimenti da NEC e LG.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "DexRobot",
+    "sito": "https://www.dex-robot.com/en",
+    "dominio": "dex-robot.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "DexHand021",
+      "DexHand021 Pro"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti"
+    ],
+    "nota": "Produttore di mani destre per umanoidi con sedi a Shanghai e nello Zhejiang: la DexHand021 è in produzione di serie e la versione Pro, a 22 gradi di libertà, è stata presentata a fine 2025.",
+    "sitoVerificato": false
   },
   {
     "nome": "DFKI Robotics Innovation Center",
@@ -1127,6 +1210,26 @@ export const SOCIETA: Societa[] = [
       "assistenza"
     ],
     "nota": "Spin-off IIT di Genova (2024): GENE.01 con pelle tattile su tutto il corpo, mostrato al CES 2026; round da 70 mln € e test con Fincantieri ed Eni.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Genisom AI",
+    "sito": "https://www.genisomai.com/",
+    "dominio": "genisomai.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "NE01"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "ricerca",
+      "intrattenimento",
+      "accoglienza"
+    ],
+    "nota": "Azienda nota per i robot quadrupedi che al WAIC 2026 ha mostrato il suo primo umanoide bipede, il prototipo NE01, pensato per laboratori, spettacoli e turismo culturale.",
     "sitoVerificato": false
   },
   {
@@ -1841,6 +1944,24 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": true
   },
   {
+    "nome": "MIT Biomimetic Robotics Lab",
+    "sito": "https://biomimetics.mit.edu/",
+    "dominio": "biomimetics.mit.edu",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "MIT Humanoid"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Università / laboratorio",
+    "usi": [
+      "ricerca"
+    ],
+    "nota": "Il laboratorio di Sangbae Kim al MIT ha progettato il MIT Humanoid, bipede per movimenti dinamici e acrobatici usato come piattaforma di ricerca.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Muks Robotics",
     "sito": "https://muksrobotics.com/",
     "dominio": "muksrobotics.com",
@@ -2091,6 +2212,25 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "OYMotion",
+    "sito": "https://www.oymotion.com/",
+    "dominio": "oymotion.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "ROHand"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "sanità"
+    ],
+    "nota": "Azienda di Shanghai che produce la mano destra ROHand per umanoidi, nata dall'esperienza nelle protesi bioniche e nei sensori muscolari.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "PAL Robotics",
     "sito": "https://pal-robotics.com/",
     "dominio": "pal-robotics.com",
@@ -2286,6 +2426,27 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "PsiBot",
+    "sito": "https://www.psibot.ai/",
+    "dominio": "psibot.ai",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "ψ-SynRobot",
+      "ψ-SynHand"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "logistica",
+      "retail",
+      "manifattura"
+    ],
+    "nota": "Startup di Pechino fondata nel 2024 da un ex capo della robotica di JD.com: 2 miliardi di yuan raccolti a marzo 2026 e il robot ψ-SynRobot avviato alla produzione di serie, in prova nei magazzini.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Pudu Robotics",
     "sito": "https://www.pudurobotics.com/",
     "dominio": "pudurobotics.com",
@@ -2388,6 +2549,27 @@ export const SOCIETA: Societa[] = [
     ],
     "nota": "TITAN è un manipolatore mobile a due braccia per lavori industriali pesanti, in pilot nel settore energia; ordini annunciati non vincolanti.",
     "sitoVerificato": true
+  },
+  {
+    "nome": "RoboScience",
+    "sito": "https://www.roboscience.co/",
+    "dominio": "roboscience.co",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "REX G1"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "logistica",
+      "manifattura",
+      "retail",
+      "casa"
+    ],
+    "nota": "Startup di Pechino fondata a fine 2024 da un ex responsabile dell'intelligenza artificiale di Apple; l'umanoide su ruote REX G1 ha debuttato alla World Robot Conference 2026.",
+    "sitoVerificato": false
   },
   {
     "nome": "Robot.com",
@@ -2533,6 +2715,26 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Seed Robotics",
+    "sito": "https://www.seedrobotics.com/",
+    "dominio": "seedrobotics.com",
+    "paese": "Portogallo",
+    "area": "Europa",
+    "modelli": [
+      "RH8D",
+      "RH6D"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Azienda di Lisbona fondata nel 2015 che produce mani robotiche antropomorfe: la RH8D a taglia adulta e la RH6D, dimensionata per umanoidi fino a 1,2 metri.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Seres",
     "sito": "https://www.seres.cn/",
     "dominio": "seres.cn",
@@ -2548,6 +2750,27 @@ export const SOCIETA: Societa[] = [
       "manifattura"
     ],
     "nota": "Il gruppo automobilistico di Chongqing ha mostrato a giugno 2026 il suo primo umanoide, Xiaosai, nella propria fabbrica, con l'intelligenza artificiale di Volcengine.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Shanghai Electric",
+    "sito": "https://www.shanghai-electric.com/",
+    "dominio": "shanghai-electric.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "SUYUAN",
+      "TUOYUAN"
+    ],
+    "stadio": "In sviluppo",
+    "corpoIntero": true,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura",
+      "ispezione",
+      "logistica"
+    ],
+    "nota": "Il gruppo industriale statale ha presentato al WAIC l'umanoide bipede SUYUAN, con batterie sostituibili a caldo, e quello su ruote TUOYUAN per ispezione e assemblaggio in fabbrica.",
     "sitoVerificato": false
   },
   {
@@ -2765,6 +2988,27 @@ export const SOCIETA: Societa[] = [
       "ricerca"
     ],
     "nota": "Produttore di Incheon di mani robotiche: la DG-5F a cinque dita e 20 gradi di libertà è pensata per umanoidi, e la versione compatta DG-5F-S è in commercio da marzo 2026.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Ti5ROBOT",
+    "sito": "https://www.ti5robot.com/",
+    "dominio": "ti5robot.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "T170V2.1",
+      "T170A"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "manifattura",
+      "ricerca"
+    ],
+    "nota": "Azienda di Shanghai fondata nel 2020 che produce giunti e piattaforme umanoidi: la soluzione di riferimento T170 (175 cm, 42 gradi di libertà) è stata presentata a Hannover Messe 2025.",
     "sitoVerificato": false
   },
   {
@@ -3071,6 +3315,24 @@ export const SOCIETA: Societa[] = [
     "sitoVerificato": false
   },
   {
+    "nome": "Walt Disney Imagineering",
+    "sito": "https://sites.disney.com/waltdisneyimagineering/",
+    "dominio": "sites.disney.com",
+    "paese": "Stati Uniti",
+    "area": "Nord America",
+    "modelli": [
+      "Project Kiwi (Groot)"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Laboratorio aziendale",
+    "usi": [
+      "intrattenimento"
+    ],
+    "nota": "Il reparto di ricerca di Imagineering ha sviluppato Project Kiwi, piattaforma bipede con circa 50 gradi di libertà presentata come Groot autonomo e provata nei parchi Disney.",
+    "sitoVerificato": false
+  },
+  {
     "nome": "Wandercraft",
     "sito": "https://www.wandercraft.eu/",
     "dominio": "wandercraft.eu",
@@ -3148,6 +3410,25 @@ export const SOCIETA: Societa[] = [
       "ricerca"
     ],
     "nota": "Produttore della Allegro Hand, mano di riferimento nella ricerca: la V6, lanciata nel 2026 con sensori di pressione su tutta la mano, è ridotta per l'integrazione negli umanoidi.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Wuji Tech",
+    "sito": "https://wuji.tech/",
+    "dominio": "wuji.tech",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Wuji Hand"
+    ],
+    "stadio": "Sul mercato",
+    "corpoIntero": false,
+    "tipo": "Azienda privata",
+    "usi": [
+      "componenti",
+      "ricerca"
+    ],
+    "nota": "Azienda di Shenzhen che produce mani destre per umanoidi: la Wuji Hand ha 20 gradi di libertà con gli attuatori dentro le dita.",
     "sitoVerificato": false
   },
   {
@@ -3330,6 +3611,25 @@ export const SOCIETA: Societa[] = [
       "ricerca"
     ],
     "nota": "Centro di Ningbo sostenuto da SUPCON e Università di Zhejiang; ha presentato Navigator α nel 2024 e poi Navigator 2.",
+    "sitoVerificato": false
+  },
+  {
+    "nome": "Zoomlion",
+    "sito": "https://en.zoomlion.com/",
+    "dominio": "zoomlion.com",
+    "paese": "Cina",
+    "area": "Asia",
+    "modelli": [
+      "Z01",
+      "Z03"
+    ],
+    "stadio": "In pilot",
+    "corpoIntero": true,
+    "tipo": "Azienda quotata",
+    "usi": [
+      "manifattura"
+    ],
+    "nota": "Il gruppo di macchine per costruzioni di Changsha ha portato alla World Robot Conference 2026 l'umanoide bipede Z01 e quello su ruote Z03, con giunti sviluppati in casa.",
     "sitoVerificato": false
   },
   {
