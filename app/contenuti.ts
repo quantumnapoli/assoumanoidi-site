@@ -903,6 +903,11 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
+          persona: "Giangiacomo Vale",
+          nota: "PhD, professore associato di Filosofia politica · Università Niccolò Cusano, Roma · Dipartimento di Scienze economiche, psicologiche e della comunicazione",
+        },
+        {
+          ruolo: "Membro",
           persona: "István Polgár",
           nota: "Università di Oradea, Romania · Relazioni internazionali e studi europei",
         },
