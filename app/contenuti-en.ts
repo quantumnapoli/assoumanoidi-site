@@ -588,6 +588,7 @@ export const CARICHE = {
         { ruolo: "Scientific Director", persona: "Marco Marsili", foto: "/persone/marco-marsili.webp", bio: BIO["Marco Marsili"] },
         { ruolo: "Member", persona: "Carla Petrocelli", nota: "University of Bari Aldo Moro · History of Science and Techniques" },
         { ruolo: "Member", persona: "Dorota Domalewska", nota: "War Studies University, Warsaw · Doctoral School" },
+        { ruolo: "Member", persona: "Giangiacomo Vale", nota: "PhD, Associate Professor of Political Philosophy · Niccolò Cusano University, Rome · Department of Economic, Psychological and Communication Sciences" },
         { ruolo: "Member", persona: "István Polgár", nota: "University of Oradea, Romania · International Relations and European Studies" },
         { ruolo: "Member", persona: "Jesús Ignacio Delgado Rojas", nota: "University of Seville · Philosophy of Law" },
         { ruolo: "Member", persona: "Małgorzata Kamola-Cieślik", nota: "University of Szczecin · Political Systems and Public Policy" },
