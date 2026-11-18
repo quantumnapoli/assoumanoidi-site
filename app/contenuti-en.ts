@@ -35,6 +35,7 @@ export const NAV = (r: Rotte): VoceNav[] => [
     href: r.rivista,
     sotto: [
       { testo: "Humanoide, issue 1", href: r.rivista },
+      { testo: "Digest – the news", href: r.digest.href },
       { testo: "Author guidelines", href: r.normeAutori.href },
       { testo: "Colophon", href: r.colophon.href },
     ],
@@ -465,6 +466,7 @@ export const PIEDE = {
         { testo: "Charter of Rights and Duties", chiave: "cartaPagina" as ChiaveFutura },
         { testo: "Humanoid Registry", chiave: "anagrafePagina" as ChiaveFutura },
         { testo: "Humanoide – author guidelines", chiave: "normeAutori" as ChiaveFutura },
+        { testo: "Humanoide – Digest", chiave: "digest" as ChiaveFutura },
         { testo: "Humanoide – colophon", chiave: "colophon" as ChiaveFutura },
       ],
     },

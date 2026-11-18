@@ -15,6 +15,7 @@ export const PAGINE = {
   normeAutori: { it: "/rivista/norme-per-autori", en: "/en/journal/author-guidelines" },
   privacy: { it: "/privacy", en: "/en/privacy" },
   chiSiamo: { it: "/chi-siamo", en: "/en/about" },
+  digest: { it: "/digest", en: "/en/digest" },
 } as const;
 
 export type Pagina = keyof typeof PAGINE;
