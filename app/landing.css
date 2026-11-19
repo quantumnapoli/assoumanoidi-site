@@ -49,6 +49,48 @@
   overflow: hidden;
   text-align: center;
 }
+/* caricamento: linea d'oro a metà schermo e contatore in basso */
+.au-intro-linea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(max(24px, env(safe-area-inset-bottom)) + clamp(64px, 12vw, 96px));
+  height: 1px;
+  background: var(--oro, #d4a23a);
+  opacity: 0.55;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.au-intro-centro {
+  position: relative;
+  z-index: 1;
+}
+.au-intro-piede {
+  position: absolute;
+  left: var(--gutter, 24px);
+  right: var(--gutter, 24px);
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.au-intro-n {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(44px, 9vw, 72px);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+.au-intro-etichetta {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-m, rgba(255, 255, 255, 0.6));
+}
 .au-intro-parola {
   position: absolute;
   inset: 0;
@@ -1767,9 +1809,16 @@ div[id] {
 
 /* Modalità statica: niente pin, niente scene bloccate.
    Attivata da JS su schermi piccoli e con prefers-reduced-motion. */
-.au-statica .au-intro {
+.au-statica:not(.au-moto-tel) .au-intro {
   display: none;
   animation: none;
+}
+/* telefono con movimento: le particelle tornano (le muove Motore.tsx) */
+.au-moto-tel .au-hero-tela {
+  display: block;
+}
+.au-moto-tel .au-hero {
+  min-height: 100svh;
 }
 .au-statica .au-rail {
   display: none;
@@ -2369,5 +2418,13 @@ div[id] {
   }
   .au-legge-colonna {
     flex: 1 1 auto;
+  }
+}
+
+/* telefono: ogni riga del titolo della hero sta su una riga sola */
+@media (max-width: 560px) {
+  .au-hero h1 {
+    font-size: min(8.1vw, 34px);
+    max-width: none;
   }
 }
