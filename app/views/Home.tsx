@@ -80,6 +80,12 @@ export function Home({ lingua }: { lingua: Lingua }) {
               <span className="au-intro-parola">{HERO.intro[2]}</span>
             </div>
           </div>
+          {/* caricamento: il contatore e la linea li muove Motore.tsx */}
+          <div className="au-intro-linea" />
+          <div className="au-intro-piede">
+            <span className="au-intro-n">000</span>
+            <span className="au-intro-etichetta">assoumanoidi.it</span>
+          </div>
         </div>
 
         {/* la firma: l'anello si chiude attorno al marchio man mano che scendi */}

@@ -154,7 +154,7 @@ export function Motore({ children }: { children: ReactNode }) {
      * riporta indietro. Il tratto si allunga con la velocità (un trattino,
      * non un punto) solo mentre si muovono: è quello che dà l'aria di scia,
      * non di pioggerella. */
-    const creaParticelleAria = (tela: HTMLCanvasElement) => {
+    const creaParticelleAria = (tela: HTMLCanvasElement, autonoma = false) => {
       const ctx = tela.getContext("2d");
       if (!ctx) return null;
       let W = 0;
@@ -162,7 +162,11 @@ export function Motore({ children }: { children: ReactNode }) {
       type Particella = { ox: number; oy: number; x: number; y: number; vx: number; vy: number; r: number };
       let particelle: Particella[] = [];
       const mouse = { x: -1e4, y: -1e4 };
-      const RAGGIO = 260;
+      const RAGGIO = autonoma ? 150 : 260;
+      // sul telefono non c'è un mouse: un punto invisibile gira da solo nella
+      // scena e spinge le particelle; un tocco lo sostituisce per qualche secondo
+      let ultimoTocco = -1e9;
+      let visibile = true;
 
       const misura = () => {
         const r = tela.getBoundingClientRect();
@@ -172,7 +176,7 @@ export function Motore({ children }: { children: ReactNode }) {
         tela.width = W * dpr;
         tela.height = H * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        const n = Math.min(3200, Math.floor((W * H) / 350));
+        const n = Math.min(autonoma ? 1100 : 3200, Math.floor((W * H) / (autonoma ? 420 : 350)));
         particelle = Array.from({ length: n }, () => {
           const x = Math.random() * W;
           const y = Math.random() * H;
@@ -191,6 +195,11 @@ export function Motore({ children }: { children: ReactNode }) {
         { sotto: 1.01, colore: "rgba(255,241,209,0.82)", larghezza: 2 },
       ];
       const disegna = () => {
+        if (autonoma && performance.now() - ultimoTocco > 2500) {
+          const k = performance.now() / 1000;
+          mouse.x = W * (0.5 + 0.38 * Math.sin(k * 0.5));
+          mouse.y = H * (0.45 + 0.32 * Math.sin(k * 0.77 + 1.2));
+        }
         ctx.clearRect(0, 0, W, H);
         // Path2D non si svuota: se ne crea uno nuovo per fascia a ogni frame
         const percorsi = FASCE.map(() => new Path2D());
@@ -236,7 +245,7 @@ export function Motore({ children }: { children: ReactNode }) {
       let vivo = true;
       const giro = () => {
         if (!vivo) return;
-        disegna();
+        if (visibile && !document.hidden) disegna();
         requestAnimationFrame(giro);
       };
       const suMouse = (e: MouseEvent) => {
@@ -244,7 +253,27 @@ export function Motore({ children }: { children: ReactNode }) {
         mouse.x = e.clientX - r.left;
         mouse.y = e.clientY - r.top;
       };
+      const suTocco = (e: TouchEvent) => {
+        const t = e.touches[0];
+        if (!t) return;
+        const r = tela.getBoundingClientRect();
+        mouse.x = t.clientX - r.left;
+        mouse.y = t.clientY - r.top;
+        ultimoTocco = performance.now();
+      };
+      // fuori schermo non si disegna: sul telefono la batteria conta
+      const osservatore =
+        "IntersectionObserver" in window
+          ? new IntersectionObserver((v) => {
+              visibile = v[0]?.isIntersecting ?? true;
+            })
+          : null;
+      osservatore?.observe(tela);
       window.addEventListener("mousemove", suMouse);
+      if (autonoma) {
+        window.addEventListener("touchstart", suTocco, { passive: true });
+        window.addEventListener("touchmove", suTocco, { passive: true });
+      }
       window.addEventListener("resize", misura);
       misura();
       giro();
@@ -252,13 +281,194 @@ export function Motore({ children }: { children: ReactNode }) {
       return {
         pulisci: () => {
           vivo = false;
+          osservatore?.disconnect();
           window.removeEventListener("mousemove", suMouse);
+          window.removeEventListener("touchstart", suTocco);
+          window.removeEventListener("touchmove", suTocco);
           window.removeEventListener("resize", misura);
         },
       };
     };
 
     const tela = uno<HTMLCanvasElement>(".au-tela");
+
+    /** il contatore 000→100 e la linea d'oro dell'intro, sulla durata data */
+    const contaIntro = (tl: gsap.core.Timeline, durata: number) => {
+      const n = uno<HTMLElement>(".au-intro-n");
+      const linea = uno<HTMLElement>(".au-intro-linea");
+      const o = { v: 0 };
+      tl.to(
+        o,
+        {
+          v: 100,
+          duration: durata,
+          ease: "power2.inOut",
+          onUpdate: () => {
+            if (n) n.textContent = String(Math.round(o.v)).padStart(3, "0");
+          },
+        },
+        0,
+      );
+      if (linea) tl.fromTo(linea, { scaleX: 0 }, { scaleX: 1, duration: durata, ease: "power2.inOut" }, 0);
+    };
+
+    /** L'intro vale una volta per sessione (vedi sotto, ramo desktop). */
+    const introGiaVista = () => {
+      try {
+        const v = sessionStorage.getItem("au-intro-vista") === "1";
+        if (!v) sessionStorage.setItem("au-intro-vista", "1");
+        return v;
+      } catch {
+        return false;
+      }
+    };
+
+    /* ------------------------------------------------- telefono: movimento leggero
+       Niente pin e niente Lenis (il layout resta quello statico), ma caricamento,
+       entrata della hero, particelle e qualche comparsa allo scorrimento. */
+    const avviaTelefono = () => {
+      gsap.registerPlugin(ScrollTrigger);
+      root.classList.add("au-moto-tel");
+      const pulizie: Array<() => void> = [];
+      const ctxTel = gsap.context(() => {
+        const intro = uno<HTMLElement>(".au-intro");
+        const parole = q(".au-intro-parola");
+        const marchio = uno(".au-intro .au-intro-logo");
+
+        const hero = gsap
+          .timeline({ paused: true, defaults: { ease: "expo.out" } })
+          .fromTo(
+            q(".au-riga-in"),
+            { yPercent: 120, rotate: 6 },
+            { yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.12 },
+            0,
+          )
+          .fromTo(
+            uno(".au-hero-marchio"),
+            { autoAlpha: 0, letterSpacing: "0.7em" },
+            { autoAlpha: 1, letterSpacing: "0.34em", duration: 1.6 },
+            0.1,
+          )
+          .fromTo(
+            molti(".au-hero-sub", ".au-hero-azioni"),
+            { y: 34, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 1.1, stagger: 0.1, clearProps: "transform" },
+            0.45,
+          )
+          .fromTo(
+            uno(".au-hero-alone"),
+            { autoAlpha: 0, scale: 0.7 },
+            { autoAlpha: 0.9, scale: 1, duration: 2.4, ease: "power2.out" },
+            0,
+          )
+          .fromTo(uno(".au-hero-tela"), { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.6 }, 0.3);
+        // tiene gli stati iniziali mentre l'intro copre la pagina
+        hero.progress(0.0001).pause();
+
+        if (intro && parole.length && !document.hidden && !introGiaVista()) {
+          document.documentElement.style.overflow = "hidden";
+          gsap.set(parole, { yPercent: 130 });
+          gsap.set(marchio, { autoAlpha: 0, scale: 0.8 });
+          const tl = gsap.timeline();
+          tl.to(marchio, { autoAlpha: 1, scale: 1, duration: 1, ease: "back.out(1.6)" }, 0.05);
+          parole.forEach((p, i) => {
+            tl.to(p, { yPercent: 0, duration: 0.3, ease: "power3.out" }, i === 0 ? 0.3 : "-=0.05").to(
+              p,
+              { yPercent: -130, duration: 0.24, ease: "power3.in" },
+              "+=0.16",
+            );
+          });
+          contaIntro(tl, tl.duration());
+          tl.to(intro, { clipPath: "inset(0 0 100% 0)", duration: 0.85, ease: "expo.inOut" }, "+=0.15")
+            .call(
+              () => {
+                document.documentElement.style.overflow = "";
+                hero.play(0);
+              },
+              [],
+              "-=0.5",
+            )
+            .set(intro, { display: "none" });
+          pulizie.push(() => {
+            document.documentElement.style.overflow = "";
+          });
+        } else {
+          if (intro) gsap.set(intro, { display: "none" });
+          hero.play(0);
+        }
+        const salvagente = window.setTimeout(() => {
+          if (hero.progress() < 1 && !hero.isActive()) {
+            if (intro) gsap.set(intro, { display: "none" });
+            document.documentElement.style.overflow = "";
+            hero.progress(1);
+          }
+        }, 8000);
+        pulizie.push(() => window.clearTimeout(salvagente));
+
+        /* scorrendo, la hero si allontana e il video si apre */
+        const scenaHero = uno(".au-hero");
+        if (scenaHero) {
+          gsap.to(uno(".au-hero-copy"), {
+            y: -60,
+            autoAlpha: 0.2,
+            ease: "none",
+            scrollTrigger: { trigger: scenaHero, start: "top top", end: "bottom top", scrub: true },
+          });
+        }
+        const portale = uno(".au-portale");
+        if (portale) {
+          gsap.fromTo(
+            portale,
+            { clipPath: "inset(10% 8% 10% 8% round 28px)" },
+            {
+              clipPath: "inset(0% 0% 0% 0% round 0px)",
+              ease: "none",
+              scrollTrigger: { trigger: portale, start: "top 95%", end: "top 15%", scrub: true },
+            },
+          );
+          gsap.fromTo(
+            uno(".au-portale-video"),
+            { scale: 1.3 },
+            { scale: 1, ease: "none", scrollTrigger: { trigger: portale, start: "top bottom", end: "bottom top", scrub: true } },
+          );
+          gsap.fromTo(
+            uno(".au-portale-testo"),
+            { y: 50, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 1.2,
+              ease: "expo.out",
+              scrollTrigger: { trigger: portale, start: "top 45%", once: true },
+            },
+          );
+        }
+
+        /* titoli e paragrafi delle sezioni salgono quando arrivano */
+        const comparse = q<HTMLElement>("section:not(.au-hero) h2, section:not(.au-hero) .art");
+        gsap.set(comparse, { y: 36, autoAlpha: 0 });
+        ScrollTrigger.batch(comparse, {
+          start: "top 90%",
+          once: true,
+          onEnter: (b) =>
+            gsap.to(b, { y: 0, autoAlpha: 1, duration: 1.1, ease: "expo.out", stagger: 0.08, clearProps: "transform" }),
+        });
+      }, root);
+
+      const heroTela = uno<HTMLCanvasElement>(".au-hero-tela");
+      const particelle = heroTela ? creaParticelleAria(heroTela, true) : null;
+      const ricalcola = () => ScrollTrigger.refresh();
+      window.addEventListener("load", ricalcola);
+      document.fonts?.ready.then(ricalcola);
+
+      return () => {
+        window.removeEventListener("load", ricalcola);
+        pulizie.forEach((f) => f());
+        particelle?.pulisci();
+        ctxTel.revert();
+        root.classList.remove("au-moto-tel");
+      };
+    };
 
     /* ------------------------------------------------- modalità statica */
     const pocoMoto = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -271,6 +481,7 @@ export function Motore({ children }: { children: ReactNode }) {
 
     if (pocoMoto || schermoPiccolo || forzata) {
       root.classList.add("au-statica");
+      const fermaTelefono = schermoPiccolo && !pocoMoto && !forzata ? avviaTelefono() : null;
       // i contatori sono animati: senza motore resterebbero a zero
       q<HTMLElement>(".au-conta").forEach((el) => {
         el.textContent = el.dataset.conta ?? el.textContent;
@@ -285,6 +496,7 @@ export function Motore({ children }: { children: ReactNode }) {
       return () => {
         window.removeEventListener("scroll", suScroll);
         r?.pulisci();
+        fermaTelefono?.();
       };
     }
 
@@ -354,7 +566,9 @@ export function Motore({ children }: { children: ReactNode }) {
           .to(parole[1], { yPercent: 0, duration: 0.3, ease: "power3.out" }, "-=0.05")
           .to(parole[1], { yPercent: -130, duration: 0.24, ease: "power3.in" }, "+=0.14")
           .to(parole[2], { yPercent: 0, duration: 0.3, ease: "power3.out" }, "-=0.05")
-          .to(parole[2], { yPercent: -130, duration: 0.24, ease: "power3.in" }, "+=0.14")
+          .to(parole[2], { yPercent: -130, duration: 0.24, ease: "power3.in" }, "+=0.14");
+        contaIntro(intro, intro.duration());
+        intro
           .to(uno(".au-intro"), { yPercent: -100, duration: 0.65, ease: "power3.inOut" }, "+=0.3")
           .call(() => heroTl.play(), [], "-=0.45")
           .set(uno(".au-intro"), { display: "none" });
