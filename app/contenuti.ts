@@ -763,6 +763,13 @@ export type Membro = {
 
 export type Organo = { nome: string; testo: string; membri: Membro[] };
 
+/** Stessa scheda nel Consiglio direttivo e nel Consiglio scientifico. */
+const BIO_MARSILI = [
+            "Ricercatore, analista, scrittore e docente universitario, è direttore scientifico di AssoUmanoidi e direttore responsabile di Humanoide. Giornalista pubblicista, ha ricoperto ruoli direttivi in testate giornalistiche, agenzie di stampa, periodici e collane editoriali ed è stato professore presso l’Università dell’Insubria di Varese; è stato inoltre coordinatore scientifico e didattico del Master in comunicazione e giornalismo multimediale. È stato ricercatore e assistant professor presso l’Università Ca’ Foscari di Venezia e attualmente è ricercatore presso il CEI-Iscte, Centro di studi internazionali dell’ISCTE – Instituto Universitário de Lisboa.",
+            "È laureato cum laude in Comunicazione e società (indirizzo in comunicazione istituzionale) presso l’Università degli Studi di Milano e in Scienza politica e in relazioni internazionali presso l’Università degli studi Niccolò Cusano di Roma. Ha conseguito un dottorato in Storia, studi sulla sicurezza e difesa presso l’ISCTE – Instituto Universitário de Lisboa, due diplomi post-laurea in Storia, studi sulla sicurezza e difesa (ISCTE) e in Conflitti armati e diritti umani (Facoltà di Giurisprudenza dell’Università di Coimbra e Istituto universitario militare, Portogallo), e un diploma in Pianificazione delle operazioni psicologiche presso l’Istituto universitario militare.",
+            "La sua ricerca riguarda relazioni internazionali, sicurezza e difesa, diritto internazionale umanitario, terrorismo e guerra cognitiva. Ha fatto parte di gruppi di ricerca della NATO STO su information e cognitive warfare. È autore di decine di articoli scientifici pubblicati su riviste internazionali di rilievo e di una dozzina di monografie, alcune delle quali tradotte in altre lingue; partecipa a comitati scientifici e organizzativi di convegni internazionali, ha al suo attivo decine di presentazioni in eventi scientifici internazionali ed è membro di comitati editoriali e scientifici di riviste. È principal investigator e membro di gruppi di ricerca della NATO STO, l’Organizzazione per la Scienza e la tecnologia dell’Alleanza atlantica; ha collaborato con il Centro alti studi per la difesa (CASD)/IRADe con il DIANA della Nato. Ha ricevuto il Sigillo d’eccellenza della Commissione europea nel 2021 e nel 2026. Il suo sito personale è marcomarsili.it.",
+          ];
+
 export const CARICHE = {
   articolo: "Organi — Cariche sociali",
   soprattitolo: "Chi risponde",
@@ -842,6 +849,12 @@ export const CARICHE = {
             "È laureato in Storia e in Scienze della formazione. È funzionario amministrativo presso la Regione Emilia-Romagna a Bologna dal febbraio 2014. In precedenza ha lavorato nella strategia di brand e comunicazione come project leader per la rete “Liberate le aragoste”. In AssoUmanoidi è responsabile delle attività formative e della comunicazione associativa, e integra il direttivo con competenze di gestione, coordinamento e organizzazione, orientate a strutturare percorsi formativi su statuto, Codice etico, Carta dei diritti e dei doveri degli umanoidi e Regolamento dell’Anagrafe telematica.",
           ],
         },
+        {
+          ruolo: "Consigliere",
+          persona: "Marco Marsili",
+          foto: "/persone/marco-marsili.webp",
+          bio: BIO_MARSILI,
+        },
       ],
     },
     {
@@ -885,11 +898,7 @@ export const CARICHE = {
           ruolo: "Direttore scientifico",
           persona: "Marco Marsili",
           foto: "/persone/marco-marsili.webp",
-          bio: [
-            "Ricercatore, analista, scrittore e docente universitario, è direttore scientifico di AssoUmanoidi e direttore responsabile di Humanoide. Giornalista pubblicista, ha ricoperto ruoli direttivi in testate giornalistiche, agenzie di stampa, periodici e collane editoriali ed è stato professore presso l’Università dell’Insubria di Varese; è stato inoltre coordinatore scientifico e didattico del Master in comunicazione e giornalismo multimediale. È stato ricercatore e assistant professor presso l’Università Ca’ Foscari di Venezia e attualmente è ricercatore presso il CEI-Iscte, Centro di studi internazionali dell’ISCTE – Instituto Universitário de Lisboa.",
-            "È laureato cum laude in Comunicazione e società (indirizzo in comunicazione istituzionale) presso l’Università degli Studi di Milano e in Scienza politica e in relazioni internazionali presso l’Università degli studi Niccolò Cusano di Roma. Ha conseguito un dottorato in Storia, studi sulla sicurezza e difesa presso l’ISCTE – Instituto Universitário de Lisboa, due diplomi post-laurea in Storia, studi sulla sicurezza e difesa (ISCTE) e in Conflitti armati e diritti umani (Facoltà di Giurisprudenza dell’Università di Coimbra e Istituto universitario militare, Portogallo), e un diploma in Pianificazione delle operazioni psicologiche presso l’Istituto universitario militare.",
-            "La sua ricerca riguarda relazioni internazionali, sicurezza e difesa, diritto internazionale umanitario, terrorismo e guerra cognitiva. Ha fatto parte di gruppi di ricerca della NATO STO su information e cognitive warfare. È autore di decine di articoli scientifici pubblicati su riviste internazionali di rilievo e di una dozzina di monografie, alcune delle quali tradotte in altre lingue; partecipa a comitati scientifici e organizzativi di convegni internazionali, ha al suo attivo decine di presentazioni in eventi scientifici internazionali ed è membro di comitati editoriali e scientifici di riviste. È principal investigator e membro di gruppi di ricerca della NATO STO, l’Organizzazione per la Scienza e la tecnologia dell’Alleanza atlantica; ha collaborato con il Centro alti studi per la difesa (CASD)/IRADe con il DIANA della Nato. Ha ricevuto il Sigillo d’eccellenza della Commissione europea nel 2021 e nel 2026. Il suo sito personale è marcomarsili.it.",
-          ],
+          bio: BIO_MARSILI,
         },
         {
           ruolo: "Membro",
