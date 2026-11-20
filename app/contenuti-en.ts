@@ -566,6 +566,7 @@ export const CARICHE = {
         { ruolo: "Board Member", persona: "Emanuele Galloni", foto: "/persone/emanuele-galloni.webp", bio: BIO["Emanuele Galloni"] },
         { ruolo: "Board Member", persona: "Gabriele Gobbo", foto: "/persone/gabriele-gobbo.webp", bio: BIO["Gabriele Gobbo"] },
         { ruolo: "Board Member", persona: "Stefano Colombara", foto: "/persone/stefano-colombara.webp", bio: BIO["Stefano Colombara"] },
+        { ruolo: "Board Member", persona: "Marco Marsili", foto: "/persone/marco-marsili.webp", bio: BIO["Marco Marsili"] },
       ],
     },
     {
