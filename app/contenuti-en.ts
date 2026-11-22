@@ -94,6 +94,7 @@ export const PILASTRI = {
   titolo: ["Four fronts.", "One job."],
   intro:
     "We don’t deal with technology. We deal with what technology is about to ask of society: principles, rules, responsibility, identity.",
+  volto: { titolo: ["Human and humanoid,", "in one face."], nota: "Its eyes follow you" },
   suggerimento: "Keep scrolling →",
   voci: [
     {

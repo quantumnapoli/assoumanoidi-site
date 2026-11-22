@@ -102,6 +102,7 @@ export const PILASTRI = {
   titolo: ["Quattro fronti.", "Un solo lavoro."],
   intro:
     "Non ci occupiamo di tecnologia. Ci occupiamo di ciò che la tecnologia sta per chiedere alla società: principi, regole, responsabilità, identità.",
+  volto: { titolo: ["Umano e umanoide,", "nello stesso volto."], nota: "Ti segue con lo sguardo" },
   suggerimento: "Continua a scorrere →",
   voci: [
     {
