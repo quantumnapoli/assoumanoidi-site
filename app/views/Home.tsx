@@ -605,6 +605,9 @@ export function Home({ lingua }: { lingua: Lingua }) {
                 </a>
 
                 <nav className="au-riv-rimandi" aria-label={RIVISTA.ariaNav}>
+                  <a href="https://humanoideonline.com" target="_blank" rel="noopener">
+                    {RIVISTA.sito} ↗
+                  </a>
                   <a href={ROTTE.normeAutori.href}>{RIVISTA.scrivi}</a>
                   <a href={ROTTE.colophon.href}>Colophon</a>
                 </nav>

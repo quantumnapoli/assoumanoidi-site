@@ -28,10 +28,10 @@ export const DATI_RIVISTA = {
 };
 
 /*
- * humanoideonline.com è citato nel colophon ma, al 28 ottobre 2026, non
- * risponde. Per questo compare come semplice testo e mai come link: un
- * collegamento a un sito spento in una pagina di informazioni legali è peggio
- * di nessun collegamento. Quando va online, basta trasformarlo in <a>.
+ * humanoideonline.com è online dal novembre 2026: nel colophon è un link
+ * (vedi conLink in views/Colophon.tsx). In ottobre non rispondeva e compariva
+ * come semplice testo, perché un collegamento a un sito spento in una pagina
+ * di informazioni legali è peggio di nessun collegamento.
  */
 
 type Riga = { et: string; val: string };

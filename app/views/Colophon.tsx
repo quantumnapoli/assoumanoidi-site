@@ -9,6 +9,23 @@ import { COLOPHON, DATI_RIVISTA, type TestiColophon } from "../rivista-testi";
 /** Una riga è «in sospeso» quando il documento dice che la pratica è in corso. */
 const inSospeso = (val: string) => /^(in corso|pending)/i.test(val);
 
+/** I due siti ufficiali diventano collegamenti; le altre righe restano testo. */
+function conLink(val: string) {
+  if (!val.includes("humanoideonline.com")) return val;
+  const [prima, dopo] = val.split("humanoideonline.com");
+  return (
+    <>
+      {prima.replace("assoumanoidi.it", "")}
+      <a href="https://assoumanoidi.it">assoumanoidi.it</a>
+      {" | "}
+      <a href="https://humanoideonline.com" target="_blank" rel="noopener">
+        humanoideonline.com
+      </a>
+      {dopo}
+    </>
+  );
+}
+
 function Corpo({ t, sito }: { t: TestiColophon; sito: Lingua }) {
   const it = t.lingua === "it";
   const righe = [...t.editoriale];
@@ -37,7 +54,7 @@ function Corpo({ t, sito }: { t: TestiColophon; sito: Lingua }) {
           {righe.map((r) => (
             <div className="au-riv-riga" key={r.et}>
               <dt>{r.et}</dt>
-              <dd className={inSospeso(r.val) ? "sospeso" : undefined}>{r.val}</dd>
+              <dd className={inSospeso(r.val) ? "sospeso" : undefined}>{conLink(r.val)}</dd>
             </div>
           ))}
         </dl>

@@ -301,6 +301,7 @@ export const RIVISTA = {
   cadenza: "Trimestrale · 4 numeri l'anno",
   etichette: { numero: "Numero", periodo: "Periodo", cadenza: "Cadenza" },
   scrivi: "Scrivi per Humanoide",
+  sito: "Humanoide online",
   ariaNav: "La rivista",
   altCopertina: (numero: string, periodo: string) => `Copertina di Humanoide ${numero}, ${periodo}`,
   uscita: "Il numero 1 esce a dicembre",

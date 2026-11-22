@@ -897,6 +897,13 @@
   color: var(--su-inchiostro);
 }
 /* pratica ancora in corso: più sommessa, con un punto vuoto */
+.au-riv-riga dd a {
+  color: var(--oro);
+  border-bottom: 1px solid var(--linea-i);
+}
+.au-riv-riga dd a:hover {
+  border-color: var(--oro);
+}
 .au-riv-riga dd.sospeso {
   display: flex;
   align-items: center;
