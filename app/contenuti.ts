@@ -917,6 +917,11 @@ export const CARICHE = {
         },
         {
           ruolo: "Membro",
+          persona: "Greg Simons",
+          nota: "PhD, professore · Dipartimento di Giornalismo, media e comunicazione, Facoltà di Scienze umane e sociali · Daffodil International University, Dacca, Bangladesh",
+        },
+        {
+          ruolo: "Membro",
           persona: "István Polgár",
           nota: "Università di Oradea, Romania · Relazioni internazionali e studi europei",
         },
