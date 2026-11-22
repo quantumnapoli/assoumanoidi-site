@@ -7,6 +7,7 @@ import { testi } from "../testi";
 import { Adesione } from "../components/Adesione";
 import { LinkFuturo } from "../components/Futuro";
 import { Motore } from "../components/Motore";
+import { Volto } from "../components/Volto";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
 import { Anello, Marchio } from "../components/Marchio";
@@ -304,6 +305,17 @@ export function Home({ lingua }: { lingua: Lingua }) {
                 <div className="au-pil-nota">{v.nota}</div>
               </div>
             ))}
+
+            {/* il volto: metà umano, metà umanoide. Si gira mentre la pista scorre */}
+            <div className="au-pil-pan au-pil-volto" data-volto-box>
+              <Volto />
+              <div className="au-pil-volto-testo">
+                <h3>
+                  {PILASTRI.volto.titolo[0]} <span className="h">{PILASTRI.volto.titolo[1]}</span>
+                </h3>
+                <div className="au-pil-nota">{PILASTRI.volto.nota}</div>
+              </div>
+            </div>
           </div>
         </section>
 

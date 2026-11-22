@@ -745,6 +745,27 @@ export function Motore({ children }: { children: ReactNode }) {
             invalidateOnRefresh: true,
           },
         });
+        // le schede dei pilastri e il volto arrivano in 3D: girate sul bordo,
+        // lontane, e si raddrizzano davanti a chi legge
+        q(".au-pil-carta, .au-pil-volto").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { rotateY: -42, z: -220, autoAlpha: 0.2, transformPerspective: 1400, transformOrigin: "0% 50%" },
+            {
+              rotateY: 0,
+              z: 0,
+              autoAlpha: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                containerAnimation: orizz,
+                start: "left right",
+                end: el.classList.contains("au-pil-volto") ? "right right" : "left 45%",
+                scrub: true,
+              },
+            },
+          );
+        });
         q(".au-pil-num").forEach((el) => {
           gsap.fromTo(
             el,
