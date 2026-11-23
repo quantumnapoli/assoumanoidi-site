@@ -305,7 +305,7 @@ export const RIVISTA = {
   sito: "Humanoide online",
   ariaNav: "La rivista",
   altCopertina: (numero: string, periodo: string) => `Copertina di Humanoide ${numero}, ${periodo}`,
-  uscita: "Il numero 1 esce a dicembre",
+  uscita: "Il numero 1 esce a marzo",
   cta: "Iscriviti per riceverla",
   numeroUno: {
     numero: "N.01",

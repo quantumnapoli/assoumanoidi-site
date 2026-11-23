@@ -292,7 +292,7 @@ export const RIVISTA = {
   sito: "Humanoide online",
   ariaNav: "The journal",
   altCopertina: (numero: string, periodo: string) => `Cover of Humanoide ${numero}, ${periodo}`,
-  uscita: "Issue 1 comes out in December",
+  uscita: "Issue 1 comes out in March",
   cta: "Subscribe to receive it",
   numeroUno: {
     numero: "N.01",
