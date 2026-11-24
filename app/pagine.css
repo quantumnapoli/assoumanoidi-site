@@ -1057,3 +1057,220 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Directory dal database: link alla scheda, schede premium
+   -------------------------------------------------------------------------- */
+.au-dir-chi h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+.au-dir-chi h2 a:hover {
+  color: var(--oro);
+}
+.au-dir-premium {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border: 1px solid var(--oro);
+  border-radius: 999px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oro);
+  vertical-align: 2px;
+}
+.au-dir-riga.premium .au-dir-sigla {
+  border-color: var(--oro);
+}
+.au-dir-sigla img.logo {
+  background: #fff;
+  padding: 4px;
+}
+
+/* scheda del produttore */
+.au-prod-indietro {
+  display: block;
+  width: fit-content;
+  margin-bottom: 26px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--su-inchiostro-m);
+  text-decoration: none;
+}
+.au-prod-indietro:hover {
+  color: var(--oro);
+}
+.au-prod-copertina {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 32px;
+}
+.au-prod-titolo {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.au-prod-logo {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 18px;
+  padding: 10px;
+}
+.au-prod-corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.au-prod-testo p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--su-inchiostro-m);
+  margin-bottom: 18px;
+  max-width: 64ch;
+}
+.au-prod-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin-top: 28px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+}
+.au-prod-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.au-prod-dati dl {
+  display: grid;
+  gap: 14px;
+  padding: 22px 24px;
+  border: 1px solid var(--linea-i);
+  border-radius: 16px;
+}
+.au-prod-dati dt {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  margin-bottom: 3px;
+}
+.au-prod-dati dd {
+  font-size: 14.5px;
+  color: var(--su-inchiostro);
+}
+.au-prod-dati a,
+.au-prod-blocco a {
+  color: var(--oro);
+}
+.au-prod-blocco {
+  margin-top: 22px;
+}
+.au-prod-blocco h2 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--su-inchiostro-d);
+  margin-bottom: 8px;
+}
+.au-prod-blocco p {
+  font-size: 14.5px;
+  margin-bottom: 4px;
+}
+.au-prod-nota {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--su-inchiostro-d);
+}
+
+/* notizie dell'associazione */
+.au-not-lista {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+.au-not-lista a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 0 0 22px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--linea-i);
+}
+.au-not-lista img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 14px;
+}
+.au-not-lista time,
+.au-notizia time {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--oro);
+}
+.au-not-lista h2 {
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.au-not-lista p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--su-inchiostro-m);
+}
+.au-not-leggi {
+  margin-top: auto;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--oro);
+}
+.au-not-corpo {
+  max-width: 760px;
+}
+.au-not-corpo figure img {
+  width: 100%;
+  border-radius: 18px;
+  margin-bottom: 32px;
+}
+.au-not-corpo p {
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--su-inchiostro-m);
+  margin-bottom: 20px;
+}
+.au-not-avviso {
+  font-size: 14px !important;
+  color: var(--su-inchiostro-d) !important;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .au-prod-corpo {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .au-prod-logo {
+    width: 72px;
+    height: 72px;
+  }
+}
