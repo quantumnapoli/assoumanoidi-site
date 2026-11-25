@@ -848,7 +848,7 @@ export const CARICHE = {
           persona: "Stefano Colombara",
           foto: "/persone/stefano-colombara.webp",
           bio: [
-            "È laureato in Storia e in Scienze della formazione. È funzionario presso la Regione Emilia-Romagna dove si occupa di competenze professionali e formazione. In precedenza, ha lavorato nella strategia di brand e comunicazione come project leader e account director. In AssoUmanoidi è responsabile delle attività formative e della comunicazione associativa, e integra il direttivo con competenze di gestione, coordinamento e organizzazione, orientate a strutturare percorsi formativi su statuto, Codice etico, Carta dei diritti e dei doveri degli umanoidi e Regolamento dell’Anagrafe telematica.",
+            "Laureato in Storia e in Scienze della formazione. Funzionario presso la Regione Emilia-Romagna dove si occupa di competenze professionali e formazione. In precedenza, ha lavorato nella strategia di brand e comunicazione. In AssoUmanoidi è responsabile delle attività formative e della comunicazione associativa, e integra il direttivo con competenze di gestione, coordinamento e organizzazione, orientate a strutturare percorsi formativi su statuto, Codice etico, Carta dei diritti e dei doveri degli umanoidi e Regolamento dell’Anagrafe telematica.",
           ],
         },
         {
