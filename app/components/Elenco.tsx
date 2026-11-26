@@ -43,7 +43,7 @@ export function Elenco({
 
   const filtrate = useMemo(() => {
     const q = cerca.trim().toLowerCase();
-    return righe.filter((s) => {
+    const trovate = righe.filter((s) => {
       if (area !== TUTTE && s.area !== area) return false;
       if (stadio !== TUTTE && s.stadio !== stadio) return false;
       if (tipo !== TUTTE && s.tipo !== tipo) return false;
@@ -53,6 +53,9 @@ export function Elenco({
         .toLowerCase()
         .includes(q);
     });
+    // chi ha il premium in corso sta in cima, in ordine alfabetico; gli altri seguono nell'ordine di prima (già alfabetico)
+    const premium = trovate.filter((s) => s.premium).sort((a, b) => a.nome.localeCompare(b.nome, "it", { sensitivity: "base" }));
+    return [...premium, ...trovate.filter((s) => !s.premium)];
   }, [righe, cerca, area, stadio, tipo]);
 
   const filtrato = area !== TUTTE || stadio !== TUTTE || tipo !== TUTTE || cerca.trim() !== "";
