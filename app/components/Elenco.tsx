@@ -151,8 +151,13 @@ export function Elenco({
                 </span>
                 <div>
                   <h2>
-                    <a href={`${base}/${s.slug}`}>{s.nome}</a>
-                    {s.premium && <span className="au-dir-premium">{t.premium}</span>}
+                    {s.premium ? (
+                      // solo chi ha un piano premium in corso ha la propria pagina; gli altri portano al sito dell'azienda
+                      <a href={`${base}/${s.slug}`}>{s.nome}</a>
+                    ) : (
+                      <a href={s.sito} target="_blank" rel="noopener noreferrer">{s.nome}</a>
+                    )}
+                    {s.premium && <span className="au-dir-premium" title={t.premium}><i aria-hidden="true">★</i> {t.premium}</span>}
                   </h2>
                   <p>
                     {s.frase || `${s.paese} · ${s.tipo}`}

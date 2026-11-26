@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { notizie, produttori } from "./dati";
+import { notizie, produttoriPremium } from "./dati";
 import { PAGINE, type Pagina } from "./lingue";
 
 const SITO = "https://assoumanoidi.it";
@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
   };
   const pagine = (Object.keys(PAGINE) as Pagina[]).flatMap((p) => coppia(PAGINE[p].it, PAGINE[p].en));
-  const schede = (await produttori()).lista.flatMap((p) => coppia(`${PAGINE.directory.it}/${p.slug}`, `${PAGINE.directory.en}/${p.slug}`));
+  const schede = (await produttoriPremium()).flatMap((p) => coppia(`${PAGINE.directory.it}/${p.slug}`, `${PAGINE.directory.en}/${p.slug}`));
   const news = (await notizie(50)).flatMap((n) => coppia(`${PAGINE.notizie.it}/${n.slug}`, `${PAGINE.notizie.en}/${n.slug}`, n.date));
   return [...pagine, ...schede, ...news];
 }
