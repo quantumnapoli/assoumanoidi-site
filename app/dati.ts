@@ -89,11 +89,20 @@ export async function produttori(): Promise<{ lista: Produttore[]; fonte: "datab
   return { lista: SOCIETA.map(daFile), fonte: "file" };
 }
 
+/**
+ * La pagina di un produttore esiste solo con un piano premium in corso: per tutti gli altri `null` (pagina non trovata)
+ * e dalla directory si va direttamente al loro sito. Se l'API non risponde non c'è modo di sapere chi è premium: nessuna pagina.
+ */
 export async function produttore(slug: string): Promise<SchedaProduttore | null> {
   const a = await leggi<ApiAzienda>(`/api/directory/${encodeURIComponent(slug)}`);
-  if (a?.slug) return { ...daApi(a), profilo: a.profile ?? null };
-  const s = SOCIETA.find((x) => slugDi(x.nome) === slug);
-  return s ? { ...daFile(s), profilo: null } : null;
+  if (a?.slug && a.premium) return { ...daApi(a), profilo: a.profile ?? null };
+  return null;
+}
+
+/** Produttori che hanno la propria pagina (premium in corso): per i percorsi statici e la sitemap. */
+export async function produttoriPremium(): Promise<Produttore[]> {
+  const { lista, fonte } = await produttori();
+  return fonte === "database" ? lista.filter((p) => p.premium) : [];
 }
 
 export function conti(lista: Societa[]) {

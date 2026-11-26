@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { inLingua, produttore, produttori } from "../../../../dati";
+import { inLingua, produttore, produttoriPremium } from "../../../../dati";
 import { PAGINE } from "../../../../lingue";
 import { Produttore } from "../../../../views/Produttore";
 
@@ -8,7 +8,7 @@ export const revalidate = 300;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return (await produttori()).lista.map((p) => ({ slug: p.slug }));
+  return (await produttoriPremium()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

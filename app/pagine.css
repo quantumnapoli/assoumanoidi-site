@@ -1069,17 +1069,24 @@
   color: var(--oro);
 }
 .au-dir-premium {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 2px 8px;
-  border: 1px solid var(--oro);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 10px;
+  padding: 3px 10px 3px 8px;
   border-radius: 999px;
+  background: var(--oro);
   font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--oro);
+  color: #111;
   vertical-align: 2px;
+}
+.au-dir-premium i {
+  font-style: normal;
+  font-size: 10px;
+  line-height: 1;
 }
 .au-dir-riga.premium .au-dir-sigla {
   border-color: var(--oro);
