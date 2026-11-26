@@ -130,3 +130,42 @@ export const inLingua = (b: Bilingue | null | undefined, l: "it" | "en") => (b ?
 
 /** Capoversi separati da una riga vuota. */
 export const capoversi = (t: string) => t.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+
+/* ---------------------------------------------------------------- libri sugli umanoidi (area nascosta) */
+
+export type Libro = {
+  slug: string; title: { original: string; it: string | null }; author: string; year: number | null; language: string | null; country: string | null;
+  kind: string | null; level: string | null; topic: string | null; strands: string[];
+  italian: { publisher: string | null; year: number | null; isbn: string | null } | null;
+  description: Bilingue; why: string | null; verified: boolean; draft?: boolean;
+};
+export type LibroCompleto = Libro & { originalEdition: { publisher: string | null; isbn: string | null }; sources: string[] };
+
+/**
+ * L'area libri è nascosta: si vede solo con il token di anteprima (?anteprima=…, lo riconosce la piattaforma)
+ * oppure, quando sarà il momento, impostando LIBRI_PUBBLICI=1 sul sito. Le pagine con token non vanno mai in cache.
+ */
+export const libriPubblici = () => process.env.LIBRI_PUBBLICI === "1";
+
+async function leggiLibri<T>(percorso: string, token: string | null): Promise<T | null> {
+  const q = token ? `${percorso}${percorso.includes("?") ? "&" : "?"}anteprima=${encodeURIComponent(token)}` : percorso;
+  try {
+    const r = await fetch(`${API}${q}`, token ? { cache: "no-store", signal: AbortSignal.timeout(8000) } : { next: { revalidate: RINFRESCO }, signal: AbortSignal.timeout(8000) });
+    return r.ok ? ((await r.json()) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** `null` = area non accessibile (pagina 404). */
+export async function libri(token: string | null): Promise<Libro[] | null> {
+  const r = await leggiLibri<{ preview: boolean; items: Libro[] }>("/api/libri", token);
+  if (!r || (!r.preview && !libriPubblici())) return null;
+  return r.items;
+}
+
+export async function libro(slug: string, token: string | null): Promise<LibroCompleto | null> {
+  const r = await leggiLibri<LibroCompleto & { preview: boolean }>(`/api/libri/${encodeURIComponent(slug)}`, token);
+  if (!r || (!r.preview && !libriPubblici())) return null;
+  return r;
+}
