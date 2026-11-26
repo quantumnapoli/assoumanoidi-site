@@ -1091,6 +1091,26 @@
 .au-dir-riga.premium .au-dir-sigla {
   border-color: var(--oro);
 }
+/* scheda premium: tutta la riga è in oro, non solo il bollino */
+.au-dir-riga.premium,
+.au-dir-riga.premium.mercato {
+  border: 1.5px solid var(--oro);
+  background: linear-gradient(100deg, rgba(212, 162, 58, 0.34) 0%, rgba(212, 162, 58, 0.16) 55%, rgba(212, 162, 58, 0.08) 100%);
+  box-shadow: 0 0 0 1px rgba(212, 162, 58, 0.18), 0 10px 30px -14px rgba(212, 162, 58, 0.55);
+}
+.au-dir-riga.premium:hover,
+.au-dir-riga.premium.mercato:hover {
+  border-color: #f0c35e;
+  background: linear-gradient(100deg, rgba(212, 162, 58, 0.44) 0%, rgba(212, 162, 58, 0.22) 55%, rgba(212, 162, 58, 0.12) 100%);
+}
+.au-dir-riga.premium .au-dir-num,
+.au-dir-riga.premium .au-dir-campo em {
+  color: rgba(244, 244, 244, 0.7);
+}
+.au-dir-riga.premium .au-dir-chi p,
+.au-dir-riga.premium .au-dir-campo span {
+  color: rgba(244, 244, 244, 0.88);
+}
 .au-dir-sigla img.logo {
   background: #fff;
   padding: 4px;
