@@ -1,3 +1,4 @@
+import { inLingua, type Produttore } from "./dati";
 import type { Societa } from "./societa";
 import type { Lingua } from "./lingue";
 
@@ -93,6 +94,11 @@ const tr = (tabella: Record<string, string>, v: string) => {
 
 /** Riga della directory pronta da mostrare, nella lingua scelta. */
 export type RigaDirectory = {
+  slug: string;
+  /** scheda premium attiva: logo e frase di presentazione dal database */
+  premium: boolean;
+  logo: string | null;
+  frase: string;
   nome: string;
   sito: string;
   dominio: string;
@@ -106,9 +112,13 @@ export type RigaDirectory = {
   usi: string[];
 };
 
-export function vista(s: Societa, l: Lingua): RigaDirectory {
+export function vista(s: Produttore, l: Lingua): RigaDirectory {
   const en = l === "en";
   return {
+    slug: s.slug,
+    premium: s.premium,
+    logo: s.logo,
+    frase: inLingua(s.frase, l),
     nome: s.nome,
     sito: s.sito,
     dominio: s.dominio,

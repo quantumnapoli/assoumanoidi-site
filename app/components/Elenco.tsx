@@ -18,10 +18,13 @@ export function Elenco({
   righe,
   t,
   lingua,
+  base,
 }: {
   righe: RigaDirectory[];
   t: typeof DIRECTORY;
   lingua: string;
+  /** indirizzo della directory nella lingua della pagina: la scheda è `${base}/${slug}` */
+  base: string;
 }) {
   const unici = (campo: (s: RigaDirectory) => string) =>
     Array.from(new Set(righe.map(campo))).sort((a, b) => a.localeCompare(b, lingua));
@@ -123,7 +126,7 @@ export function Elenco({
         <ul className="au-dir-lista">
           {filtrate.map((s, i) => (
             <li
-              className={`au-dir-riga${s.sulMercato ? " mercato" : ""}`}
+              className={`au-dir-riga${s.sulMercato ? " mercato" : ""}${s.premium ? " premium" : ""}`}
               key={s.nome}
             >
               <span className="au-dir-num dati" aria-hidden="true">
@@ -133,7 +136,10 @@ export function Elenco({
               <div className="au-dir-chi">
                 <span className="au-dir-sigla" aria-hidden="true">
                   {s.nome[0]}
-                  {s.dominio && (
+                  {s.logo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={s.logo} alt="" loading="lazy" decoding="async" className="logo" />
+                  ) : s.dominio && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={`https://www.google.com/s2/favicons?domain=${s.dominio}&sz=64`}
@@ -144,9 +150,12 @@ export function Elenco({
                   )}
                 </span>
                 <div>
-                  <h2>{s.nome}</h2>
+                  <h2>
+                    <a href={`${base}/${s.slug}`}>{s.nome}</a>
+                    {s.premium && <span className="au-dir-premium">{t.premium}</span>}
+                  </h2>
                   <p>
-                    {s.paese} · {s.tipo}
+                    {s.frase || `${s.paese} · ${s.tipo}`}
                   </p>
                 </div>
               </div>

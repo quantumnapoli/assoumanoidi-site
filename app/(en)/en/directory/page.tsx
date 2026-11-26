@@ -3,6 +3,9 @@ import { alternative } from "../../../lingue";
 import { RILEVAZIONE_EN, SOCIETA_CONTI } from "../../../societa";
 import { Directory } from "../../../views/Directory";
 
+// la directory si legge dal database della piattaforma e si rigenera ogni 5 minuti
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Humanoid robot builders directory — AssoUmanoidi",
   description:

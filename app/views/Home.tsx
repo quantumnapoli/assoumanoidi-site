@@ -1,5 +1,6 @@
 import { SOCIETA, SOCIETA_CONTI } from "../societa";
 import { vista } from "../societa-en";
+import { daFile } from "../dati";
 import { PAGINE, altra, type Lingua } from "../lingue";
 import { marca } from "../marca";
 import { rotte } from "../rotte";
@@ -48,7 +49,7 @@ export function Home({ lingua }: { lingua: Lingua }) {
     SOCIETA_TESTI,
   } = testi(lingua);
   const ROTTE = rotte(lingua);
-  const costruttori = SOCIETA.map((s) => vista(s, lingua));
+  const costruttori = SOCIETA.map((s) => vista(daFile(s), lingua));
 
   return (
     <>

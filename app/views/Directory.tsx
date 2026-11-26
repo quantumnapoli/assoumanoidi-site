@@ -1,4 +1,4 @@
-import { SOCIETA, SOCIETA_CONTI } from "../societa";
+import { conti, produttori } from "../dati";
 import { vista } from "../societa-en";
 import { PAGINE, altra, type Lingua } from "../lingue";
 import { rotte } from "../rotte";
@@ -7,10 +7,12 @@ import { Elenco } from "../components/Elenco";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
 
-export function Directory({ lingua }: { lingua: Lingua }) {
+export async function Directory({ lingua }: { lingua: Lingua }) {
   const { DIRECTORY, SOCIETA_TESTI, NAV, NAV_TESTI } = testi(lingua);
   const ROTTE = rotte(lingua);
-  const righe = SOCIETA.map((s) => vista(s, lingua));
+  const { lista } = await produttori();
+  const righe = lista.map((s) => vista(s, lingua));
+  const SOCIETA_CONTI = conti(lista);
 
   return (
     <>
@@ -51,7 +53,7 @@ export function Directory({ lingua }: { lingua: Lingua }) {
         </header>
 
         <section className="au-pag-corpo">
-          <Elenco righe={righe} t={DIRECTORY} lingua={lingua} />
+          <Elenco righe={righe} t={DIRECTORY} lingua={lingua} base={PAGINE.directory[lingua]} />
           <p className="au-dir-legenda">{DIRECTORY.legenda}</p>
           <p className="au-dir-legenda">{SOCIETA_TESTI.nota}</p>
         </section>
