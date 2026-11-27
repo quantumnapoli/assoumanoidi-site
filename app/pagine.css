@@ -1065,6 +1065,29 @@
   color: inherit;
   text-decoration: none;
 }
+/* tutta la riga è il link del nome (premium: la sua pagina; gli altri: il sito); il link del sito resta a sé, sopra */
+.au-dir-riga {
+  position: relative;
+  cursor: pointer;
+}
+.au-dir-chi h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+}
+.au-dir-chi h2 a:focus-visible {
+  outline: none;
+}
+.au-dir-chi h2 a:focus-visible::after {
+  outline: 2px solid var(--oro);
+  outline-offset: 2px;
+}
+.au-dir-riga .au-dir-sito {
+  position: relative;
+  z-index: 2;
+}
 .au-dir-chi h2 a:hover {
   color: var(--oro);
 }
