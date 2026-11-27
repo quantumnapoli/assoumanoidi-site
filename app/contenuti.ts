@@ -913,6 +913,11 @@ export const CARICHE = {
         "Organo consultivo: istruisce le posizioni dell'associazione su etica, diritto, robotica e impatto sociale. I membri non devono essere necessariamente soci; lo presiede il Direttore scientifico, nominato dal Consiglio direttivo.",
       membri: [
         {
+          ruolo: "Membro",
+          persona: "Anna Malavisi",
+          nota: "PhD, professore associato e Chair · Dipartimento di Storia, Filosofia e Prospettive mondiali · Western Connecticut State University",
+        },
+        {
           ruolo: "Direttore scientifico",
           persona: "Marco Marsili",
           foto: "/persone/marco-marsili.webp",

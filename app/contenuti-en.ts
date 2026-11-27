@@ -604,6 +604,7 @@ export const CARICHE = {
       testo:
         "Advisory body: prepares the association’s positions on ethics, law, robotics and social impact. Members need not be association members; it is chaired by the Scientific Director, appointed by the Executive Board.",
       membri: [
+        { ruolo: "Member", persona: "Anna Malavisi", nota: "PhD, Associate Professor and Chair · Department of History, Philosophy, and World Perspectives · Western Connecticut State University" },
         { ruolo: "Scientific Director", persona: "Marco Marsili", foto: "/persone/marco-marsili.webp", bio: BIO["Marco Marsili"] },
         { ruolo: "Member", persona: "Carla Petrocelli", nota: "University of Bari Aldo Moro · History of Science and Techniques" },
         { ruolo: "Member", persona: "Dorota Domalewska", nota: "War Studies University, Warsaw · Doctoral School" },
