@@ -59,7 +59,7 @@ export type SchedaPremium = {
   /** traguardi dal registro eventi (confermati dalla redazione) */
   traguardi?: { data: string; tipo: "funding" | "partnership" | "deployment" | "product" | "order" | "acquisition" | "ipo"; titolo: Bilingue; fonte: { nome: string; url: string } | null }[];
   /** notizie del Digest che parlano dell'azienda */
-  notizie?: { titolo: string; data: string; url: string }[];
+  notizie?: { titolo: Bilingue; data: string; url: { it: string; en: string } }[];
   galleria?: { url: string; alt: string }[];
   sedi?: { citta: string; ruolo: Bilingue }[];
   /** l'azienda è socia di AssoUmanoidi */
@@ -73,7 +73,32 @@ export type SchedaProduttore = Produttore & { profilo: SchedaPremium | null; sch
 type ApiAzienda = {
   slug: string; name: string; website: string | null; domain: string | null; country: string | null; area: string | null;
   type: string | null; stage: string; fullBody: boolean | null; uses: string[]; note: string | null; models: string[];
-  siteVerified: boolean; premium: boolean; logo?: string | null; tagline?: Bilingue; profile?: SchedaPremium;
+  siteVerified: boolean; premium: boolean; logo?: string | null; tagline?: Bilingue; profile?: ApiProfilo; modelCards?: Modello[];
+};
+
+/** Scheda premium come la manda la piattaforma (chiavi in inglese); `daProfilo` la porta nella forma del sito. */
+type ApiProfilo = Omit<SchedaPremium, "numeri" | "persone" | "traguardi" | "notizie" | "galleria" | "sedi" | "socio" | "esempio"> & {
+  numbers?: { value: string; label: Bilingue }[];
+  people?: { name: string; role: string | null; photo: string | null; linkedin: string | null }[];
+  milestones?: { date: string; kind: NonNullable<SchedaPremium["traguardi"]>[number]["tipo"]; title: Bilingue; source: { name: string; url: string } | null }[];
+  news?: { date: string; title: Bilingue; url: { it: string; en: string } }[];
+  gallery?: { url: string; alt: string }[];
+  locations?: { city: string; role: Bilingue }[];
+  member?: boolean;
+};
+
+export const daProfilo = (p: ApiProfilo): SchedaPremium => {
+  const { numbers, people, milestones, news, gallery, locations, member, ...resto } = p;
+  return {
+    ...resto,
+    numeri: (numbers ?? []).map((n) => ({ valore: n.value, etichetta: n.label })),
+    persone: (people ?? []).map((x) => ({ nome: x.name, ruolo: { it: x.role, en: x.role }, foto: x.photo, linkedin: x.linkedin })),
+    traguardi: (milestones ?? []).map((e) => ({ data: e.date, tipo: e.kind, titolo: e.title, fonte: e.source ? { nome: e.source.name, url: e.source.url } : null })),
+    notizie: (news ?? []).map((n) => ({ titolo: n.title, data: n.date, url: n.url })),
+    galleria: gallery ?? [],
+    sedi: (locations ?? []).map((x) => ({ citta: x.city, ruolo: x.role })),
+    socio: !!member,
+  };
 };
 
 const daApi = (a: ApiAzienda): Produttore => ({
@@ -110,7 +135,7 @@ export async function produttori(): Promise<{ lista: Produttore[]; fonte: "datab
  */
 export async function produttore(slug: string): Promise<SchedaProduttore | null> {
   const a = await leggi<ApiAzienda>(`/api/directory/${encodeURIComponent(slug)}`);
-  if (a?.slug && a.premium) return { ...daApi(a), profilo: a.profile ?? null };
+  if (a?.slug && a.premium) return { ...daApi(a), profilo: a.profile ? daProfilo(a.profile) : null, schedeModelli: a.modelCards ?? [] };
   return null;
 }
 
