@@ -17,6 +17,7 @@ export const PAGINE = {
   chiSiamo: { it: "/chi-siamo", en: "/en/about" },
   notizie: { it: "/notizie", en: "/en/news" },
   libri: { it: "/libri", en: "/en/books" },
+  modelli: { it: "/modelli", en: "/en/models" },
 } as const;
 
 export type Pagina = keyof typeof PAGINE;

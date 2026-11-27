@@ -1345,3 +1345,41 @@
 .au-lib-edizioni dt { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--oro); margin-top: 14px; }
 .au-lib-edizioni dd { margin: 2px 0 0; color: var(--su-inchiostro-m); }
 .au-lib-fonti { font-size: 13px; line-height: 1.8; word-break: break-all; }
+
+/* modelli di umanoidi ---------------------------------------------------- */
+.au-mod-filtri { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; }
+.au-mod-filtri input, .au-mod-filtri select, .au-mod-filtri button {
+  height: 46px; padding: 0 18px; border: 1px solid var(--linea-i); border-radius: 100px;
+  background: rgba(244, 244, 244, 0.04); color: var(--su-inchiostro); font: inherit; font-size: 14px;
+}
+.au-mod-filtri input { flex: 1 1 240px; min-width: 0; }
+.au-mod-filtri select option { background: var(--inchiostro-2); color: var(--su-inchiostro); }
+.au-mod-filtri button, .au-mod-confronta { cursor: pointer; font-weight: 700; }
+.au-mod-filtri button:hover, .au-mod-confronta:hover { border-color: var(--oro); color: var(--oro-chiaro); }
+.au-mod-filtri a { color: var(--su-inchiostro-m); font-size: 14px; }
+.au-mod-aiuto { font-size: 14px; color: var(--su-inchiostro-m); margin: 0 0 14px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.au-mod-confronta {
+  height: 40px; padding: 0 18px; border: 1px solid var(--oro); border-radius: 100px;
+  background: transparent; color: var(--oro); font: inherit; font-size: 14px;
+}
+.au-mod-tabella { overflow-x: auto; border: 1px solid var(--linea-i); border-radius: 14px; }
+.au-mod-tabella table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+.au-mod-tabella th, .au-mod-tabella td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--linea-i); vertical-align: top; }
+.au-mod-tabella thead th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--su-inchiostro-d); font-weight: 700; }
+.au-mod-tabella tbody tr:last-child td, .au-mod-tabella tbody tr:last-child th { border-bottom: 0; }
+.au-mod-tabella tbody tr:hover { background: rgba(244, 244, 244, 0.03); }
+.au-mod-tabella a { color: var(--su-inchiostro); text-decoration: underline; text-decoration-color: var(--oro); text-underline-offset: 3px; }
+.au-mod-tabella tr.vuota { color: var(--su-inchiostro-d); }
+.au-mod-tabella input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--oro); }
+.au-mod-prep { display: block; font-size: 12px; color: var(--su-inchiostro-d); }
+.au-mod-confronto { min-width: 0; }
+.au-mod-confronto tbody th { color: var(--su-inchiostro-m); font-weight: 600; white-space: nowrap; }
+.au-mod-scheda { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 26px 0; }
+.au-mod-scheda > div { border: 1px solid var(--linea-i); border-radius: 12px; padding: 14px 16px; }
+.au-mod-scheda dt { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--su-inchiostro-d); }
+.au-mod-scheda dd { margin: 6px 0 0; font-size: 22px; font-weight: 700; }
+.au-mod-link { margin-top: 16px; font-weight: 700; }
+.au-mod-link a { color: var(--oro-chiaro); }
+.au-mod-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.au-mod-nota { font-size: 13px; line-height: 1.6; color: var(--su-inchiostro-d); margin-top: 18px; }
+.au-mod-confronto tbody th { position: sticky; left: 0; background: var(--inchiostro); }
