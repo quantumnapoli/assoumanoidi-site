@@ -34,7 +34,10 @@ export async function Directory({ lingua }: { lingua: Lingua }) {
             <span className="h">{DIRECTORY.titolo}</span>
           </h1>
           <div className="au-pag-testa-in">
-            <p className="au-pag-intro">{DIRECTORY.intro}</p>
+            <div>
+              <p className="au-pag-intro">{DIRECTORY.intro}</p>
+              <p className="au-mod-link"><a href={PAGINE.modelli[lingua]}>{lingua === "it" ? "Modelli e schede tecniche, con il confronto →" : "Models and specs, with comparison →"}</a></p>
+            </div>
             <div className="au-dir-conti">
               <div>
                 <b className="dati">{SOCIETA_CONTI.totale}</b>

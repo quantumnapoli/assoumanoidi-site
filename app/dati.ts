@@ -178,3 +178,28 @@ export async function libro(slug: string, token: string | null): Promise<LibroCo
   if (!r || (!r.preview && !libriPubblici())) return null;
   return r;
 }
+
+/* ---------------------------------------------------------------- modelli di umanoidi (sottodirectory) */
+
+export type Fonte = { url: string; for: string; nature: string };
+export type Modello = {
+  slug: string; name: string;
+  company: { name: string; slug: string; country: string | null; website: string | null };
+  kind: string | null; status: string | null; year: number | null;
+  specs: Record<"height_cm" | "weight_kg" | "dof" | "payload_kg" | "battery_h" | "speed_ms", number | null>;
+  price: { text: string; value: number | null; currency: string } | null;
+  description: Bilingue; sources: Fonte[]; verification: "verificato" | "parziale"; updated: string | null;
+};
+
+/** Un modello ha la sua pagina solo se la scheda ha almeno una fonte: niente pagine vuote. */
+export const haScheda = (m: Modello) => m.sources.length > 0;
+
+export async function modelli(): Promise<Modello[]> {
+  const r = await leggi<{ items: Modello[] }>("/api/modelli");
+  return r?.items ?? [];
+}
+
+export async function modello(slug: string): Promise<Modello | null> {
+  const r = await leggi<Modello>(`/api/modelli/${encodeURIComponent(slug)}`);
+  return r?.slug && haScheda(r) ? r : null;
+}
