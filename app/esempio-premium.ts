@@ -55,9 +55,9 @@ export const ESEMPIO_PREMIUM: SchedaProduttore = {
       { data: "2025-11-20", tipo: "funding", titolo: { it: "Round da 70 milioni di euro per lo sviluppo e la produzione", en: "€70 million round to fund development and production" }, fonte: null },
     ],
     notizie: [
-      { titolo: "Generative Bionics porta GENE.01 in fabbrica: al via la prima prova sul campo", data: "2026-10-15", url: "#" },
-      { titolo: "Umanoidi europei: chi sta costruendo l'alternativa a Cina e Stati Uniti", data: "2026-09-02", url: "#" },
-      { titolo: "Pelle tattile su tutto il corpo: come funziona il robot di Genova", data: "2026-01-09", url: "#" },
+      { titolo: { it: "Generative Bionics porta GENE.01 in fabbrica: al via la prima prova sul campo", en: null }, data: "2026-10-15", url: { it: "#", en: "#" } },
+      { titolo: { it: "Umanoidi europei: chi sta costruendo l'alternativa a Cina e Stati Uniti", en: null }, data: "2026-09-02", url: { it: "#", en: "#" } },
+      { titolo: { it: "Pelle tattile su tutto il corpo: come funziona il robot di Genova", en: null }, data: "2026-01-09", url: { it: "#", en: "#" } },
     ],
     sedi: [
       { citta: "Genova", ruolo: { it: "sede e progettazione", en: "headquarters and design" } },

@@ -164,7 +164,7 @@ export function ProduttoreTop({ p, pr, lingua }: { p: SchedaProduttore; pr: Sche
           {pr.sedi && pr.sedi.length > 0 && (
             <div className="au-prod-blocco">
               <h2>{t.sediTit}</h2>
-              {pr.sedi.map((s) => <p key={s.citta}><strong>{s.citta}</strong> — {inLingua(s.ruolo, lingua)}</p>)}
+              {pr.sedi.map((s) => <p key={s.citta}><strong>{s.citta}</strong>{inLingua(s.ruolo, lingua) && <> — {inLingua(s.ruolo, lingua)}</>}</p>)}
             </div>
           )}
         </aside>
@@ -221,7 +221,7 @@ export function ProduttoreTop({ p, pr, lingua }: { p: SchedaProduttore; pr: Sche
         <section id="notizie" className="au-top-sez">
           <header className="au-top-sez-testa"><h2>{t.notizieTit}</h2><p>{t.notizieSub}</p></header>
           <ul className="au-top-notizie">
-            {notizie.map((n) => <li key={n.url}><a href={n.url}><time dateTime={n.data}>{data(n.data, lingua)}</time><span>{n.titolo}</span></a></li>)}
+            {notizie.map((n) => <li key={n.url.it}><a href={n.url[lingua]}><time dateTime={n.data}>{data(n.data, lingua)}</time><span>{inLingua(n.titolo, lingua)}</span></a></li>)}
           </ul>
         </section>
       )}
