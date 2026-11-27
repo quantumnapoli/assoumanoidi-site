@@ -1,14 +1,15 @@
-import { capoversi, inLingua, type SchedaProduttore } from "../dati";
+import { inLingua, type SchedaProduttore } from "../dati";
 import { PAGINE, altra, type Lingua } from "../lingue";
 import { rotte } from "../rotte";
 import { vista } from "../societa-en";
 import { testi } from "../testi";
 import { Nav } from "../components/Nav";
 import { Piede } from "../components/Piede";
+import { ProduttoreTop } from "./ProduttoreTop";
 
 /**
  * Scheda di un produttore della directory. Base per tutti (dati della rilevazione);
- * con un periodo premium pagato in corso si aggiungono logo, copertina, descrizione, contatti, link e video.
+ * con un periodo premium pagato in corso diventa la scheda «top» (ProduttoreTop): modelli, persone, traguardi, notizie, contatti.
  */
 export function Produttore({ p, lingua }: { p: SchedaProduttore; lingua: Lingua }) {
   const { DIRECTORY, NAV, NAV_TESTI } = testi(lingua);
@@ -18,7 +19,6 @@ export function Produttore({ p, lingua }: { p: SchedaProduttore; lingua: Lingua 
   const pr = p.profilo;
   const base = PAGINE.directory[lingua];
   const frase = pr ? inLingua(pr.tagline, lingua) : "";
-  const descr = pr ? capoversi(inLingua(pr.description, lingua)) : [];
   const ld = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -27,8 +27,26 @@ export function Produttore({ p, lingua }: { p: SchedaProduttore; lingua: Lingua 
     logo: pr?.logo ?? undefined,
     description: frase || p.nota || undefined,
     address: p.paese ? { "@type": "PostalAddress", addressCountry: p.paese } : undefined,
+    employee: pr?.persone?.length ? pr.persone.map((x) => ({ "@type": "Person", name: x.nome, jobTitle: inLingua(x.ruolo, lingua), sameAs: x.linkedin ?? undefined })) : undefined,
+    makesOffer: p.schedeModelli?.length
+      ? p.schedeModelli.map((m) => ({ "@type": "Offer", itemOffered: { "@type": "Product", name: m.name, url: `https://assoumanoidi.it${PAGINE.modelli[lingua]}/${m.slug}` } }))
+      : undefined,
   };
+  const jsonLd = <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }} />;
 
+  if (pr) {
+    return (
+      <>
+        <Nav sottopagina lingua={lingua} voci={NAV(ROTTE)} testi={NAV_TESTI} aderisci={ROTTE.aderisci}
+          altraLingua={pr.esempio ? `/anteprima/scheda-premium?lang=${altra(lingua)}` : `${PAGINE.directory[altra(lingua)]}/${p.slug}`} />
+        <ProduttoreTop p={p} pr={pr} lingua={lingua} />
+        {!pr.esempio && jsonLd}
+        <Piede lingua={lingua} />
+      </>
+    );
+  }
+
+  // senza premium: scheda essenziale (oggi la directory porta queste aziende al loro sito; resta per i link vecchi)
   return (
     <>
       <Nav
@@ -40,36 +58,20 @@ export function Produttore({ p, lingua }: { p: SchedaProduttore; lingua: Lingua 
         altraLingua={`${PAGINE.directory[altra(lingua)]}/${p.slug}`}
       />
 
-      <main className={`au-pagina au-prod${pr ? " premium" : ""}`}>
+      <main className="au-pagina au-prod">
         <header className="au-pag-testa">
           <a className="au-prod-indietro" href={base}>{t.indietro}</a>
-          {pr?.cover && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img className="au-prod-copertina" src={pr.cover.url} alt={pr.cover.alt ?? ""} />
-          )}
           <div className="au-prod-titolo">
-            {pr?.logo && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img className="au-prod-logo" src={pr.logo} alt={`Logo ${p.nome}`} />
-            )}
             <div>
-              <div className="art">{pr ? DIRECTORY.premium : DIRECTORY.articolo}</div>
+              <div className="art">{DIRECTORY.articolo}</div>
               <h1>{p.nome}</h1>
-              {(frase || r.paese) && <p className="au-pag-intro">{frase || `${r.paese} · ${r.tipo}`}</p>}
+              {r.paese && <p className="au-pag-intro">{`${r.paese} · ${r.tipo}`}</p>}
             </div>
           </div>
         </header>
 
         <section className="au-pag-corpo au-prod-corpo">
-          <div className="au-prod-testo">
-            {descr.length ? descr.map((c, i) => <p key={i}>{c}</p>) : p.nota && <p>{p.nota}</p>}
-            {pr?.video && (
-              <div className="au-prod-video">
-                <iframe src={pr.video} title={`${t.video} — ${p.nome}`} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen />
-              </div>
-            )}
-          </div>
-
+          <div className="au-prod-testo">{p.nota && <p>{p.nota}</p>}</div>
           <aside className="au-prod-dati">
             <dl>
               <div><dt>{DIRECTORY.colonne.stadio}</dt><dd>{r.stadio}</dd></div>
@@ -81,24 +83,9 @@ export function Produttore({ p, lingua }: { p: SchedaProduttore; lingua: Lingua 
               <div><dt>{t.corpo}</dt><dd>{p.corpoIntero ? t.si : t.no}</dd></div>
               {p.sito && <div><dt>{t.sito}</dt><dd><a href={p.sito} target="_blank" rel="noopener noreferrer">{p.dominio || p.sito} ↗</a></dd></div>}
             </dl>
-            {pr && (pr.contact.email || pr.contact.phone || pr.contact.address) && (
-              <div className="au-prod-blocco">
-                <h2>{t.contatti}</h2>
-                {pr.contact.email && <p><a href={`mailto:${pr.contact.email}`}>{pr.contact.email}</a></p>}
-                {pr.contact.phone && <p><a href={`tel:${pr.contact.phone.replace(/[^\d+]/g, "")}`}>{pr.contact.phone}</a></p>}
-                {pr.contact.address && <p>{pr.contact.address}</p>}
-              </div>
-            )}
-            {pr && pr.links.length > 0 && (
-              <div className="au-prod-blocco">
-                <h2>{t.link}</h2>
-                {pr.links.map((l) => <p key={l.url}><a href={l.url} target="_blank" rel="noopener noreferrer">{l.label} ↗</a></p>)}
-              </div>
-            )}
-            <p className="au-prod-nota">{pr ? t.curata : null}</p>
           </aside>
         </section>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld).replace(/</g, "\\u003c") }} />
+        {jsonLd}
       </main>
 
       <Piede lingua={lingua} />

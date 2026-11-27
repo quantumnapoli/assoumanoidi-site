@@ -51,9 +51,24 @@ export type SchedaPremium = {
   links: { label: string; url: string }[];
   logo: string | null;
   cover: { url: string; alt: string | null } | null;
+  /* --- scheda top: tutto facoltativo, ogni blocco compare solo se ha contenuto --- */
+  /** cifre in evidenza: fondazione, persone, raccolta, sedi… (le scrive l'azienda, la redazione le verifica) */
+  numeri?: { valore: string; etichetta: Bilingue }[];
+  /** persone chiave che l'azienda sceglie di mostrare */
+  persone?: { nome: string; ruolo: Bilingue; foto: string | null; linkedin: string | null }[];
+  /** traguardi dal registro eventi (confermati dalla redazione) */
+  traguardi?: { data: string; tipo: "funding" | "partnership" | "deployment" | "product" | "order" | "acquisition" | "ipo"; titolo: Bilingue; fonte: { nome: string; url: string } | null }[];
+  /** notizie del Digest che parlano dell'azienda */
+  notizie?: { titolo: string; data: string; url: string }[];
+  galleria?: { url: string; alt: string }[];
+  sedi?: { citta: string; ruolo: Bilingue }[];
+  /** l'azienda è socia di AssoUmanoidi */
+  socio?: boolean;
+  /** pagina di prova con dati di esempio: mostra un avviso in cima */
+  esempio?: boolean;
 };
 
-export type SchedaProduttore = Produttore & { profilo: SchedaPremium | null };
+export type SchedaProduttore = Produttore & { profilo: SchedaPremium | null; schedeModelli?: Modello[] };
 
 type ApiAzienda = {
   slug: string; name: string; website: string | null; domain: string | null; country: string | null; area: string | null;
