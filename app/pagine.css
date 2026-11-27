@@ -1294,7 +1294,9 @@
   font-weight: 700;
   color: var(--oro);
 }
-.au-not-corpo {
+/* la misura vale per il contenuto, non per la sezione: il margine laterale della sezione cresce con lo schermo
+   e, dentro un max-width, sopra i 1280 px schiacciava il testo in una colonna di poche parole */
+.au-not-corpo > * {
   max-width: 760px;
 }
 .au-not-corpo figure img {
